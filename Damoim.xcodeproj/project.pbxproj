@@ -38,6 +38,11 @@
 		D11D81342C6C8F7200EB8680 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D11D81332C6C8F7200EB8680 /* InfoPlist.xcstrings */; };
 		D11D81362C6C9B2500EB8680 /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81352C6C9B2500EB8680 /* Extension+Date.swift */; };
 		D11D81382C6CA2F500EB8680 /* l10nKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81372C6CA2F500EB8680 /* l10nKey.swift */; };
+		D11D813B2C6CCC3700EB8680 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D813A2C6CCC3700EB8680 /* Posts.swift */; };
+		D11D813D2C6CD01600EB8680 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D813C2C6CD01600EB8680 /* Login.swift */; };
+		D11D813F2C6CD06C00EB8680 /* Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D813E2C6CD06C00EB8680 /* Refresh.swift */; };
+		D11D81412C6CD0B600EB8680 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81402C6CD0B600EB8680 /* File.swift */; };
+		D11D81432C6CD1FB00EB8680 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81422C6CD1FB00EB8680 /* Profile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +71,11 @@
 		D11D81332C6C8F7200EB8680 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		D11D81352C6C9B2500EB8680 /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 		D11D81372C6CA2F500EB8680 /* l10nKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = l10nKey.swift; sourceTree = "<group>"; };
+		D11D813A2C6CCC3700EB8680 /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
+		D11D813C2C6CD01600EB8680 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		D11D813E2C6CD06C00EB8680 /* Refresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refresh.swift; sourceTree = "<group>"; };
+		D11D81402C6CD0B600EB8680 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		D11D81422C6CD1FB00EB8680 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +185,7 @@
 		D11D812D2C6C8A9A00EB8680 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				D11D81392C6CCC2E00EB8680 /* ResponseModel */,
 				D11D812E2C6C8AA100EB8680 /* Header.swift */,
 			);
 			path = Network;
@@ -188,6 +199,18 @@
 				D11D81372C6CA2F500EB8680 /* l10nKey.swift */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		D11D81392C6CCC2E00EB8680 /* ResponseModel */ = {
+			isa = PBXGroup;
+			children = (
+				D11D813A2C6CCC3700EB8680 /* Posts.swift */,
+				D11D813C2C6CD01600EB8680 /* Login.swift */,
+				D11D813E2C6CD06C00EB8680 /* Refresh.swift */,
+				D11D81402C6CD0B600EB8680 /* File.swift */,
+				D11D81422C6CD1FB00EB8680 /* Profile.swift */,
+			);
+			path = ResponseModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,16 +308,21 @@
 				D11D812F2C6C8AA100EB8680 /* Header.swift in Sources */,
 				D11D80FD2C6C81E400EB8680 /* Extension+String.swift in Sources */,
 				D11D81062C6C823200EB8680 /* BaseCollectionViewCell.swift in Sources */,
+				D11D81432C6CD1FB00EB8680 /* Profile.swift in Sources */,
 				D11D80E82C6C7EF000EB8680 /* LoginViewController.swift in Sources */,
 				D11D81282C6C87DD00EB8680 /* UserDefaultsManager.swift in Sources */,
 				D11D81362C6C9B2500EB8680 /* Extension+Date.swift in Sources */,
+				D11D813F2C6CD06C00EB8680 /* Refresh.swift in Sources */,
 				D11D81222C6C875600EB8680 /* ViewModel.swift in Sources */,
 				D11D80FF2C6C81ED00EB8680 /* Extension+UIViewController.swift in Sources */,
+				D11D81412C6CD0B600EB8680 /* File.swift in Sources */,
 				D11D80E42C6C7EF000EB8680 /* AppDelegate.swift in Sources */,
 				D11D812C2C6C8A1D00EB8680 /* SceneManager.swift in Sources */,
 				D11D80FA2C6C7F5C00EB8680 /* APIKey.swift in Sources */,
+				D11D813D2C6CD01600EB8680 /* Login.swift in Sources */,
 				D11D81042C6C821A00EB8680 /* BaseViewController.swift in Sources */,
 				D11D81252C6C87C100EB8680 /* UserDefaults.swift in Sources */,
+				D11D813B2C6CCC3700EB8680 /* Posts.swift in Sources */,
 				D11D810A2C6C82B100EB8680 /* Extension+Color.swift in Sources */,
 				D11D81382C6CA2F500EB8680 /* l10nKey.swift in Sources */,
 				D11D812A2C6C898C00EB8680 /* TabBarController.swift in Sources */,

@@ -43,6 +43,17 @@
 		D11D813F2C6CD06C00EB8680 /* Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D813E2C6CD06C00EB8680 /* Refresh.swift */; };
 		D11D81412C6CD0B600EB8680 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81402C6CD0B600EB8680 /* File.swift */; };
 		D11D81432C6CD1FB00EB8680 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81422C6CD1FB00EB8680 /* Profile.swift */; };
+		D11D81462C6CD85900EB8680 /* SignUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81452C6CD85900EB8680 /* SignUpQuery.swift */; };
+		D11D81482C6CD8CB00EB8680 /* EmailValidationQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81472C6CD8CB00EB8680 /* EmailValidationQuery.swift */; };
+		D11D814A2C6CD8EC00EB8680 /* LoginQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81492C6CD8EC00EB8680 /* LoginQuery.swift */; };
+		D11D814C2C6CD95400EB8680 /* FileUploadQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D814B2C6CD95400EB8680 /* FileUploadQuery.swift */; };
+		D11D814E2C6CD9F400EB8680 /* PostQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D814D2C6CD9F400EB8680 /* PostQuery.swift */; };
+		D11D81502C6CDB0000EB8680 /* PostReadQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D814F2C6CDB0000EB8680 /* PostReadQuery.swift */; };
+		D11D81522C6CDDB200EB8680 /* CommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81512C6CDDB200EB8680 /* CommentQuery.swift */; };
+		D11D81542C6CDEAE00EB8680 /* LikeQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81532C6CDEAE00EB8680 /* LikeQuery.swift */; };
+		D11D81562C6CDF0000EB8680 /* ProfileEditQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81552C6CDF0000EB8680 /* ProfileEditQuery.swift */; };
+		D11D81582C6CDFC300EB8680 /* HashTagSearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81572C6CDFC300EB8680 /* HashTagSearchQuery.swift */; };
+		D11D815A2C6CE11700EB8680 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81592C6CE11700EB8680 /* APIError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +87,17 @@
 		D11D813E2C6CD06C00EB8680 /* Refresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refresh.swift; sourceTree = "<group>"; };
 		D11D81402C6CD0B600EB8680 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		D11D81422C6CD1FB00EB8680 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		D11D81452C6CD85900EB8680 /* SignUpQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpQuery.swift; sourceTree = "<group>"; };
+		D11D81472C6CD8CB00EB8680 /* EmailValidationQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationQuery.swift; sourceTree = "<group>"; };
+		D11D81492C6CD8EC00EB8680 /* LoginQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginQuery.swift; sourceTree = "<group>"; };
+		D11D814B2C6CD95400EB8680 /* FileUploadQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadQuery.swift; sourceTree = "<group>"; };
+		D11D814D2C6CD9F400EB8680 /* PostQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostQuery.swift; sourceTree = "<group>"; };
+		D11D814F2C6CDB0000EB8680 /* PostReadQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostReadQuery.swift; sourceTree = "<group>"; };
+		D11D81512C6CDDB200EB8680 /* CommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentQuery.swift; sourceTree = "<group>"; };
+		D11D81532C6CDEAE00EB8680 /* LikeQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeQuery.swift; sourceTree = "<group>"; };
+		D11D81552C6CDF0000EB8680 /* ProfileEditQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditQuery.swift; sourceTree = "<group>"; };
+		D11D81572C6CDFC300EB8680 /* HashTagSearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagSearchQuery.swift; sourceTree = "<group>"; };
+		D11D81592C6CE11700EB8680 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,8 +207,10 @@
 		D11D812D2C6C8A9A00EB8680 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				D11D81442C6CD3B600EB8680 /* RequstModel */,
 				D11D81392C6CCC2E00EB8680 /* ResponseModel */,
 				D11D812E2C6C8AA100EB8680 /* Header.swift */,
+				D11D81592C6CE11700EB8680 /* APIError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -211,6 +235,23 @@
 				D11D81422C6CD1FB00EB8680 /* Profile.swift */,
 			);
 			path = ResponseModel;
+			sourceTree = "<group>";
+		};
+		D11D81442C6CD3B600EB8680 /* RequstModel */ = {
+			isa = PBXGroup;
+			children = (
+				D11D81452C6CD85900EB8680 /* SignUpQuery.swift */,
+				D11D81472C6CD8CB00EB8680 /* EmailValidationQuery.swift */,
+				D11D81492C6CD8EC00EB8680 /* LoginQuery.swift */,
+				D11D814B2C6CD95400EB8680 /* FileUploadQuery.swift */,
+				D11D814D2C6CD9F400EB8680 /* PostQuery.swift */,
+				D11D814F2C6CDB0000EB8680 /* PostReadQuery.swift */,
+				D11D81512C6CDDB200EB8680 /* CommentQuery.swift */,
+				D11D81532C6CDEAE00EB8680 /* LikeQuery.swift */,
+				D11D81552C6CDF0000EB8680 /* ProfileEditQuery.swift */,
+				D11D81572C6CDFC300EB8680 /* HashTagSearchQuery.swift */,
+			);
+			path = RequstModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,27 +347,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				D11D812F2C6C8AA100EB8680 /* Header.swift in Sources */,
+				D11D814C2C6CD95400EB8680 /* FileUploadQuery.swift in Sources */,
 				D11D80FD2C6C81E400EB8680 /* Extension+String.swift in Sources */,
+				D11D815A2C6CE11700EB8680 /* APIError.swift in Sources */,
 				D11D81062C6C823200EB8680 /* BaseCollectionViewCell.swift in Sources */,
 				D11D81432C6CD1FB00EB8680 /* Profile.swift in Sources */,
 				D11D80E82C6C7EF000EB8680 /* LoginViewController.swift in Sources */,
 				D11D81282C6C87DD00EB8680 /* UserDefaultsManager.swift in Sources */,
+				D11D81582C6CDFC300EB8680 /* HashTagSearchQuery.swift in Sources */,
+				D11D814A2C6CD8EC00EB8680 /* LoginQuery.swift in Sources */,
 				D11D81362C6C9B2500EB8680 /* Extension+Date.swift in Sources */,
 				D11D813F2C6CD06C00EB8680 /* Refresh.swift in Sources */,
+				D11D81462C6CD85900EB8680 /* SignUpQuery.swift in Sources */,
+				D11D81482C6CD8CB00EB8680 /* EmailValidationQuery.swift in Sources */,
 				D11D81222C6C875600EB8680 /* ViewModel.swift in Sources */,
 				D11D80FF2C6C81ED00EB8680 /* Extension+UIViewController.swift in Sources */,
 				D11D81412C6CD0B600EB8680 /* File.swift in Sources */,
 				D11D80E42C6C7EF000EB8680 /* AppDelegate.swift in Sources */,
 				D11D812C2C6C8A1D00EB8680 /* SceneManager.swift in Sources */,
 				D11D80FA2C6C7F5C00EB8680 /* APIKey.swift in Sources */,
+				D11D81542C6CDEAE00EB8680 /* LikeQuery.swift in Sources */,
 				D11D813D2C6CD01600EB8680 /* Login.swift in Sources */,
 				D11D81042C6C821A00EB8680 /* BaseViewController.swift in Sources */,
+				D11D814E2C6CD9F400EB8680 /* PostQuery.swift in Sources */,
+				D11D81502C6CDB0000EB8680 /* PostReadQuery.swift in Sources */,
 				D11D81252C6C87C100EB8680 /* UserDefaults.swift in Sources */,
 				D11D813B2C6CCC3700EB8680 /* Posts.swift in Sources */,
 				D11D810A2C6C82B100EB8680 /* Extension+Color.swift in Sources */,
 				D11D81382C6CA2F500EB8680 /* l10nKey.swift in Sources */,
+				D11D81522C6CDDB200EB8680 /* CommentQuery.swift in Sources */,
 				D11D812A2C6C898C00EB8680 /* TabBarController.swift in Sources */,
 				D11D81082C6C824400EB8680 /* ReuseIdentifier.swift in Sources */,
+				D11D81562C6CDF0000EB8680 /* ProfileEditQuery.swift in Sources */,
 				D11D80E62C6C7EF000EB8680 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

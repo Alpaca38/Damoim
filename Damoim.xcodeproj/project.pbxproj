@@ -34,6 +34,10 @@
 		D11D812A2C6C898C00EB8680 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81292C6C898C00EB8680 /* TabBarController.swift */; };
 		D11D812C2C6C8A1D00EB8680 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D812B2C6C8A1D00EB8680 /* SceneManager.swift */; };
 		D11D812F2C6C8AA100EB8680 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D812E2C6C8AA100EB8680 /* Header.swift */; };
+		D11D81322C6C8F6000EB8680 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D11D81312C6C8F6000EB8680 /* Localizable.xcstrings */; };
+		D11D81342C6C8F7200EB8680 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D11D81332C6C8F7200EB8680 /* InfoPlist.xcstrings */; };
+		D11D81362C6C9B2500EB8680 /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81352C6C9B2500EB8680 /* Extension+Date.swift */; };
+		D11D81382C6CA2F500EB8680 /* l10nKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81372C6CA2F500EB8680 /* l10nKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +62,10 @@
 		D11D81292C6C898C00EB8680 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D11D812B2C6C8A1D00EB8680 /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
 		D11D812E2C6C8AA100EB8680 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		D11D81312C6C8F6000EB8680 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		D11D81332C6C8F7200EB8680 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		D11D81352C6C9B2500EB8680 /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
+		D11D81372C6CA2F500EB8680 /* l10nKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = l10nKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,7 @@
 		D11D80E22C6C7EF000EB8680 /* Damoim */ = {
 			isa = PBXGroup;
 			children = (
+				D11D81302C6C8F5100EB8680 /* Localization */,
 				D11D81232C6C87BA00EB8680 /* Model */,
 				D11D81022C6C820F00EB8680 /* Protocol */,
 				D11D81012C6C820B00EB8680 /* Base */,
@@ -119,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				D11D80FC2C6C81E400EB8680 /* Extension+String.swift */,
+				D11D81352C6C9B2500EB8680 /* Extension+Date.swift */,
 				D11D80FE2C6C81ED00EB8680 /* Extension+UIViewController.swift */,
 				D11D81092C6C82B100EB8680 /* Extension+Color.swift */,
 			);
@@ -168,6 +178,16 @@
 				D11D812E2C6C8AA100EB8680 /* Header.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		D11D81302C6C8F5100EB8680 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				D11D81312C6C8F6000EB8680 /* Localizable.xcstrings */,
+				D11D81332C6C8F7200EB8680 /* InfoPlist.xcstrings */,
+				D11D81372C6CA2F500EB8680 /* l10nKey.swift */,
+			);
+			path = Localization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +242,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = D11D80D72C6C7EEF00EB8680;
 			packageReferences = (
@@ -247,7 +268,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D11D80F82C6C7F1A00EB8680 /* .gitignore in Resources */,
+				D11D81342C6C8F7200EB8680 /* InfoPlist.xcstrings in Resources */,
 				D11D80ED2C6C7EF100EB8680 /* Assets.xcassets in Resources */,
+				D11D81322C6C8F6000EB8680 /* Localizable.xcstrings in Resources */,
 				D11D80F02C6C7EF100EB8680 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,6 +287,7 @@
 				D11D81062C6C823200EB8680 /* BaseCollectionViewCell.swift in Sources */,
 				D11D80E82C6C7EF000EB8680 /* LoginViewController.swift in Sources */,
 				D11D81282C6C87DD00EB8680 /* UserDefaultsManager.swift in Sources */,
+				D11D81362C6C9B2500EB8680 /* Extension+Date.swift in Sources */,
 				D11D81222C6C875600EB8680 /* ViewModel.swift in Sources */,
 				D11D80FF2C6C81ED00EB8680 /* Extension+UIViewController.swift in Sources */,
 				D11D80E42C6C7EF000EB8680 /* AppDelegate.swift in Sources */,
@@ -272,6 +296,7 @@
 				D11D81042C6C821A00EB8680 /* BaseViewController.swift in Sources */,
 				D11D81252C6C87C100EB8680 /* UserDefaults.swift in Sources */,
 				D11D810A2C6C82B100EB8680 /* Extension+Color.swift in Sources */,
+				D11D81382C6CA2F500EB8680 /* l10nKey.swift in Sources */,
 				D11D812A2C6C898C00EB8680 /* TabBarController.swift in Sources */,
 				D11D81082C6C824400EB8680 /* ReuseIdentifier.swift in Sources */,
 				D11D80E62C6C7EF000EB8680 /* SceneDelegate.swift in Sources */,

@@ -11,4 +11,9 @@ extension String {
     var localized: String {
         return NSLocalizedString(self, comment: "")
     }
+    
+    var toCurrency: String {
+        guard let money = Int(self) else { return "" }
+        return money.formatted(.currency(code: "KRW"))
+    }
 }

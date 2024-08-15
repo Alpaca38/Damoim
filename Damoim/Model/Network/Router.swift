@@ -26,7 +26,7 @@ extension Router: TargetType {
             return .post
         case .emailValdation:
             return .post
-        case .login(let query):
+        case .login:
             return .post
         case .refresh:
             return .get

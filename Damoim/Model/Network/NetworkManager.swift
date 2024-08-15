@@ -40,6 +40,39 @@ final class NetworkManager {
             }
             return Disposables.create()
         }
+    }
+    
+    func login(email: String, password: String) -> Single<Result<Login, APIError>> {
+        return Single.create { observer in
+            do {
+                let query = LoginQuery(email: email, password: password)
+                let request = try Router.login(query: query).asURLRequest()
+                AF.request(request)
+                    .validate()
+                    .responseDecodable(of: Login.self) { response in
+                        switch response.result {
+                        case .success(let success):
+                            observer(.success(.success(success)))
+                            UserDefaultsManager.accessToken = success.accessToken
+                            UserDefaultsManager.refreshToken = success.refreshToken
+                            UserDefaultsManager.isLogin = true
+                        case .failure(_):
+                            switch response.response?.statusCode {
+                            case 400:
+                                observer(.success(.failure(.invalidRequestVariables)))
+                            case 401:
+                                observer(.success(.failure(.invalidRequest)))
+                            default:
+                                observer(.success(.failure(.serverError)))
+                            }
+                            
+                        }
+                    }
+            } catch {
+                print(error)
+            }
+            return Disposables.create()
+        }
         
     }
 }

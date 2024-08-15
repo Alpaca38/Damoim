@@ -60,6 +60,8 @@
 		D11D81642C6DBBF500EB8680 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81632C6DBBF500EB8680 /* Router.swift */; };
 		D11D81662C6DBCBE00EB8680 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81652C6DBCBE00EB8680 /* TargetType.swift */; };
 		D11D81692C6DC3BA00EB8680 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81682C6DC3BA00EB8680 /* SignUpViewModel.swift */; };
+		D11D816B2C6DDBA200EB8680 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D816A2C6DDBA200EB8680 /* LoginViewModel.swift */; };
+		D11D816D2C6DE08200EB8680 /* ClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D816C2C6DE08200EB8680 /* ClubViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +112,8 @@
 		D11D81632C6DBBF500EB8680 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D11D81652C6DBCBE00EB8680 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		D11D81682C6DC3BA00EB8680 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		D11D816A2C6DDBA200EB8680 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		D11D816C2C6DE08200EB8680 /* ClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +279,7 @@
 				D11D815C2C6CF7FD00EB8680 /* Custom */,
 				D11D80E72C6C7EF000EB8680 /* LoginViewController.swift */,
 				D11D815F2C6CFB9800EB8680 /* SignUpViewController.swift */,
+				D11D816C2C6DE08200EB8680 /* ClubViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				D11D81682C6DC3BA00EB8680 /* SignUpViewModel.swift */,
+				D11D816A2C6DDBA200EB8680 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -393,6 +399,7 @@
 				D11D81692C6DC3BA00EB8680 /* SignUpViewModel.swift in Sources */,
 				D11D80FD2C6C81E400EB8680 /* Extension+String.swift in Sources */,
 				D11D815A2C6CE11700EB8680 /* APIError.swift in Sources */,
+				D11D816B2C6DDBA200EB8680 /* LoginViewModel.swift in Sources */,
 				D11D81062C6C823200EB8680 /* BaseCollectionViewCell.swift in Sources */,
 				D11D81432C6CD1FB00EB8680 /* Profile.swift in Sources */,
 				D11D81642C6DBBF500EB8680 /* Router.swift in Sources */,
@@ -419,6 +426,7 @@
 				D11D81042C6C821A00EB8680 /* BaseViewController.swift in Sources */,
 				D11D814E2C6CD9F400EB8680 /* PostQuery.swift in Sources */,
 				D11D81502C6CDB0000EB8680 /* PostReadQuery.swift in Sources */,
+				D11D816D2C6DE08200EB8680 /* ClubViewController.swift in Sources */,
 				D11D81252C6C87C100EB8680 /* UserDefaults.swift in Sources */,
 				D11D813B2C6CCC3700EB8680 /* Posts.swift in Sources */,
 				D11D810A2C6C82B100EB8680 /* Extension+Color.swift in Sources */,

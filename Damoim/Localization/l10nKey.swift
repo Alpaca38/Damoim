@@ -29,8 +29,8 @@ enum l10nKey: String {
     case placeholderPassword = "placeholder_password"
     case placeholderSearch = "placeholder_search"
     case signUpSuccess = "sign_up_success"
-    case tabClass = "tab_class"
+    case tabClub = "tab_club"
     case tabLike = "tab_like"
-    case tabMyClass = "tab_my_class"
+    case tabMyClub = "tab_my_club"
     case tabProfile = "tab_profile"
 }

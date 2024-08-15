@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import Toast
 
 final class LoginViewController: BaseViewController {
     private let titleLabel: UILabel = {
@@ -42,6 +43,8 @@ final class LoginViewController: BaseViewController {
         button.layer.cornerRadius = 5
         return button
     }()
+    
+    private let viewModel = LoginViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,10 +96,28 @@ final class LoginViewController: BaseViewController {
 
 private extension LoginViewController {
     func bind() {
+        let input = LoginViewModel.Input(
+            loginTap: loginButton.rx.tap,
+            email: emailTextField.rx.text.orEmpty,
+            password: passwordTextField.rx.text.orEmpty
+        )
+        
+        let output = viewModel.transform(input: input)
+        
         disposeBag.insert {
             signButton.rx.tap
                 .bind(with: self) { owner, _ in
                     owner.navigationController?.pushViewController(SignUpViewController(), animated: true)
+                }
+            
+            output.loginResult
+                .drive(with: self) { owner, result in
+                    switch result {
+                    case .success(let success):
+                        SceneManager.shared.setScene(viewController: TabBarController())
+                    case .failure(let error):
+                        owner.view.makeToast(error.rawValue)
+                    }
                 }
         }
     }

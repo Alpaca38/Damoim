@@ -14,6 +14,12 @@ final class TabBarController: UITabBarController {
     }
     
     func setTaBarController() {
+        tabBar.tintColor = .main
+        tabBar.unselectedItemTintColor = .gray
         
+        let club = UINavigationController(rootViewController: ClubViewController())
+        club.tabBarItem = UITabBarItem(title: l10nKey.tabClub.rawValue.localized, image: UIImage(systemName: "house.fill"), tag: 0)
+        
+        setViewControllers([club], animated: true)
     }
 }

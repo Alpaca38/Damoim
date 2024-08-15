@@ -358,13 +358,13 @@
         }
       }
     },
-    "tab_class" : {
+    "tab_club" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Class"
+            "value" : "Club"
           }
         },
         "ko" : {
@@ -392,13 +392,13 @@
         }
       }
     },
-    "tab_my_class" : {
+    "tab_my_club" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "My Class"
+            "value" : "My Club"
           }
         },
         "ko" : {

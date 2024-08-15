@@ -113,7 +113,7 @@ private extension LoginViewController {
             output.loginResult
                 .drive(with: self) { owner, result in
                     switch result {
-                    case .success(let success):
+                    case .success(_):
                         SceneManager.shared.setScene(viewController: TabBarController())
                     case .failure(let error):
                         owner.view.makeToast(error.rawValue)

@@ -56,6 +56,10 @@
 		D11D815A2C6CE11700EB8680 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81592C6CE11700EB8680 /* APIError.swift */; };
 		D11D815E2C6CF81300EB8680 /* RoundTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D815D2C6CF81300EB8680 /* RoundTextField.swift */; };
 		D11D81602C6CFB9800EB8680 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D815F2C6CFB9800EB8680 /* SignUpViewController.swift */; };
+		D11D81622C6DBBD900EB8680 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81612C6DBBD900EB8680 /* NetworkManager.swift */; };
+		D11D81642C6DBBF500EB8680 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81632C6DBBF500EB8680 /* Router.swift */; };
+		D11D81662C6DBCBE00EB8680 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81652C6DBCBE00EB8680 /* TargetType.swift */; };
+		D11D81692C6DC3BA00EB8680 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81682C6DC3BA00EB8680 /* SignUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +106,10 @@
 		D11D81592C6CE11700EB8680 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		D11D815D2C6CF81300EB8680 /* RoundTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTextField.swift; sourceTree = "<group>"; };
 		D11D815F2C6CFB9800EB8680 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		D11D81612C6DBBD900EB8680 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D11D81632C6DBBF500EB8680 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		D11D81652C6DBCBE00EB8680 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
+		D11D81682C6DC3BA00EB8680 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +151,7 @@
 		D11D80E22C6C7EF000EB8680 /* Damoim */ = {
 			isa = PBXGroup;
 			children = (
+				D11D81672C6DC3B200EB8680 /* ViewModel */,
 				D11D815B2C6CF7DA00EB8680 /* View */,
 				D11D81302C6C8F5100EB8680 /* Localization */,
 				D11D81232C6C87BA00EB8680 /* Model */,
@@ -214,6 +223,9 @@
 				D11D81392C6CCC2E00EB8680 /* ResponseModel */,
 				D11D812E2C6C8AA100EB8680 /* Header.swift */,
 				D11D81592C6CE11700EB8680 /* APIError.swift */,
+				D11D81612C6DBBD900EB8680 /* NetworkManager.swift */,
+				D11D81632C6DBBF500EB8680 /* Router.swift */,
+				D11D81652C6DBCBE00EB8680 /* TargetType.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -274,6 +286,14 @@
 				D11D815D2C6CF81300EB8680 /* RoundTextField.swift */,
 			);
 			path = Custom;
+			sourceTree = "<group>";
+		};
+		D11D81672C6DC3B200EB8680 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D11D81682C6DC3BA00EB8680 /* SignUpViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,10 +390,12 @@
 			files = (
 				D11D812F2C6C8AA100EB8680 /* Header.swift in Sources */,
 				D11D814C2C6CD95400EB8680 /* FileUploadQuery.swift in Sources */,
+				D11D81692C6DC3BA00EB8680 /* SignUpViewModel.swift in Sources */,
 				D11D80FD2C6C81E400EB8680 /* Extension+String.swift in Sources */,
 				D11D815A2C6CE11700EB8680 /* APIError.swift in Sources */,
 				D11D81062C6C823200EB8680 /* BaseCollectionViewCell.swift in Sources */,
 				D11D81432C6CD1FB00EB8680 /* Profile.swift in Sources */,
+				D11D81642C6DBBF500EB8680 /* Router.swift in Sources */,
 				D11D81602C6CFB9800EB8680 /* SignUpViewController.swift in Sources */,
 				D11D80E82C6C7EF000EB8680 /* LoginViewController.swift in Sources */,
 				D11D81282C6C87DD00EB8680 /* UserDefaultsManager.swift in Sources */,
@@ -382,11 +404,13 @@
 				D11D81362C6C9B2500EB8680 /* Extension+Date.swift in Sources */,
 				D11D813F2C6CD06C00EB8680 /* Refresh.swift in Sources */,
 				D11D81462C6CD85900EB8680 /* SignUpQuery.swift in Sources */,
+				D11D81662C6DBCBE00EB8680 /* TargetType.swift in Sources */,
 				D11D81482C6CD8CB00EB8680 /* EmailValidationQuery.swift in Sources */,
 				D11D81222C6C875600EB8680 /* ViewModel.swift in Sources */,
 				D11D80FF2C6C81ED00EB8680 /* Extension+UIViewController.swift in Sources */,
 				D11D81412C6CD0B600EB8680 /* File.swift in Sources */,
 				D11D815E2C6CF81300EB8680 /* RoundTextField.swift in Sources */,
+				D11D81622C6DBBD900EB8680 /* NetworkManager.swift in Sources */,
 				D11D80E42C6C7EF000EB8680 /* AppDelegate.swift in Sources */,
 				D11D812C2C6C8A1D00EB8680 /* SceneManager.swift in Sources */,
 				D11D80FA2C6C7F5C00EB8680 /* APIKey.swift in Sources */,

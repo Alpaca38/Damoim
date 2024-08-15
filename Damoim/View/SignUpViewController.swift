@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import Toast
 
 final class SignUpViewController: BaseViewController {
     private let titleLabel: UILabel = {
@@ -34,8 +37,11 @@ final class SignUpViewController: BaseViewController {
         return button
     }()
     
+    private let viewModel = SignUpViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -77,6 +83,40 @@ final class SignUpViewController: BaseViewController {
             make.top.equalTo(nicknameTextField.snp.bottom).offset(40)
             make.left.right.equalTo(emailTextField)
             make.height.equalTo(44)
+        }
+    }
+}
+
+private extension SignUpViewController {
+    func bind() {
+        let input = SignUpViewModel.Input(
+            signUpTap: signUpButton.rx.tap,
+            email: emailTextField.rx.text.orEmpty,
+            password: passwordTextField.rx.text.orEmpty,
+            nickname: nicknameTextField.rx.text.orEmpty
+        )
+        
+        let output = viewModel.transform(input: input)
+        
+        disposeBag.insert {
+            output.signUpResult
+                .drive(with: self) { owner, result in
+                    switch result {
+                    case .success(let success):
+                        owner.showAlert(title: success, message: nil, buttonTitle: l10nKey.buttonOK.rawValue.localized) {
+                            SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                        }
+                    case .failure(let error):
+                        owner.view.makeToast(error.rawValue)
+                    }
+                }
+            
+            output.totalValid
+                .bind(with: self) { owner, value in
+                    let backgroundColor: UIColor = value ? .systemBlue : .gray
+                    owner.signUpButton.backgroundColor = backgroundColor
+                    owner.signUpButton.isEnabled = value
+                }
         }
     }
 }

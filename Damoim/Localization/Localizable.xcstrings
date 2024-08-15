@@ -35,6 +35,23 @@
         }
       }
     },
+    "button_ok" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확인"
+          }
+        }
+      }
+    },
     "button_profile_edit" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -320,6 +337,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "태그를 검색해보세요."
+          }
+        }
+      }
+    },
+    "sign_up_success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have successfully registered."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "회원가입에 성공했습니다."
           }
         }
       }

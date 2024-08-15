@@ -62,6 +62,8 @@
 		D11D81692C6DC3BA00EB8680 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81682C6DC3BA00EB8680 /* SignUpViewModel.swift */; };
 		D11D816B2C6DDBA200EB8680 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D816A2C6DDBA200EB8680 /* LoginViewModel.swift */; };
 		D11D816D2C6DE08200EB8680 /* ClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D816C2C6DE08200EB8680 /* ClubViewController.swift */; };
+		D11D81702C6DF33900EB8680 /* ClubCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D816F2C6DF33900EB8680 /* ClubCollectionViewCell.swift */; };
+		D11D81722C6DFD1B00EB8680 /* ClubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81712C6DFD1B00EB8680 /* ClubViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +116,8 @@
 		D11D81682C6DC3BA00EB8680 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		D11D816A2C6DDBA200EB8680 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D11D816C2C6DE08200EB8680 /* ClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewController.swift; sourceTree = "<group>"; };
+		D11D816F2C6DF33900EB8680 /* ClubCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCollectionViewCell.swift; sourceTree = "<group>"; };
+		D11D81712C6DFD1B00EB8680 /* ClubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +280,7 @@
 		D11D815B2C6CF7DA00EB8680 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D11D816E2C6DF32800EB8680 /* Cell */,
 				D11D815C2C6CF7FD00EB8680 /* Custom */,
 				D11D80E72C6C7EF000EB8680 /* LoginViewController.swift */,
 				D11D815F2C6CFB9800EB8680 /* SignUpViewController.swift */,
@@ -298,8 +303,17 @@
 			children = (
 				D11D81682C6DC3BA00EB8680 /* SignUpViewModel.swift */,
 				D11D816A2C6DDBA200EB8680 /* LoginViewModel.swift */,
+				D11D81712C6DFD1B00EB8680 /* ClubViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D11D816E2C6DF32800EB8680 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D11D816F2C6DF33900EB8680 /* ClubCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,7 +436,9 @@
 				D11D812C2C6C8A1D00EB8680 /* SceneManager.swift in Sources */,
 				D11D80FA2C6C7F5C00EB8680 /* APIKey.swift in Sources */,
 				D11D81542C6CDEAE00EB8680 /* LikeQuery.swift in Sources */,
+				D11D81722C6DFD1B00EB8680 /* ClubViewModel.swift in Sources */,
 				D11D813D2C6CD01600EB8680 /* Login.swift in Sources */,
+				D11D81702C6DF33900EB8680 /* ClubCollectionViewCell.swift in Sources */,
 				D11D81042C6C821A00EB8680 /* BaseViewController.swift in Sources */,
 				D11D814E2C6CD9F400EB8680 /* PostQuery.swift in Sources */,
 				D11D81502C6CDB0000EB8680 /* PostReadQuery.swift in Sources */,

@@ -256,6 +256,23 @@
         }
       }
     },
+    "navigation_title_club" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BoardGame Club"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보드게임 모임"
+          }
+        }
+      }
+    },
     "placeholder_comment" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -337,6 +354,57 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "태그를 검색해보세요."
+          }
+        }
+      }
+    },
+    "section_card" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Everything is at stake with just one card! - Card Game"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "카드 한 장에 모든 것이 걸려있다! - 카드 게임"
+          }
+        }
+      }
+    },
+    "section_guessing" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Test your detective skills! - Guessing Game"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "당신의 추리력을 시험해보세요! - 추리 게임"
+          }
+        }
+      }
+    },
+    "section_strategy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Craft the perfect plan to achieve victory - Strategy Game"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "승리를 향한 완벽한 계획 - 전략 게임"
           }
         }
       }

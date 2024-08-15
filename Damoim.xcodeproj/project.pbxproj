@@ -54,6 +54,8 @@
 		D11D81562C6CDF0000EB8680 /* ProfileEditQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81552C6CDF0000EB8680 /* ProfileEditQuery.swift */; };
 		D11D81582C6CDFC300EB8680 /* HashTagSearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81572C6CDFC300EB8680 /* HashTagSearchQuery.swift */; };
 		D11D815A2C6CE11700EB8680 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81592C6CE11700EB8680 /* APIError.swift */; };
+		D11D815E2C6CF81300EB8680 /* RoundTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D815D2C6CF81300EB8680 /* RoundTextField.swift */; };
+		D11D81602C6CFB9800EB8680 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D815F2C6CFB9800EB8680 /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +100,8 @@
 		D11D81552C6CDF0000EB8680 /* ProfileEditQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditQuery.swift; sourceTree = "<group>"; };
 		D11D81572C6CDFC300EB8680 /* HashTagSearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagSearchQuery.swift; sourceTree = "<group>"; };
 		D11D81592C6CE11700EB8680 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		D11D815D2C6CF81300EB8680 /* RoundTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTextField.swift; sourceTree = "<group>"; };
+		D11D815F2C6CFB9800EB8680 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,7 @@
 		D11D80E22C6C7EF000EB8680 /* Damoim */ = {
 			isa = PBXGroup;
 			children = (
+				D11D815B2C6CF7DA00EB8680 /* View */,
 				D11D81302C6C8F5100EB8680 /* Localization */,
 				D11D81232C6C87BA00EB8680 /* Model */,
 				D11D81022C6C820F00EB8680 /* Protocol */,
@@ -146,8 +151,6 @@
 				D11D80FB2C6C81D800EB8680 /* Extension */,
 				D11D80E32C6C7EF000EB8680 /* AppDelegate.swift */,
 				D11D80E52C6C7EF000EB8680 /* SceneDelegate.swift */,
-				D11D80E72C6C7EF000EB8680 /* LoginViewController.swift */,
-				D11D81292C6C898C00EB8680 /* TabBarController.swift */,
 				D11D80EC2C6C7EF100EB8680 /* Assets.xcassets */,
 				D11D80EE2C6C7EF100EB8680 /* LaunchScreen.storyboard */,
 				D11D80F12C6C7EF100EB8680 /* Info.plist */,
@@ -254,6 +257,25 @@
 			path = RequstModel;
 			sourceTree = "<group>";
 		};
+		D11D815B2C6CF7DA00EB8680 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D11D815C2C6CF7FD00EB8680 /* Custom */,
+				D11D80E72C6C7EF000EB8680 /* LoginViewController.swift */,
+				D11D815F2C6CFB9800EB8680 /* SignUpViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D11D815C2C6CF7FD00EB8680 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				D11D81292C6C898C00EB8680 /* TabBarController.swift */,
+				D11D815D2C6CF81300EB8680 /* RoundTextField.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -352,6 +374,7 @@
 				D11D815A2C6CE11700EB8680 /* APIError.swift in Sources */,
 				D11D81062C6C823200EB8680 /* BaseCollectionViewCell.swift in Sources */,
 				D11D81432C6CD1FB00EB8680 /* Profile.swift in Sources */,
+				D11D81602C6CFB9800EB8680 /* SignUpViewController.swift in Sources */,
 				D11D80E82C6C7EF000EB8680 /* LoginViewController.swift in Sources */,
 				D11D81282C6C87DD00EB8680 /* UserDefaultsManager.swift in Sources */,
 				D11D81582C6CDFC300EB8680 /* HashTagSearchQuery.swift in Sources */,
@@ -363,6 +386,7 @@
 				D11D81222C6C875600EB8680 /* ViewModel.swift in Sources */,
 				D11D80FF2C6C81ED00EB8680 /* Extension+UIViewController.swift in Sources */,
 				D11D81412C6CD0B600EB8680 /* File.swift in Sources */,
+				D11D815E2C6CF81300EB8680 /* RoundTextField.swift in Sources */,
 				D11D80E42C6C7EF000EB8680 /* AppDelegate.swift in Sources */,
 				D11D812C2C6C8A1D00EB8680 /* SceneManager.swift in Sources */,
 				D11D80FA2C6C7F5C00EB8680 /* APIKey.swift in Sources */,

@@ -8,6 +8,7 @@
 import Foundation
 
 enum l10nKey: String {
+    case appName = "app_name"
     case buttonJoin = "button_join"
     case buttonSignIn = "button_sign_in"
     case buttonSignUp = "button_sign_up"

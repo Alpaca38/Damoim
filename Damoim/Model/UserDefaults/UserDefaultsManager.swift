@@ -18,4 +18,7 @@ struct UserDefaultsManager {
     
     @UserDefault(key: .isLogin, defaultValue: false, isCustomObject: false)
     static var isLogin: Bool
+    
+    @UserDefault(key: .user_id, defaultValue: "", isCustomObject: false)
+    static var user_id: String
 }

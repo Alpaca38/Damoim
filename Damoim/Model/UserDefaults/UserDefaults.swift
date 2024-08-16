@@ -10,7 +10,7 @@ import Foundation
 @propertyWrapper
 struct UserDefault<T: Codable> {
     enum UserDefaultKeys: String {
-        case accessToken, refreshToken, isLogin
+        case accessToken, refreshToken, isLogin, user_id
     }
 
     let key: UserDefaultKeys

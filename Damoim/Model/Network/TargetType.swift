@@ -24,6 +24,11 @@ extension TargetType {
         var request = try URLRequest(url: url.appendingPathComponent(path), method: method)
         request.allHTTPHeaderFields = header
         request.httpBody = body
+        
+        if let queryItems {
+            request.url?.append(queryItems: queryItems)
+        }
+        
         return request
     }
 }

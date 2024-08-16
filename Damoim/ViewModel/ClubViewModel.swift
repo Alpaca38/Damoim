@@ -10,20 +10,43 @@ import RxSwift
 import RxCocoa
 
 final class ClubViewModel: ViewModel {
-    private let dummyData = [
-        
-        Post(post_id: "1", product_id: "1", title: "", content: "", content1: "", content2: "", content3: "", content4: "", content5: "", createdAt: "", creator: Creator(user_id: "", nick: "", profileImage: nil), files: [], likes: [], likes2: [], hashTags: [], comments: []),
-        Post(post_id: "2", product_id: "1", title: "", content: "", content1: "", content2: "", content3: "", content4: "", content5: "", createdAt: "", creator: Creator(user_id: "", nick: "", profileImage: nil), files: [], likes: [], likes2: [], hashTags: [], comments: []),
-        Post(post_id: "3", product_id: "2", title: "", content: "", content1: "", content2: "", content3: "", content4: "", content5: "", createdAt: "", creator: Creator(user_id: "", nick: "", profileImage: nil), files: [], likes: [], likes2: [], hashTags: [], comments: []),
-        Post(post_id: "4", product_id: "2", title: "", content: "", content1: "", content2: "", content3: "", content4: "", content5: "", createdAt: "", creator: Creator(user_id: "", nick: "", profileImage: nil), files: [], likes: [], likes2: [], hashTags: [], comments: []),
-        Post(post_id: "5", product_id: "3", title: "", content: "", content1: "", content2: "", content3: "", content4: "", content5: "", createdAt: "", creator: Creator(user_id: "", nick: "", profileImage: nil), files: [], likes: [], likes2: [], hashTags: [], comments: []),
-        Post(post_id: "6", product_id: "3", title: "", content: "", content1: "", content2: "", content3: "", content4: "", content5: "", createdAt: "", creator: Creator(user_id: "", nick: "", profileImage: nil), files: [], likes: [], likes2: [], hashTags: [], comments: [])
-    ]
-    
     func transform(input: Input) -> Output {
+        let cardRelay = BehaviorRelay<[PostItem]>(value: [])
+        let guessingRelay = BehaviorRelay<[PostItem]>(value: [])
+        let strategyRelay = BehaviorRelay<[PostItem]>(value: [])
+        let errorRelay = BehaviorRelay<APIError>(value: .serverError)
+        
+        NetworkManager.shared.fetchPosts(next: nil, product_id: "damoim_card") { result in
+            switch result {
+            case .success(let success):
+                cardRelay.accept(success.data.map({ $0.postItem }))
+            case .failure(let failure):
+                errorRelay.accept(failure)
+            }
+        }
+        
+        NetworkManager.shared.fetchPosts(next: nil, product_id: "damoim_guessing") { result in
+            switch result {
+            case .success(let success):
+                guessingRelay.accept(success.data.map({ $0.postItem }))
+            case .failure(let failure):
+                errorRelay.accept(failure)
+            }
+        }
+        
+        NetworkManager.shared.fetchPosts(next: nil, product_id: "damoim_strategy") { result in
+            switch result {
+            case .success(let success):
+                strategyRelay.accept(success.data.map({ $0.postItem }))
+            case .failure(let failure):
+                errorRelay.accept(failure)
+            }
+        }
         
         return Output(
-           
+            cardRelay: cardRelay,
+            guessingRelay: guessingRelay,
+            strategyRelay: strategyRelay
         )
     }
 }
@@ -34,6 +57,8 @@ extension ClubViewModel {
     }
     
     struct Output {
-        
+        let cardRelay: BehaviorRelay<[PostItem]>
+        let guessingRelay: BehaviorRelay<[PostItem]>
+        let strategyRelay: BehaviorRelay<[PostItem]>
     }
 }

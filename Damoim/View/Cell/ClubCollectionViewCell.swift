@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class ClubCollectionViewCell: BaseCollectionViewCell {
     private let photoImageView = {
@@ -101,7 +102,36 @@ final class ClubCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
-    func configure(data: Post) {
+    func configure(data: PostItem) {
+        if let photoURL = data.files.first {
+            NetworkManager.shared.fetchImage(parameter: photoURL) { [weak self] result in
+                guard let self else { return }
+                switch result {
+                case .success(let success):
+                    photoImageView.image = UIImage(data: success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+        }
+        
+        categoryLabel.setAttributedTitle(NSAttributedString(string: data.content5, attributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)]), for: .normal)
+        titleLabel.text = data.title
+        descriptionLabel.text = data.descriptionLabel
+        
+        if let profileImageURL = data.creator.profileImage {
+            NetworkManager.shared.fetchImage(parameter: profileImageURL) { [weak self] result in
+                guard let self else { return }
+                switch result {
+                case .success(let success):
+                    profileImageView.image = UIImage(data: success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+        }
+        
+        profileLabel.text = data.profileLabel
         
     }
 }

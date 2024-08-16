@@ -6,15 +6,13 @@
 //
 
 import Foundation
-import RxDataSources
 
 struct Posts: Decodable {
     let data: [Post]
     let next_cursor: String
 }
 
-struct Post: Codable, Hashable, IdentifiableType {
-    var identity = UUID().uuidString
+struct Post: Decodable {
     let post_id: String
     let product_id: String
     let title: String
@@ -31,6 +29,10 @@ struct Post: Codable, Hashable, IdentifiableType {
     let likes2: [String]
     let hashTags: [String]
     let comments: [Comment]
+    
+    var postItem: PostItem {
+        return PostItem(post_id: post_id, product_id: product_id, title: title, content: content, content1: content1, content2: content2, content3: content3, content4: content4, content5: content5, createdAt: createdAt, creator: creator, files: files, likes: likes, likes2: likes2, hashTags: hashTags, comments: comments)
+    }
 }
 
 struct Creator: Codable, Hashable {

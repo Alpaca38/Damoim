@@ -8,14 +8,20 @@
 import Foundation
 import Alamofire
 
-enum Router {
+enum ServerRouter {
     case signUp(query: SignUpQuery)
     case emailValdation(query: EmailValidationQuery)
     case login(query: LoginQuery)
     case refresh
+    
+    case fetchMyProfile
+    
+    case postRead(query: PostReadQuery)
+    
+    case fetchImage(query: FetchImageQuery)
 }
 
-extension Router: TargetType {
+extension ServerRouter: TargetType {
     var baseURL: String {
         return APIKey.sesacBaseURL
     }
@@ -30,19 +36,31 @@ extension Router: TargetType {
             return .post
         case .refresh:
             return .get
+        case .fetchMyProfile:
+            return .get
+        case .postRead:
+            return .get
+        case .fetchImage:
+            return .get
         }
     }
     
     var path: String {
         switch self {
         case .signUp:
-            "/users/join"
+            "users/join"
         case .emailValdation:
-            "/validation/email"
+            "validation/email"
         case .login:
-            "/users/login"
+            "users/login"
         case .refresh:
-            "/auth/refresh"
+            "auth/refresh"
+        case .fetchMyProfile:
+            "users/me/profile"
+        case .postRead:
+            "posts/"
+        case .fetchImage(let query):
+            query.parameter
         }
     }
     
@@ -59,6 +77,11 @@ extension Router: TargetType {
                 Header.sesacKey.rawValue: APIKey.sesacKey,
                 Header.refresh.rawValue: UserDefaultsManager.refreshToken
             ]
+        case .postRead, .fetchMyProfile, .fetchImage:
+            [
+                Header.authorization.rawValue: UserDefaultsManager.accessToken,
+                Header.sesacKey.rawValue: APIKey.sesacKey
+            ]
         }
     }
     
@@ -67,7 +90,16 @@ extension Router: TargetType {
     }
     
     var queryItems: [URLQueryItem]? {
-        nil
+        switch self {
+        case .postRead(let query):
+            [
+                URLQueryItem(name: "next", value: query.next),
+                URLQueryItem(name: "limit", value: query.limit),
+                URLQueryItem(name: "product_id", value: query.product_id)
+            ]
+        default:
+            nil
+        }
     }
     
     var body: Data? {
@@ -79,7 +111,7 @@ extension Router: TargetType {
             return try? encoder.encode(query)
         case .login(let query):
             return try? encoder.encode(query)
-        case .refresh:
+        case .refresh, .postRead, .fetchImage, .fetchMyProfile:
             return nil
         }
     }

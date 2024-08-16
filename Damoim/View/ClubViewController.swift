@@ -68,7 +68,7 @@ private extension ClubViewController {
             
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0)
-            section.orthogonalScrollingBehavior = .paging
+            section.orthogonalScrollingBehavior = .groupPaging
             section.boundarySupplementaryItems = [header]
             
             return section
@@ -107,35 +107,28 @@ private extension ClubViewController {
     }
     
     func bind() {
-        let dummyData = [
-            
-            Post(post_id: "1", product_id: "1", title: "", content: "", content1: "", content2: "", content3: "", content4: "", content5: "", createdAt: "", creator: Creator(user_id: "", nick: "", profileImage: nil), files: [], likes: [], likes2: [], hashTags: [], comments: []),
-            Post(post_id: "2", product_id: "1", title: "", content: "", content1: "", content2: "", content3: "", content4: "", content5: "", createdAt: "", creator: Creator(user_id: "", nick: "", profileImage: nil), files: [], likes: [], likes2: [], hashTags: [], comments: []),
-            Post(post_id: "3", product_id: "2", title: "", content: "", content1: "", content2: "", content3: "", content4: "", content5: "", createdAt: "", creator: Creator(user_id: "", nick: "", profileImage: nil), files: [], likes: [], likes2: [], hashTags: [], comments: []),
-            Post(post_id: "4", product_id: "2", title: "", content: "", content1: "", content2: "", content3: "", content4: "", content5: "", createdAt: "", creator: Creator(user_id: "", nick: "", profileImage: nil), files: [], likes: [], likes2: [], hashTags: [], comments: []),
-            Post(post_id: "5", product_id: "3", title: "", content: "", content1: "", content2: "", content3: "", content4: "", content5: "", createdAt: "", creator: Creator(user_id: "", nick: "", profileImage: nil), files: [], likes: [], likes2: [], hashTags: [], comments: []),
-            Post(post_id: "6", product_id: "3", title: "", content: "", content1: "", content2: "", content3: "", content4: "", content5: "", createdAt: "", creator: Creator(user_id: "", nick: "", profileImage: nil), files: [], likes: [], likes2: [], hashTags: [], comments: [])
-        ]
-        
+        let postSection = PublishRelay<[PostSection]>()
         let input = ClubViewModel.Input()
-        
         let output = viewModel.transform(input: input)
-        
-        let postSection = BehaviorRelay(value: [
-            PostSection(model: l10nKey.sectionCard.rawValue.localized, items: dummyData.filter({ $0.product_id == "1" })),
-            PostSection(model: l10nKey.sectionGuessing.rawValue.localized, items: dummyData.filter({ $0.product_id == "2" })),
-            PostSection(model: l10nKey.sectionStrategy.rawValue.localized, items: dummyData.filter({ $0.product_id == "3" }))
-        ])
         
         postSection
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
+        Observable.combineLatest(output.cardRelay, output.guessingRelay, output.strategyRelay)
+            .bind { card, guessing, strategy in
+                postSection.accept([
+                    PostSection(model: l10nKey.sectionCard.rawValue.localized, items: card),
+                    PostSection(model: l10nKey.sectionGuessing.rawValue.localized, items: guessing),
+                    PostSection(model: l10nKey.sectionStrategy.rawValue.localized, items: strategy)
+                ])
+            }
+            .disposed(by: disposeBag)
     }
 }
 
 private extension ClubViewController {
-    typealias PostSection = AnimatableSectionModel<String, Post>
+    typealias PostSection = AnimatableSectionModel<String, PostItem>
     typealias DataSource = RxCollectionViewSectionedAnimatedDataSource<PostSection>
-    typealias ClubCellRegistration = UICollectionView.CellRegistration<ClubCollectionViewCell, Post>
+    typealias ClubCellRegistration = UICollectionView.CellRegistration<ClubCollectionViewCell, PostItem>
 }

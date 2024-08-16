@@ -323,6 +323,17 @@ private extension ClubDetailViewController {
                 .bind(with: self) { owner, error in
                     owner.view.makeToast(error.localizedDescription)
                 }
+            
+            output.isJoin
+                .bind(with: self) { owner, value in
+                    let joinBackgroundColor = value ? UIColor.lightGray : UIColor.main
+                    owner.joinButton.backgroundColor = joinBackgroundColor
+                    
+                    let joinTitle = value ? l10nKey.buttonParticipating.rawValue.localized : l10nKey.buttonJoin.rawValue.localized
+                    owner.joinButton.setTitle(joinTitle, for: .normal)
+                    
+                    owner.joinButton.isEnabled = !value
+                }
         }
     }
 }

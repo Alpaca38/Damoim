@@ -52,6 +52,23 @@
         }
       }
     },
+    "button_participating" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Participating"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "참여중"
+          }
+        }
+      }
+    },
     "button_profile_edit" : {
       "extractionState" : "manual",
       "localizations" : {

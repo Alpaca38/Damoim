@@ -11,6 +11,7 @@ enum l10nKey: String {
     case appName = "app_name"
     case buttonJoin = "button_join"
     case buttonOK = "button_ok"
+    case buttonParticipating = "button_participating"
     case buttonProfileEdit = "button_profile_edit"
     case buttonSave = "button_save"
     case buttonSignIn = "button_sign_in"

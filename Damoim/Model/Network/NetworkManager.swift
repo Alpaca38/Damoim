@@ -57,6 +57,7 @@ extension NetworkManager {
                             observer(.success(.success(success)))
                             UserDefaultsManager.accessToken = success.accessToken
                             UserDefaultsManager.refreshToken = success.refreshToken
+                            UserDefaultsManager.user_id = success.user_id
                             UserDefaultsManager.isLogin = true
                         case .failure(_):
                             switch response.response?.statusCode {

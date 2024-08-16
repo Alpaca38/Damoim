@@ -26,6 +26,8 @@ final class ClubDetailViewModel: ViewModel {
         let profileImageData = PublishSubject<Data>()
         let errorSubject = PublishSubject<AFError>()
         
+        let isJoin = PublishSubject<Bool>()
+        
         NetworkManager.shared.fetchSpecificPosts(postId: postItem.post_id) { result in
             switch result {
             case .success(let success):
@@ -58,6 +60,12 @@ final class ClubDetailViewModel: ViewModel {
                         }
                     }
                 }
+                
+                if post.creator.user_id == UserDefaultsManager.user_id {
+                    isJoin.onNext(true)
+                } else {
+                    isJoin.onNext(false)
+                }
             }
             .disposed(by: disposeBag)
         
@@ -65,7 +73,8 @@ final class ClubDetailViewModel: ViewModel {
             post: post,
             photoImageData: photoImageData,
             profileImageData: profileImageData,
-            errorSubject: errorSubject
+            errorSubject: errorSubject,
+            isJoin: isJoin
         )
     }
 }
@@ -80,5 +89,6 @@ extension ClubDetailViewModel {
         let photoImageData: Observable<Data>
         let profileImageData: Observable<Data>
         let errorSubject: PublishSubject<AFError>
+        let isJoin: Observable<Bool>
     }
 }

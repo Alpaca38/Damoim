@@ -125,6 +125,7 @@ private extension ClubViewController {
                 }
             
             output.errorRelay
+                .share(replay: 1)
                 .bind(with: self) { owner, error in
                     if error == .refreshTokenExpired {
                         SceneManager.shared.setNaviScene(viewController: LoginViewController())

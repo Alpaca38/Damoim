@@ -19,14 +19,25 @@ final class ClubDetailViewModel: ViewModel {
     }
     
     func transform(input: Input) -> Output {
-        let postItem = BehaviorSubject(value: postItem)
+        let post = PublishSubject<Post>()
+        let errorRelay = PublishRelay<APIError>()
+        
         let photoImageData = PublishSubject<Data>()
         let profileImageData = PublishSubject<Data>()
         let errorSubject = PublishSubject<AFError>()
         
-        postItem
-            .bind { postItem in
-                if let photoURL = postItem.files.first {
+        NetworkManager.shared.fetchSpecificPosts(postId: postItem.post_id) { result in
+            switch result {
+            case .success(let success):
+                post.onNext(success)
+            case .failure(let failure):
+                errorRelay.accept(failure)
+            }
+        }
+        
+        post
+            .bind { post in
+                if let photoURL = post.files.first {
                     NetworkManager.shared.fetchImage(parameter: photoURL) { result in
                         switch result {
                         case .success(let success):
@@ -37,7 +48,7 @@ final class ClubDetailViewModel: ViewModel {
                     }
                 }
                 
-                if let profileImage = postItem.creator.profileImage {
+                if let profileImage = post.creator.profileImage {
                     NetworkManager.shared.fetchImage(parameter: profileImage) { result in
                         switch result {
                         case .success(let success):
@@ -51,7 +62,7 @@ final class ClubDetailViewModel: ViewModel {
             .disposed(by: disposeBag)
         
         return Output(
-            postItem: postItem,
+            post: post,
             photoImageData: photoImageData,
             profileImageData: profileImageData,
             errorSubject: errorSubject
@@ -61,11 +72,11 @@ final class ClubDetailViewModel: ViewModel {
 
 extension ClubDetailViewModel {
     struct Input {
-        
+        let joinTap: ControlEvent<Void>
     }
     
     struct Output {
-        let postItem: Observable<PostItem>
+        let post: Observable<Post>
         let photoImageData: Observable<Data>
         let profileImageData: Observable<Data>
         let errorSubject: PublishSubject<AFError>

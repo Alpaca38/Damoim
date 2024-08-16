@@ -17,6 +17,7 @@ enum ServerRouter {
     case fetchMyProfile
     
     case postRead(query: PostReadQuery)
+    case specificPost(query: SpecificPostQuery)
     
     case fetchImage(query: FetchImageQuery)
 }
@@ -42,6 +43,8 @@ extension ServerRouter: TargetType {
             return .get
         case .fetchImage:
             return .get
+        case .specificPost:
+            return .get
         }
     }
     
@@ -61,6 +64,8 @@ extension ServerRouter: TargetType {
             "posts/"
         case .fetchImage(let query):
             query.parameter
+        case .specificPost(let query):
+            "posts/\(query.postId)"
         }
     }
     
@@ -77,7 +82,7 @@ extension ServerRouter: TargetType {
                 Header.sesacKey.rawValue: APIKey.sesacKey,
                 Header.refresh.rawValue: UserDefaultsManager.refreshToken
             ]
-        case .postRead, .fetchMyProfile, .fetchImage:
+        case .postRead, .fetchMyProfile, .fetchImage, .specificPost:
             [
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey
@@ -111,7 +116,7 @@ extension ServerRouter: TargetType {
             return try? encoder.encode(query)
         case .login(let query):
             return try? encoder.encode(query)
-        case .refresh, .postRead, .fetchImage, .fetchMyProfile:
+        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost:
             return nil
         }
     }

@@ -68,6 +68,7 @@
 		D1FB0B3F2C6F212600049C5D /* FetchImageQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B3E2C6F212600049C5D /* FetchImageQuery.swift */; };
 		D1FB0B412C6F3F1900049C5D /* ClubDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B402C6F3F1900049C5D /* ClubDetailViewController.swift */; };
 		D1FB0B432C6F561B00049C5D /* ClubDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B422C6F561B00049C5D /* ClubDetailViewModel.swift */; };
+		D1FB0B452C6F742D00049C5D /* SpecificPostQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B442C6F742D00049C5D /* SpecificPostQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +127,7 @@
 		D1FB0B3E2C6F212600049C5D /* FetchImageQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchImageQuery.swift; sourceTree = "<group>"; };
 		D1FB0B402C6F3F1900049C5D /* ClubDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDetailViewController.swift; sourceTree = "<group>"; };
 		D1FB0B422C6F561B00049C5D /* ClubDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDetailViewModel.swift; sourceTree = "<group>"; };
+		D1FB0B442C6F742D00049C5D /* SpecificPostQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificPostQuery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +285,7 @@
 				D11D81552C6CDF0000EB8680 /* ProfileEditQuery.swift */,
 				D11D81572C6CDFC300EB8680 /* HashTagSearchQuery.swift */,
 				D1FB0B3E2C6F212600049C5D /* FetchImageQuery.swift */,
+				D1FB0B442C6F742D00049C5D /* SpecificPostQuery.swift */,
 			);
 			path = RequstModel;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				D11D81432C6CD1FB00EB8680 /* Profile.swift in Sources */,
 				D11D81642C6DBBF500EB8680 /* ServerRouter.swift in Sources */,
 				D11D81602C6CFB9800EB8680 /* SignUpViewController.swift in Sources */,
+				D1FB0B452C6F742D00049C5D /* SpecificPostQuery.swift in Sources */,
 				D1FB0B412C6F3F1900049C5D /* ClubDetailViewController.swift in Sources */,
 				D11D80E82C6C7EF000EB8680 /* LoginViewController.swift in Sources */,
 				D11D81282C6C87DD00EB8680 /* UserDefaultsManager.swift in Sources */,

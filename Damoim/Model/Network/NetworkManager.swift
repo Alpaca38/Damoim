@@ -181,6 +181,53 @@ extension NetworkManager {
             print(error)
         }
     }
+    
+    func fetchSpecificPosts(postId: String, completion: @escaping (Result<Post, APIError>) -> Void) {
+        do {
+            let query = SpecificPostQuery(postId: postId)
+            let request = try ServerRouter.specificPost(query: query).asURLRequest()
+            AF.request(request)
+                .responseDecodable(of: Post.self) { [weak self] response in
+                    guard let self else { return }
+                    switch response.result {
+                    case .success(let success):
+                        completion(.success(success))
+                    case .failure(_):
+                        switch response.response?.statusCode {
+                        case 400:
+                            completion(.failure(.invalidRequestVariables))
+                        case 401:
+                            completion(.failure(.invalidRequest))
+                        case 403:
+                            completion(.failure(.forbidden))
+                        case 419:
+                            refreshToken(completion: { result in // 토큰 갱신
+                                switch result {
+                                case .success(_):
+                                    self.fetchSpecificPosts(postId: postId) { result in
+                                        switch result {
+                                        case .success(let success):
+                                            completion(.success(success))
+                                        case .failure(let failure):
+                                            completion(.failure(failure))
+                                        }
+                                    }
+                                case .failure(let failure):
+                                    print(failure.rawValue)
+                                    if failure == .refreshTokenExpired {
+                                        completion(.failure(.refreshTokenExpired))
+                                    }
+                                }
+                            })
+                        default:
+                            completion(.failure(.serverError))
+                        }
+                    }
+                }
+        } catch {
+            print(error)
+        }
+    }
 }
 
 // MARK: 이미지 조회

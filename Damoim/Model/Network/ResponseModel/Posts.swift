@@ -33,6 +33,18 @@ struct Post: Decodable {
     var postItem: PostItem {
         return PostItem(post_id: post_id, product_id: product_id, title: title, content: content, content1: content1, content2: content2, content3: content3, content4: content4, content5: content5, createdAt: createdAt, creator: creator, files: files, likes: likes, likes2: likes2, hashTags: hashTags, comments: comments)
     }
+    
+    var descriptionLabel: String {
+        let components = content1.split(separator: " ")
+
+        let district = components[1]
+        
+        return "\(district) · \(content2)"
+    }
+    
+    var headCountLabel: String {
+        return "\(l10nKey.labelHeadCount.rawValue.localized) \(likes.count)/\(content3)"
+    }
 }
 
 struct Creator: Codable, Hashable {

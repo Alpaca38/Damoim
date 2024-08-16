@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class ClubDetailViewController: BaseViewController {
     private lazy var contentView = {
@@ -287,21 +289,23 @@ final class ClubDetailViewController: BaseViewController {
 
 private extension ClubDetailViewController {
     func bind() {
-        let input = ClubDetailViewModel.Input()
+        let input = ClubDetailViewModel.Input(
+            joinTap: joinButton.rx.tap
+        )
         
         let output = viewModel.transform(input: input)
         
         disposeBag.insert {
-            output.postItem
-                .bind(with: self) { owner, postItem in
-                    owner.profileLabel.text = postItem.creator.nick
-                    owner.titleLabel.text = postItem.title
-                    owner.scheduleSummaryLabel.text = postItem.descriptionLabel
-                    owner.contentLabel.text = postItem.content
-                    owner.headCountLabel.text = postItem.headCountLabel
-                    owner.moneyLabel.text = postItem.content4.toCurrency
-                    owner.timeLabel.text = postItem.content2
-                    owner.locationLabel.text = postItem.content1
+            output.post
+                .bind(with: self) { owner, post in
+                    owner.profileLabel.text = post.creator.nick
+                    owner.titleLabel.text = post.title
+                    owner.scheduleSummaryLabel.text = post.descriptionLabel
+                    owner.contentLabel.text = post.content
+                    owner.headCountLabel.text = post.headCountLabel
+                    owner.moneyLabel.text = post.content4.toCurrency
+                    owner.timeLabel.text = post.content2
+                    owner.locationLabel.text = post.content1
                 }
             
             output.photoImageData

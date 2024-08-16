@@ -14,7 +14,7 @@ final class ClubDetailViewController: BaseViewController {
         [photoImageView, titleView, profileImageView, profileLabel, titleLabel, scheduleSummaryLabel, contentLabel, headCountLabel, moneyLabel, timeLabel, locationLabel, commentView].forEach {
             view.addSubview($0)
         }
-        view.backgroundColor = .main
+        view.backgroundColor = .background
         return view
     }()
     
@@ -30,6 +30,7 @@ final class ClubDetailViewController: BaseViewController {
     private let photoImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         view.backgroundColor = .lightGray
         return view
     }()
@@ -44,6 +45,7 @@ final class ClubDetailViewController: BaseViewController {
     private let profileImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         view.layer.cornerRadius = 20
         view.backgroundColor = .darkGray
         return view
@@ -108,8 +110,7 @@ final class ClubDetailViewController: BaseViewController {
     private lazy var commentView = {
         let view = UIView()
         view.addSubview(commentImageView)
-        view.addSubview(commentTextField)
-        view.addSubview(submitButton)
+        view.addSubview(commentLabel)
         view.backgroundColor = .white
         return view
     }()
@@ -123,16 +124,11 @@ final class ClubDetailViewController: BaseViewController {
         return view
     }()
     
-    private let commentTextField = {
-        let view = UITextField()
-        view.placeholder = l10nKey.placeholderComment.rawValue.localized
-        return view
-    }()
-    
-    private let submitButton = {
-        let view = UIButton()
-        view.setTitle(l10nKey.buttonSubmit.rawValue.localized, for: .normal)
-        view.setTitleColor(.main, for: .normal)
+    private let commentLabel = {
+        let view = UILabel()
+        view.text = l10nKey.placeholderComment.rawValue.localized
+        view.textColor = .secondaryLabel
+        view.font = .systemFont(ofSize: 14)
         return view
     }()
     
@@ -140,13 +136,14 @@ final class ClubDetailViewController: BaseViewController {
         let view = UIView()
         view.addSubview(heartButton)
         view.addSubview(joinButton)
-        view.backgroundColor = .white
+        view.backgroundColor = .background
         self.view.addSubview(view)
         return view
     }()
     
     private let heartButton = {
         let view = UIButton()
+        view.tintColor = .main
         view.setImage(UIImage(systemName: "heart"), for: .normal)
         return view
     }()
@@ -160,9 +157,26 @@ final class ClubDetailViewController: BaseViewController {
         return view
     }()
     
+    private let viewModel: ClubDetailViewModel
+    
+    init(viewModel: ClubDetailViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.navigationBar.prefersLargeTitles = false
+        bind()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func configureLayout() {
@@ -263,17 +277,48 @@ final class ClubDetailViewController: BaseViewController {
             $0.centerY.equalToSuperview()
         }
         
-        commentTextField.snp.makeConstraints {
+        commentLabel.snp.makeConstraints {
             $0.leading.equalTo(commentImageView.snp.trailing).offset(10)
             $0.height.equalTo(40)
             $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().offset(-40)
         }
+    }
+}
+
+private extension ClubDetailViewController {
+    func bind() {
+        let input = ClubDetailViewModel.Input()
         
-        submitButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().offset(-10)
-            $0.leading.equalTo(commentTextField.snp.trailing)
-            $0.centerY.equalToSuperview()
+        let output = viewModel.transform(input: input)
+        
+        disposeBag.insert {
+            output.postItem
+                .bind(with: self) { owner, postItem in
+                    owner.profileLabel.text = postItem.creator.nick
+                    owner.titleLabel.text = postItem.title
+                    owner.scheduleSummaryLabel.text = postItem.descriptionLabel
+                    owner.contentLabel.text = postItem.content
+                    owner.headCountLabel.text = postItem.headCountLabel
+                    owner.moneyLabel.text = postItem.content4.toCurrency
+                    owner.timeLabel.text = postItem.content2
+                    owner.locationLabel.text = postItem.content1
+                }
+            
+            output.photoImageData
+                .bind(with: self) { owner, data in
+                    owner.photoImageView.image = UIImage(data: data)
+                }
+            
+            output.profileImageData
+                .bind(with: self) { owner, data in
+                    owner.profileImageView.image = UIImage(data: data)
+                    owner.commentImageView.image = UIImage(data: data)
+                }
+            
+            output.errorSubject
+                .bind(with: self) { owner, error in
+                    owner.view.makeToast(error.localizedDescription)
+                }
         }
     }
 }

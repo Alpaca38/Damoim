@@ -133,6 +133,13 @@ private extension ClubViewController {
                         owner.view.makeToast(error.rawValue)
                     }
                 }
+            
+            collectionView.rx.modelSelected(PostItem.self)
+                .bind(with: self) { owner, postItem in
+                    let vm = ClubDetailViewModel(postItem: postItem)
+                    let vc = ClubDetailViewController(viewModel: vm)
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
         }
     }
 }

@@ -67,6 +67,7 @@
 		D1FB0B3D2C6F202200049C5D /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B3C2C6F202200049C5D /* PostItem.swift */; };
 		D1FB0B3F2C6F212600049C5D /* FetchImageQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B3E2C6F212600049C5D /* FetchImageQuery.swift */; };
 		D1FB0B412C6F3F1900049C5D /* ClubDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B402C6F3F1900049C5D /* ClubDetailViewController.swift */; };
+		D1FB0B432C6F561B00049C5D /* ClubDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B422C6F561B00049C5D /* ClubDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +125,7 @@
 		D1FB0B3C2C6F202200049C5D /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
 		D1FB0B3E2C6F212600049C5D /* FetchImageQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchImageQuery.swift; sourceTree = "<group>"; };
 		D1FB0B402C6F3F1900049C5D /* ClubDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDetailViewController.swift; sourceTree = "<group>"; };
+		D1FB0B422C6F561B00049C5D /* ClubDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,6 +315,7 @@
 				D11D81682C6DC3BA00EB8680 /* SignUpViewModel.swift */,
 				D11D816A2C6DDBA200EB8680 /* LoginViewModel.swift */,
 				D11D81712C6DFD1B00EB8680 /* ClubViewModel.swift */,
+				D1FB0B422C6F561B00049C5D /* ClubDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				D11D80FF2C6C81ED00EB8680 /* Extension+UIViewController.swift in Sources */,
 				D11D81412C6CD0B600EB8680 /* File.swift in Sources */,
 				D11D815E2C6CF81300EB8680 /* RoundTextField.swift in Sources */,
+				D1FB0B432C6F561B00049C5D /* ClubDetailViewModel.swift in Sources */,
 				D11D81622C6DBBD900EB8680 /* NetworkManager.swift in Sources */,
 				D11D80E42C6C7EF000EB8680 /* AppDelegate.swift in Sources */,
 				D11D812C2C6C8A1D00EB8680 /* SceneManager.swift in Sources */,

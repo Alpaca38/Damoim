@@ -22,6 +22,7 @@ enum l10nKey: String {
     case follow = "follow"
     case follower = "follower"
     case following = "following"
+    case labelHeadCount = "label_head_count"
     case labelNickname = "label_nickname"
     case navigationTitleClub = "navigation_title_club"
     case placeholderComment = "placeholder_comment"

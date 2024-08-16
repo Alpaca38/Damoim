@@ -22,7 +22,6 @@ final class ClubCollectionViewCell: BaseCollectionViewCell {
     private let categoryLabel = {
         var config = UIButton.Configuration.gray()
         config.cornerStyle = .capsule
-        config.attributedTitle = AttributedString(NSAttributedString(string: "등산", attributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)])) // dummy
         let view = UIButton(configuration: config)
         view.isEnabled = false
         return view
@@ -31,7 +30,6 @@ final class ClubCollectionViewCell: BaseCollectionViewCell {
     private let titleLabel = {
         let view = UILabel()
         view.font = .boldSystemFont(ofSize: 15)
-        view.text = "할리갈리 같이하실 분!!" // dummy
         return view
     }()
     
@@ -39,7 +37,6 @@ final class ClubCollectionViewCell: BaseCollectionViewCell {
         let view = UILabel()
         view.font = .systemFont(ofSize: 13)
         view.textColor = .secondaryLabel
-        view.text = "서초구·8.13(토) 오전 10:00" // dummy
         return view
     }()
     
@@ -56,7 +53,6 @@ final class ClubCollectionViewCell: BaseCollectionViewCell {
         let view = UILabel()
         view.font = .systemFont(ofSize: 13)
         view.textColor = .secondaryLabel
-        view.text = "주철용 1명 참여" // dummy
         return view
     }()
     

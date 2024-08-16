@@ -239,6 +239,23 @@
         }
       }
     },
+    "label_head_count" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Number of participants"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "참여 인원"
+          }
+        }
+      }
+    },
     "label_nickname" : {
       "extractionState" : "manual",
       "localizations" : {

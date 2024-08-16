@@ -36,6 +36,10 @@ struct PostItem: Codable, Hashable, IdentifiableType {
     }
     
     var profileLabel: String {
-        return "\(creator.nick) \(likes.count + 1)명 참여" // 호스트 포함
+        return "\(creator.nick) \(likes.count)명 참여"
+    }
+    
+    var headCountLabel: String {
+        return "\(l10nKey.labelHeadCount.rawValue.localized) \(likes.count)/\(content3)"
     }
 }

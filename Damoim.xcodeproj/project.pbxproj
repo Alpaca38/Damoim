@@ -66,6 +66,7 @@
 		D11D81722C6DFD1B00EB8680 /* ClubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81712C6DFD1B00EB8680 /* ClubViewModel.swift */; };
 		D1FB0B3D2C6F202200049C5D /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B3C2C6F202200049C5D /* PostItem.swift */; };
 		D1FB0B3F2C6F212600049C5D /* FetchImageQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B3E2C6F212600049C5D /* FetchImageQuery.swift */; };
+		D1FB0B412C6F3F1900049C5D /* ClubDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B402C6F3F1900049C5D /* ClubDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +123,7 @@
 		D11D81712C6DFD1B00EB8680 /* ClubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewModel.swift; sourceTree = "<group>"; };
 		D1FB0B3C2C6F202200049C5D /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
 		D1FB0B3E2C6F212600049C5D /* FetchImageQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchImageQuery.swift; sourceTree = "<group>"; };
+		D1FB0B402C6F3F1900049C5D /* ClubDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +293,7 @@
 				D11D80E72C6C7EF000EB8680 /* LoginViewController.swift */,
 				D11D815F2C6CFB9800EB8680 /* SignUpViewController.swift */,
 				D11D816C2C6DE08200EB8680 /* ClubViewController.swift */,
+				D1FB0B402C6F3F1900049C5D /* ClubDetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				D11D81432C6CD1FB00EB8680 /* Profile.swift in Sources */,
 				D11D81642C6DBBF500EB8680 /* ServerRouter.swift in Sources */,
 				D11D81602C6CFB9800EB8680 /* SignUpViewController.swift in Sources */,
+				D1FB0B412C6F3F1900049C5D /* ClubDetailViewController.swift in Sources */,
 				D11D80E82C6C7EF000EB8680 /* LoginViewController.swift in Sources */,
 				D11D81282C6C87DD00EB8680 /* UserDefaultsManager.swift in Sources */,
 				D11D81582C6CDFC300EB8680 /* HashTagSearchQuery.swift in Sources */,

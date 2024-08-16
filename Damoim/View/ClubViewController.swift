@@ -111,19 +111,28 @@ private extension ClubViewController {
         let input = ClubViewModel.Input()
         let output = viewModel.transform(input: input)
         
-        postSection
-            .bind(to: collectionView.rx.items(dataSource: dataSource))
-            .disposed(by: disposeBag)
-        
-        Observable.combineLatest(output.cardRelay, output.guessingRelay, output.strategyRelay)
-            .bind { card, guessing, strategy in
-                postSection.accept([
-                    PostSection(model: l10nKey.sectionCard.rawValue.localized, items: card),
-                    PostSection(model: l10nKey.sectionGuessing.rawValue.localized, items: guessing),
-                    PostSection(model: l10nKey.sectionStrategy.rawValue.localized, items: strategy)
-                ])
-            }
-            .disposed(by: disposeBag)
+        disposeBag.insert {
+            postSection
+                .bind(to: collectionView.rx.items(dataSource: dataSource))
+            
+            Observable.combineLatest(output.cardRelay, output.guessingRelay, output.strategyRelay)
+                .bind { card, guessing, strategy in
+                    postSection.accept([
+                        PostSection(model: l10nKey.sectionCard.rawValue.localized, items: card),
+                        PostSection(model: l10nKey.sectionGuessing.rawValue.localized, items: guessing),
+                        PostSection(model: l10nKey.sectionStrategy.rawValue.localized, items: strategy)
+                    ])
+                }
+            
+            output.errorRelay
+                .bind(with: self) { owner, error in
+                    if error == .refreshTokenExpired {
+                        SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                    } else {
+                        owner.view.makeToast(error.rawValue)
+                    }
+                }
+        }
     }
 }
 

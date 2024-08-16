@@ -46,7 +46,8 @@ final class ClubViewModel: ViewModel {
         return Output(
             cardRelay: cardRelay,
             guessingRelay: guessingRelay,
-            strategyRelay: strategyRelay
+            strategyRelay: strategyRelay,
+            errorRelay: errorRelay
         )
     }
 }
@@ -60,5 +61,6 @@ extension ClubViewModel {
         let cardRelay: BehaviorRelay<[PostItem]>
         let guessingRelay: BehaviorRelay<[PostItem]>
         let strategyRelay: BehaviorRelay<[PostItem]>
+        let errorRelay: BehaviorRelay<APIError>
     }
 }

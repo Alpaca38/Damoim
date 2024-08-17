@@ -146,7 +146,6 @@ final class ClubDetailViewController: BaseViewController {
     private let heartButton = {
         let view = UIButton()
         view.tintColor = .main
-        view.setImage(UIImage(systemName: "heart"), for: .normal)
         return view
     }()
     
@@ -288,7 +287,8 @@ final class ClubDetailViewController: BaseViewController {
 private extension ClubDetailViewController {
     func bind() {
         let input = ClubDetailViewModel.Input(
-            joinTap: joinButton.rx.tap
+            joinTap: joinButton.rx.tap,
+            likeTap: heartButton.rx.tap
         )
         
         let output = viewModel.transform(input: input)
@@ -343,6 +343,12 @@ private extension ClubDetailViewController {
                     
                     let joinTitle = value ? l10nKey.buttonParticipating.rawValue.localized : l10nKey.buttonJoin.rawValue.localized
                     owner.joinButton.setTitle(joinTitle, for: .normal)
+                }
+            
+            output.isLike
+                .bind(with: self) { owner, value in
+                    let likeButtonImage = value ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+                    owner.heartButton.setImage(likeButtonImage, for: .normal)
                 }
         }
     }

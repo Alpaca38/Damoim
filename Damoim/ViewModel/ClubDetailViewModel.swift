@@ -28,6 +28,7 @@ final class ClubDetailViewModel: ViewModel {
         
         let isMine = PublishSubject<Bool>()
         let isJoin = PublishSubject<Bool>()
+        let isLike = PublishSubject<Bool>()
         
         NetworkManager.shared.fetchSpecificPosts(postId: postItem.post_id) { result in
             switch result {
@@ -72,6 +73,12 @@ final class ClubDetailViewModel: ViewModel {
                     isJoin.onNext(true)
                 } else {
                     isJoin.onNext(false)
+                }
+                
+                if post.likes2.contains(UserDefaultsManager.user_id) {
+                    isLike.onNext(true)
+                } else {
+                    isLike.onNext(false)
                 }
             }
             .disposed(by: disposeBag)
@@ -118,6 +125,48 @@ final class ClubDetailViewModel: ViewModel {
             })
             .disposed(by: disposeBag)
         
+        input.likeTap
+            .throttle(.seconds(1), latest: false, scheduler: MainScheduler.instance)
+            .withLatestFrom(post)
+            .bind(with: self) { owner, postData in
+                if postData.likes2.contains(UserDefaultsManager.user_id) {
+                    NetworkManager.shared.like(postId: postData.post_id, like_status: false) { result in
+                        switch result {
+                        case .success(let success):
+                            isLike.onNext(success)
+                            NetworkManager.shared.fetchSpecificPosts(postId: owner.postItem.post_id) { result in
+                                switch result {
+                                case .success(let success):
+                                    post.onNext(success)
+                                case .failure(let failure):
+                                    errorRelay.accept(failure)
+                                }
+                            }
+                        case .failure(let failure):
+                            errorRelay.accept(failure)
+                        }
+                    }
+                } else {
+                    NetworkManager.shared.like(postId: postData.post_id, like_status: true) { result in
+                        switch result {
+                        case .success(let success):
+                            isLike.onNext(success)
+                            NetworkManager.shared.fetchSpecificPosts(postId: owner.postItem.post_id) { result in
+                                switch result {
+                                case .success(let success):
+                                    post.onNext(success)
+                                case .failure(let failure):
+                                    errorRelay.accept(failure)
+                                }
+                            }
+                        case .failure(let failure):
+                            errorRelay.accept(failure)
+                        }
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
+        
         return Output(
             post: post,
             photoImageData: photoImageData,
@@ -125,7 +174,8 @@ final class ClubDetailViewModel: ViewModel {
             errorSubject: errorSubject,
             errorRelay: errorRelay,
             isMine: isMine,
-            isJoin: isJoin
+            isJoin: isJoin,
+            isLike: isLike
         )
     }
 }
@@ -133,6 +183,7 @@ final class ClubDetailViewModel: ViewModel {
 extension ClubDetailViewModel {
     struct Input {
         let joinTap: ControlEvent<Void>
+        let likeTap: ControlEvent<Void>
     }
     
     struct Output {
@@ -142,6 +193,7 @@ extension ClubDetailViewModel {
         let errorSubject: PublishSubject<AFError>
         let errorRelay: PublishRelay<APIError>
         let isMine: Observable<Bool>
-        let isJoin: PublishSubject<Bool>
+        let isJoin: Observable<Bool>
+        let isLike: Observable<Bool>
     }
 }

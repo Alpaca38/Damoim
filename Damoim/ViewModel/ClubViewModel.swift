@@ -16,7 +16,6 @@ final class ClubViewModel: ViewModel {
         let strategyRelay = BehaviorRelay<[PostItem]>(value: [])
         let errorRelay = PublishRelay<APIError>()
         
-        
         NetworkManager.shared.fetchPosts(next: nil, product_id: "damoim_card") { result in
             switch result {
             case .success(let success):

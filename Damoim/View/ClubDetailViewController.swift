@@ -152,8 +152,6 @@ final class ClubDetailViewController: BaseViewController {
     
     private let joinButton = {
         let view = UIButton()
-        view.setTitle(l10nKey.buttonJoin.rawValue.localized, for: .normal)
-        view.backgroundColor = .main
         view.setTitleColor(.white, for: .normal)
         view.layer.cornerRadius = 10
         return view
@@ -324,6 +322,20 @@ private extension ClubDetailViewController {
                     owner.view.makeToast(error.localizedDescription)
                 }
             
+            output.errorRelay
+                .bind(with: self) { owner, error in
+                    if error == .refreshTokenExpired {
+                        SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                    } else {
+                        owner.view.makeToast(error.rawValue)
+                    }
+                }
+            
+            output.isMine
+                .bind(with: self) { owner, value in
+                    owner.joinButton.isEnabled = !value
+                }
+            
             output.isJoin
                 .bind(with: self) { owner, value in
                     let joinBackgroundColor = value ? UIColor.lightGray : UIColor.main
@@ -331,8 +343,6 @@ private extension ClubDetailViewController {
                     
                     let joinTitle = value ? l10nKey.buttonParticipating.rawValue.localized : l10nKey.buttonJoin.rawValue.localized
                     owner.joinButton.setTitle(joinTitle, for: .normal)
-                    
-                    owner.joinButton.isEnabled = !value
                 }
         }
     }

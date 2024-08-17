@@ -26,6 +26,7 @@ final class ClubDetailViewModel: ViewModel {
         let profileImageData = PublishSubject<Data>()
         let errorSubject = PublishSubject<AFError>()
         
+        let isMine = PublishSubject<Bool>()
         let isJoin = PublishSubject<Bool>()
         
         NetworkManager.shared.fetchSpecificPosts(postId: postItem.post_id) { result in
@@ -62,6 +63,12 @@ final class ClubDetailViewModel: ViewModel {
                 }
                 
                 if post.creator.user_id == UserDefaultsManager.user_id {
+                    isMine.onNext(true)
+                } else {
+                    isMine.onNext(false)
+                }
+                
+                if post.likes.contains(UserDefaultsManager.user_id) {
                     isJoin.onNext(true)
                 } else {
                     isJoin.onNext(false)
@@ -69,11 +76,55 @@ final class ClubDetailViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
+        input.joinTap
+            .throttle(.seconds(1), latest: false, scheduler: MainScheduler.instance)
+            .withLatestFrom(post)
+            .bind(with: self, onNext: { owner, postData in
+                if postData.likes.contains(UserDefaultsManager.user_id) {
+                    NetworkManager.shared.join(postId: postData.post_id, like_status: false) { result in
+                        switch result {
+                        case .success(let success):
+                            isJoin.onNext(success)
+                            NetworkManager.shared.fetchSpecificPosts(postId: owner.postItem.post_id) { result in
+                                switch result {
+                                case .success(let success):
+                                    post.onNext(success)
+                                case .failure(let failure):
+                                    errorRelay.accept(failure)
+                                }
+                            }
+                        case .failure(let failure):
+                            errorRelay.accept(failure)
+                        }
+                    }
+                } else {
+                    NetworkManager.shared.join(postId: postData.post_id, like_status: true) { result in
+                        switch result {
+                        case .success(let success):
+                            isJoin.onNext(success)
+                            NetworkManager.shared.fetchSpecificPosts(postId: owner.postItem.post_id) { result in
+                                switch result {
+                                case .success(let success):
+                                    post.onNext(success)
+                                case .failure(let failure):
+                                    errorRelay.accept(failure)
+                                }
+                            }
+                        case .failure(let failure):
+                            errorRelay.accept(failure)
+                        }
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+        
         return Output(
             post: post,
             photoImageData: photoImageData,
             profileImageData: profileImageData,
             errorSubject: errorSubject,
+            errorRelay: errorRelay,
+            isMine: isMine,
             isJoin: isJoin
         )
     }
@@ -89,6 +140,8 @@ extension ClubDetailViewModel {
         let photoImageData: Observable<Data>
         let profileImageData: Observable<Data>
         let errorSubject: PublishSubject<AFError>
-        let isJoin: Observable<Bool>
+        let errorRelay: PublishRelay<APIError>
+        let isMine: Observable<Bool>
+        let isJoin: PublishSubject<Bool>
     }
 }

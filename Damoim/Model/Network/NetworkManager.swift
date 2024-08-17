@@ -167,7 +167,6 @@ extension NetworkManager {
                                         }
                                     }
                                 case .failure(let failure):
-                                    print(failure.rawValue)
                                     if failure == .refreshTokenExpired {
                                         completion(.failure(.refreshTokenExpired))
                                     }
@@ -214,7 +213,55 @@ extension NetworkManager {
                                         }
                                     }
                                 case .failure(let failure):
-                                    print(failure.rawValue)
+                                    if failure == .refreshTokenExpired {
+                                        completion(.failure(.refreshTokenExpired))
+                                    }
+                                }
+                            })
+                        default:
+                            completion(.failure(.serverError))
+                        }
+                    }
+                }
+        } catch {
+            print(error)
+        }
+    }
+    
+    func join(postId: String, like_status: Bool, completion: @escaping (Result<Bool, APIError>) -> Void) {
+        do {
+            let query = LikeQuery(postId: postId, like_status: like_status)
+            let request = try ServerRouter.like(query: query).asURLRequest()
+            AF.request(request)
+                .validate()
+                .response { [weak self] response in
+                    guard let self else { return }
+                    switch response.result {
+                    case .success(_):
+                        completion(.success(like_status))
+                    case .failure(_):
+                        switch response.response?.statusCode {
+                        case 400:
+                            completion(.failure(.invalidRequestVariables))
+                        case 401:
+                            completion(.failure(.invalidRequest))
+                        case 403:
+                            completion(.failure(.forbidden))
+                        case 410:
+                            completion(.failure(.databaseError))
+                        case 419:
+                            refreshToken(completion: { result in // 토큰 갱신
+                                switch result {
+                                case .success(_):
+                                    self.join(postId: postId, like_status: like_status) { result in
+                                        switch result {
+                                        case .success(let success):
+                                            completion(.success(success))
+                                        case .failure(let failure):
+                                            completion(.failure(failure))
+                                        }
+                                    }
+                                case .failure(let failure):
                                     if failure == .refreshTokenExpired {
                                         completion(.failure(.refreshTokenExpired))
                                     }

@@ -8,5 +8,6 @@
 import Foundation
 
 struct LikeQuery: Encodable {
+    let postId: String
     let like_status: Bool
 }

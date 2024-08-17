@@ -53,7 +53,7 @@ private extension ClubViewController {
                                                   heightDimension: .estimated(120))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.85),
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),
                                                    heightDimension: .estimated(120))
 
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 1)

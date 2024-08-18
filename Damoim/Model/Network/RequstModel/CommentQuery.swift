@@ -8,5 +8,6 @@
 import Foundation
 
 struct CommentQuery: Encodable {
+    let postId: String
     let content: String
 }

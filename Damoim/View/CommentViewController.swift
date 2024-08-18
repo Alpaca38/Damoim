@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import Toast
 
 final class CommentViewController: BaseViewController {
     private let emptyLabel = {
@@ -41,7 +42,7 @@ final class CommentViewController: BaseViewController {
         view.setAttributedTitle(NSAttributedString(string: l10nKey.buttonSubmit.rawValue.localized,
                                                    attributes: [
                                                     .font: UIFont.systemFont(ofSize: 14),
-                                                    .foregroundColor: UIColor.main
+                                                    .foregroundColor: UIColor.lightGray
                                                    ]), for: .normal)
         return view
     }()
@@ -122,7 +123,8 @@ private extension CommentViewController {
     
     func bind() {
         let input = CommentViewModel.Input(
-            sendTap: sendButton.rx.tap
+            sendTap: sendButton.rx.tap,
+            commentText: commentTextField.rx.text
         )
         
         let output = viewModel.transform(input: input)
@@ -142,6 +144,47 @@ private extension CommentViewController {
                 .bind(with: self) { owner, isEmpty in
                     owner.emptyLabel.isHidden = !isEmpty
                     owner.tableView.isHidden = isEmpty
+                }
+            
+            output.sendValid
+                .bind(with: self) { owner, isValid in
+                    if isValid {
+                        owner.sendButton.setAttributedTitle(
+                            NSAttributedString(
+                                string: l10nKey.buttonSubmit.rawValue.localized,
+                                attributes: [
+                                    .font: UIFont.systemFont(ofSize: 14),
+                                    .foregroundColor: UIColor.main
+                                ]), for: .normal)
+                    } else {
+                        owner.sendButton.setAttributedTitle(
+                            NSAttributedString(
+                                string: l10nKey.buttonSubmit.rawValue.localized,
+                                attributes: [
+                                    .font: UIFont.systemFont(ofSize: 14),
+                                    .foregroundColor: UIColor.lightGray
+                                ]), for: .normal)
+                    }
+                    
+                    owner.sendButton.isEnabled = isValid
+                }
+            
+            output.fetchPostError
+                .bind(with: self) { owner, error in
+                    if error == .refreshTokenExpired {
+                        SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                    } else {
+                        owner.view.makeToast(error.rawValue)
+                    }
+                }
+            
+            output.createCommentError
+                .bind(with: self) { owner, error in
+                    if error == .refreshTokenExpired {
+                        SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                    } else {
+                        owner.view.makeToast(error.rawValue)
+                    }
                 }
         }
         

@@ -21,6 +21,8 @@ enum ServerRouter {
     case like(query: LikeQuery)
     case like2(query: LikeQuery)
     
+    case comment(query: CommentQuery)
+    
     case fetchImage(query: FetchImageQuery)
 }
 
@@ -49,6 +51,8 @@ extension ServerRouter: TargetType {
             return .get
         case .like, .like2:
             return .post
+        case .comment:
+            return .post
         }
     }
     
@@ -74,6 +78,8 @@ extension ServerRouter: TargetType {
             "posts/\(query.postId)/like"
         case .like2(let query):
             "posts/\(query.postId)/like-2"
+        case .comment(let query):
+            "posts/\(query.postId)/comments"
         }
     }
     
@@ -95,7 +101,7 @@ extension ServerRouter: TargetType {
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey
             ]
-        case .like, .like2:
+        case .like, .like2, .comment:
             [
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey,
@@ -134,6 +140,8 @@ extension ServerRouter: TargetType {
             return try? encoder.encode(["like_status": query.like_status])
         case .like2(let query):
             return try? encoder.encode(["like_status": query.like_status])
+        case .comment(let query):
+            return try? encoder.encode(["content": query.content])
         case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost:
             return nil
         }

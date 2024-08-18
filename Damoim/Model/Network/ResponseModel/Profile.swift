@@ -17,4 +17,16 @@ struct Profile: Decodable {
     let followers: [Creator]
     let following: [Creator]
     let posts: [String]
+    
+    var followerCount: String {
+        return String(followers.count)
+    }
+    
+    var followingCount: String {
+        return String(following.count)
+    }
+    
+    var feedCount: String {
+        return String(posts.count)
+    }
 }

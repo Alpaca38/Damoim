@@ -30,7 +30,7 @@ final class LoginViewController: BaseViewController {
     private let loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle(l10nKey.buttonSignIn.rawValue.localized, for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = .main
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
         return button
@@ -114,7 +114,10 @@ private extension LoginViewController {
                 .drive(with: self) { owner, result in
                     switch result {
                     case .success(_):
-                        SceneManager.shared.setScene(viewController: TabBarController())
+                        DispatchQueue.main.async {
+                            SceneManager.shared.setScene(viewController: TabBarController())
+                        }
+                        
                     case .failure(let error):
                         owner.view.makeToast(error.rawValue)
                     }

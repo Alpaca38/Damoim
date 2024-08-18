@@ -75,6 +75,10 @@
 		D1FB0B4D2C7086B500049C5D /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B4C2C7086B500049C5D /* CommentTableViewCell.swift */; };
 		D1FB0B4F2C71B23C00049C5D /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B4E2C71B23C00049C5D /* ProfileImageView.swift */; };
 		D1FB0B512C71B8F800049C5D /* RelativeDateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B502C71B8F800049C5D /* RelativeDateManager.swift */; };
+		D1FB0B532C71F60A00049C5D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B522C71F60A00049C5D /* ProfileViewController.swift */; };
+		D1FB0B552C71F69F00049C5D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B542C71F69F00049C5D /* ProfileViewModel.swift */; };
+		D1FB0B572C72099900049C5D /* BasePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B562C72099900049C5D /* BasePostViewController.swift */; };
+		D1FB0B592C72154300049C5D /* PostReadByUserQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B582C72154300049C5D /* PostReadByUserQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +144,10 @@
 		D1FB0B4C2C7086B500049C5D /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		D1FB0B4E2C71B23C00049C5D /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		D1FB0B502C71B8F800049C5D /* RelativeDateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeDateManager.swift; sourceTree = "<group>"; };
+		D1FB0B522C71F60A00049C5D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D1FB0B542C71F69F00049C5D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		D1FB0B562C72099900049C5D /* BasePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePostViewController.swift; sourceTree = "<group>"; };
+		D1FB0B582C72154300049C5D /* PostReadByUserQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostReadByUserQuery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				D11D81032C6C821A00EB8680 /* BaseViewController.swift */,
+				D1FB0B562C72099900049C5D /* BasePostViewController.swift */,
 				D11D81052C6C823200EB8680 /* BaseCollectionViewCell.swift */,
 				D1FB0B4A2C70864B00049C5D /* BaseTableViewCell.swift */,
 			);
@@ -294,6 +303,7 @@
 				D11D814B2C6CD95400EB8680 /* FileUploadQuery.swift */,
 				D11D814D2C6CD9F400EB8680 /* PostQuery.swift */,
 				D11D814F2C6CDB0000EB8680 /* PostReadQuery.swift */,
+				D1FB0B582C72154300049C5D /* PostReadByUserQuery.swift */,
 				D11D81512C6CDDB200EB8680 /* CommentQuery.swift */,
 				D11D81532C6CDEAE00EB8680 /* LikeQuery.swift */,
 				D11D81552C6CDF0000EB8680 /* ProfileEditQuery.swift */,
@@ -314,6 +324,7 @@
 				D11D816C2C6DE08200EB8680 /* ClubViewController.swift */,
 				D1FB0B402C6F3F1900049C5D /* ClubDetailViewController.swift */,
 				D1FB0B462C7082FF00049C5D /* CommentViewController.swift */,
+				D1FB0B522C71F60A00049C5D /* ProfileViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -336,6 +347,7 @@
 				D11D81712C6DFD1B00EB8680 /* ClubViewModel.swift */,
 				D1FB0B422C6F561B00049C5D /* ClubDetailViewModel.swift */,
 				D1FB0B482C70834500049C5D /* CommentViewModel.swift */,
+				D1FB0B542C71F69F00049C5D /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -477,9 +489,11 @@
 				D11D80E42C6C7EF000EB8680 /* AppDelegate.swift in Sources */,
 				D11D812C2C6C8A1D00EB8680 /* SceneManager.swift in Sources */,
 				D11D80FA2C6C7F5C00EB8680 /* APIKey.swift in Sources */,
+				D1FB0B592C72154300049C5D /* PostReadByUserQuery.swift in Sources */,
 				D1FB0B3D2C6F202200049C5D /* PostItem.swift in Sources */,
 				D11D81542C6CDEAE00EB8680 /* LikeQuery.swift in Sources */,
 				D11D81722C6DFD1B00EB8680 /* ClubViewModel.swift in Sources */,
+				D1FB0B552C71F69F00049C5D /* ProfileViewModel.swift in Sources */,
 				D11D813D2C6CD01600EB8680 /* Login.swift in Sources */,
 				D11D81702C6DF33900EB8680 /* ClubCollectionViewCell.swift in Sources */,
 				D11D81042C6C821A00EB8680 /* BaseViewController.swift in Sources */,
@@ -487,7 +501,9 @@
 				D1FB0B4F2C71B23C00049C5D /* ProfileImageView.swift in Sources */,
 				D11D81502C6CDB0000EB8680 /* PostReadQuery.swift in Sources */,
 				D11D816D2C6DE08200EB8680 /* ClubViewController.swift in Sources */,
+				D1FB0B532C71F60A00049C5D /* ProfileViewController.swift in Sources */,
 				D11D81252C6C87C100EB8680 /* UserDefaults.swift in Sources */,
+				D1FB0B572C72099900049C5D /* BasePostViewController.swift in Sources */,
 				D11D813B2C6CCC3700EB8680 /* Posts.swift in Sources */,
 				D11D810A2C6C82B100EB8680 /* Extension+Color.swift in Sources */,
 				D11D81382C6CA2F500EB8680 /* l10nKey.swift in Sources */,

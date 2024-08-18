@@ -17,6 +17,7 @@ enum ServerRouter {
     case fetchMyProfile
     
     case postRead(query: PostReadQuery)
+    case postReadByUser(query: PostReadByUserQuery)
     case specificPost(query: SpecificPostQuery)
     case like(query: LikeQuery)
     case like2(query: LikeQuery)
@@ -43,7 +44,7 @@ extension ServerRouter: TargetType {
             return .get
         case .fetchMyProfile:
             return .get
-        case .postRead:
+        case .postRead, .postReadByUser:
             return .get
         case .fetchImage:
             return .get
@@ -70,6 +71,8 @@ extension ServerRouter: TargetType {
             "users/me/profile"
         case .postRead:
             "posts/"
+        case .postReadByUser(let query):
+            "posts/users/\(query.userId)"
         case .fetchImage(let query):
             query.parameter
         case .specificPost(let query):
@@ -96,7 +99,7 @@ extension ServerRouter: TargetType {
                 Header.sesacKey.rawValue: APIKey.sesacKey,
                 Header.refresh.rawValue: UserDefaultsManager.refreshToken
             ]
-        case .postRead, .fetchMyProfile, .fetchImage, .specificPost:
+        case .postRead, .fetchMyProfile, .fetchImage, .specificPost, .postReadByUser:
             [
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey
@@ -122,6 +125,12 @@ extension ServerRouter: TargetType {
                 URLQueryItem(name: "limit", value: query.limit),
                 URLQueryItem(name: "product_id", value: query.product_id)
             ]
+        case .postReadByUser(let query):
+            [
+                URLQueryItem(name: "next", value: query.next),
+                URLQueryItem(name: "limit", value: query.limit),
+                URLQueryItem(name: "product_id", value: query.product_id)
+            ]
         default:
             nil
         }
@@ -142,7 +151,7 @@ extension ServerRouter: TargetType {
             return try? encoder.encode(["like_status": query.like_status])
         case .comment(let query):
             return try? encoder.encode(["content": query.content])
-        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost:
+        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser:
             return nil
         }
     }

@@ -124,7 +124,7 @@ extension NetworkManager {
 
 // MARK: 프로필
 extension NetworkManager {
-    func fetchProfile(completion: @escaping (Result<Profile, APIError>) -> Void) {
+    func fetchMyProfile(completion: @escaping (Result<Profile, APIError>) -> Void) {
         do {
             let request = try  ServerRouter.fetchMyProfile.asURLRequest()
             AF.request(request)
@@ -145,7 +145,7 @@ extension NetworkManager {
                             refreshToken(completion: { result in // 토큰 갱신
                                 switch result {
                                 case .success(_):
-                                    self.fetchProfile { result in
+                                    self.fetchMyProfile { result in
                                         switch result {
                                         case .success(let success):
                                             completion(.success(success))
@@ -196,6 +196,52 @@ extension NetworkManager {
                                 switch result {
                                 case .success(_):
                                     self.fetchPosts(next: next, product_id: product_id) { result in // 갱신 성공 시 다시 fetchposts
+                                        switch result {
+                                        case .success(let success):
+                                            completion(.success(success))
+                                        case .failure(let failure):
+                                            completion(.failure(failure))
+                                        }
+                                    }
+                                case .failure(let failure):
+                                    if failure == .refreshTokenExpired {
+                                        completion(.failure(.refreshTokenExpired))
+                                    }
+                                }
+                            })
+                        default:
+                            completion(.failure(.serverError))
+                        }
+                    }
+                }
+        } catch {
+            print(error)
+        }
+    }
+    
+    func fetchPostsByUser(userId: String, next: String?, completion: @escaping (Result<Posts, APIError>) -> Void) {
+        do {
+            let query = PostReadByUserQuery(userId: userId, next: next, limit: nil, product_id: nil)
+            let request = try ServerRouter.postReadByUser(query: query).asURLRequest()
+            AF.request(request)
+                .responseDecodable(of: Posts.self) { [weak self] response in
+                    guard let self else { return }
+                    switch response.result {
+                    case .success(let success):
+                        completion(.success(success))
+                    case .failure(_):
+                        switch response.response?.statusCode {
+                        case 400:
+                            completion(.failure(.invalidRequestVariables))
+                        case 401:
+                            completion(.failure(.invalidRequest))
+                        case 403:
+                            completion(.failure(.forbidden))
+                        case 419:
+                            refreshToken(completion: { result in // 토큰 갱신
+                                switch result {
+                                case .success(_):
+                                    self.fetchPostsByUser(userId: userId, next: next) { result in
                                         switch result {
                                         case .success(let success):
                                             completion(.success(success))
@@ -389,7 +435,7 @@ extension NetworkManager {
                         case 419:
                             refreshToken(completion: { result in // 토큰 갱신
                                 switch result {
-                                case .success(let success):
+                                case .success(_):
                                     self.createComment(postId: postId, content: content) { result in
                                         switch result {
                                         case .success(let success):

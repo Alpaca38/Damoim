@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-final class ClubViewController: BaseViewController {
+final class ClubViewController: BasePostViewController {
     private lazy var collectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         view.showsVerticalScrollIndicator = false
@@ -146,10 +146,4 @@ private extension ClubViewController {
                 }
         }
     }
-}
-
-private extension ClubViewController {
-    typealias PostSection = AnimatableSectionModel<String, PostItem>
-    typealias DataSource = RxCollectionViewSectionedAnimatedDataSource<PostSection>
-    typealias ClubCellRegistration = UICollectionView.CellRegistration<ClubCollectionViewCell, PostItem>
 }

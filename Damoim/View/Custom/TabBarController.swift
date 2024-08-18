@@ -20,6 +20,10 @@ final class TabBarController: UITabBarController {
         let club = UINavigationController(rootViewController: ClubViewController())
         club.tabBarItem = UITabBarItem(title: l10nKey.tabClub.rawValue.localized, image: UIImage(systemName: "house.fill"), tag: 0)
         
-        setViewControllers([club], animated: true)
+        let profileVM = ProfileViewModel(userId: UserDefaultsManager.user_id)
+        let profile = UINavigationController(rootViewController: ProfileViewController(viewModel: profileVM))
+        profile.tabBarItem = UITabBarItem(title: l10nKey.tabProfile.rawValue.localized, image: UIImage(systemName: "person.fill"), tag: 1)
+        
+        setViewControllers([club, profile], animated: true)
     }
 }

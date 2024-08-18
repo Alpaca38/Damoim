@@ -44,14 +44,7 @@ final class ClubDetailViewController: BaseViewController {
         return view
     }()
     
-    private let profileImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFill
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 20
-        view.backgroundColor = .darkGray
-        return view
-    }()
+    private let profileImageView = ProfileImageView(cornerRadius: 20)
     
     private let profileLabel = {
         let view = UILabel()
@@ -109,8 +102,12 @@ final class ClubDetailViewController: BaseViewController {
         return view
     }()
     
+    private let commentTapGesture = UITapGestureRecognizer()
+    
     private lazy var commentView = {
         let view = UIView()
+        view.addGestureRecognizer(commentTapGesture)
+        view.isUserInteractionEnabled = true
         view.addSubview(commentImageView)
         view.addSubview(commentLabel)
         view.backgroundColor = .white
@@ -171,11 +168,6 @@ final class ClubDetailViewController: BaseViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = false
         bind()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func configureLayout() {
@@ -314,7 +306,6 @@ private extension ClubDetailViewController {
             output.profileImageData
                 .bind(with: self) { owner, data in
                     owner.profileImageView.image = UIImage(data: data)
-                    owner.commentImageView.image = UIImage(data: data)
                 }
             
             output.errorSubject
@@ -350,6 +341,18 @@ private extension ClubDetailViewController {
                     let likeButtonImage = value ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
                     owner.heartButton.setImage(likeButtonImage, for: .normal)
                 }
+            
+            commentTapGesture.rx.event
+                .withLatestFrom(output.post)
+                .bind(with: self) { owner, post in
+                    let vm = CommentViewModel(postId: post.post_id)
+                    let vc = CommentViewController(viewModel: vm)
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
+        }
+        
+        if let commentImageData = UserDefaultsManager.profileImageData {
+            commentImageView.image = UIImage(data: commentImageData)
         }
     }
 }

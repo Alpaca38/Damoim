@@ -46,7 +46,9 @@ extension NetworkManager {
     }
     
     func login(email: String, password: String) -> Single<Result<Login, APIError>> {
-        return Single.create { observer in
+        return Single.create { [weak self] observer in
+            guard let self else { return Disposables.create() }
+            
             do {
                 let query = LoginQuery(email: email, password: password)
                 let request = try ServerRouter.login(query: query).asURLRequest()
@@ -59,6 +61,16 @@ extension NetworkManager {
                             UserDefaultsManager.refreshToken = success.refreshToken
                             UserDefaultsManager.user_id = success.user_id
                             UserDefaultsManager.isLogin = true
+                            if let profileURL = success.profileImage {
+                                self.fetchImage(parameter: profileURL) { result in
+                                    switch result {
+                                    case .success(let success):
+                                        UserDefaultsManager.profileImageData = success
+                                    case .failure(let failure):
+                                        print(failure)
+                                    }
+                                }
+                            }
                         case .failure(_):
                             switch response.response?.statusCode {
                             case 400:
@@ -112,25 +124,50 @@ extension NetworkManager {
 
 // MARK: 프로필
 extension NetworkManager {
-    //    func fetchProfile() {
-    //        do {
-    //            let request = try  ServerRouter.fetchMyProfile.asURLRequest()
-    //            AF.request(request)
-    //                .responseDecodable(of: Profile.self) { [weak self] response in
-    //                    if response.response?.statusCode == 419 {
-    //                        self?.refreshToken()
-    //                    }
-    //                    switch response.result {
-    //                    case .success(let success):
-    //                        <#code#>
-    //                    case .failure(_):
-    //                        <#code#>
-    //                    }
-    //                }
-    //        } catch {
-    //            print(error)
-    //        }
-    //    }
+    func fetchProfile(completion: @escaping (Result<Profile, APIError>) -> Void) {
+        do {
+            let request = try  ServerRouter.fetchMyProfile.asURLRequest()
+            AF.request(request)
+                .responseDecodable(of: Profile.self) { [weak self] response in
+                    guard let self else { return }
+                    switch response.result {
+                    case .success(let success):
+                        completion(.success(success))
+                    case .failure(_):
+                        switch response.response?.statusCode {
+                        case 400:
+                            completion(.failure(.invalidRequestVariables))
+                        case 401:
+                            completion(.failure(.invalidRequest))
+                        case 403:
+                            completion(.failure(.forbidden))
+                        case 419:
+                            refreshToken(completion: { result in // 토큰 갱신
+                                switch result {
+                                case .success(_):
+                                    self.fetchProfile { result in
+                                        switch result {
+                                        case .success(let success):
+                                            completion(.success(success))
+                                        case .failure(let failure):
+                                            completion(.failure(failure))
+                                        }
+                                    }
+                                case .failure(let failure):
+                                    if failure == .refreshTokenExpired {
+                                        completion(.failure(.refreshTokenExpired))
+                                    }
+                                }
+                            })
+                        default:
+                            completion(.failure(.serverError))
+                        }
+                    }
+                }
+        } catch {
+            print(error)
+        }
+    }
 }
 
 // MARK: 포스트

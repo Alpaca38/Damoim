@@ -58,4 +58,8 @@ struct Comment: Codable, Hashable {
     let content: String
     let createdAt: String
     let creator: Creator
+    
+    var timeAgo: String {
+        return RelativeDateManager.shared.toAgo(createdAt: createdAt)
+    }
 }

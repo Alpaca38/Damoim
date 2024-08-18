@@ -69,6 +69,12 @@
 		D1FB0B412C6F3F1900049C5D /* ClubDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B402C6F3F1900049C5D /* ClubDetailViewController.swift */; };
 		D1FB0B432C6F561B00049C5D /* ClubDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B422C6F561B00049C5D /* ClubDetailViewModel.swift */; };
 		D1FB0B452C6F742D00049C5D /* SpecificPostQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B442C6F742D00049C5D /* SpecificPostQuery.swift */; };
+		D1FB0B472C7082FF00049C5D /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B462C7082FF00049C5D /* CommentViewController.swift */; };
+		D1FB0B492C70834500049C5D /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B482C70834500049C5D /* CommentViewModel.swift */; };
+		D1FB0B4B2C70864B00049C5D /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B4A2C70864B00049C5D /* BaseTableViewCell.swift */; };
+		D1FB0B4D2C7086B500049C5D /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B4C2C7086B500049C5D /* CommentTableViewCell.swift */; };
+		D1FB0B4F2C71B23C00049C5D /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B4E2C71B23C00049C5D /* ProfileImageView.swift */; };
+		D1FB0B512C71B8F800049C5D /* RelativeDateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B502C71B8F800049C5D /* RelativeDateManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +134,12 @@
 		D1FB0B402C6F3F1900049C5D /* ClubDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDetailViewController.swift; sourceTree = "<group>"; };
 		D1FB0B422C6F561B00049C5D /* ClubDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDetailViewModel.swift; sourceTree = "<group>"; };
 		D1FB0B442C6F742D00049C5D /* SpecificPostQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificPostQuery.swift; sourceTree = "<group>"; };
+		D1FB0B462C7082FF00049C5D /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		D1FB0B482C70834500049C5D /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
+		D1FB0B4A2C70864B00049C5D /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		D1FB0B4C2C7086B500049C5D /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		D1FB0B4E2C71B23C00049C5D /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		D1FB0B502C71B8F800049C5D /* RelativeDateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeDateManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +214,7 @@
 			children = (
 				D11D81032C6C821A00EB8680 /* BaseViewController.swift */,
 				D11D81052C6C823200EB8680 /* BaseCollectionViewCell.swift */,
+				D1FB0B4A2C70864B00049C5D /* BaseTableViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -221,6 +234,7 @@
 				D11D812D2C6C8A9A00EB8680 /* Network */,
 				D11D81262C6C87D200EB8680 /* UserDefaults */,
 				D11D812B2C6C8A1D00EB8680 /* SceneManager.swift */,
+				D1FB0B502C71B8F800049C5D /* RelativeDateManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,6 +313,7 @@
 				D11D815F2C6CFB9800EB8680 /* SignUpViewController.swift */,
 				D11D816C2C6DE08200EB8680 /* ClubViewController.swift */,
 				D1FB0B402C6F3F1900049C5D /* ClubDetailViewController.swift */,
+				D1FB0B462C7082FF00049C5D /* CommentViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -308,6 +323,7 @@
 			children = (
 				D11D81292C6C898C00EB8680 /* TabBarController.swift */,
 				D11D815D2C6CF81300EB8680 /* RoundTextField.swift */,
+				D1FB0B4E2C71B23C00049C5D /* ProfileImageView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -319,6 +335,7 @@
 				D11D816A2C6DDBA200EB8680 /* LoginViewModel.swift */,
 				D11D81712C6DFD1B00EB8680 /* ClubViewModel.swift */,
 				D1FB0B422C6F561B00049C5D /* ClubDetailViewModel.swift */,
+				D1FB0B482C70834500049C5D /* CommentViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -327,6 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				D11D816F2C6DF33900EB8680 /* ClubCollectionViewCell.swift */,
+				D1FB0B4C2C7086B500049C5D /* CommentTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -433,6 +451,7 @@
 				D11D81432C6CD1FB00EB8680 /* Profile.swift in Sources */,
 				D11D81642C6DBBF500EB8680 /* ServerRouter.swift in Sources */,
 				D11D81602C6CFB9800EB8680 /* SignUpViewController.swift in Sources */,
+				D1FB0B472C7082FF00049C5D /* CommentViewController.swift in Sources */,
 				D1FB0B452C6F742D00049C5D /* SpecificPostQuery.swift in Sources */,
 				D1FB0B412C6F3F1900049C5D /* ClubDetailViewController.swift in Sources */,
 				D11D80E82C6C7EF000EB8680 /* LoginViewController.swift in Sources */,
@@ -440,11 +459,15 @@
 				D11D81582C6CDFC300EB8680 /* HashTagSearchQuery.swift in Sources */,
 				D11D814A2C6CD8EC00EB8680 /* LoginQuery.swift in Sources */,
 				D11D81362C6C9B2500EB8680 /* Extension+Date.swift in Sources */,
+				D1FB0B492C70834500049C5D /* CommentViewModel.swift in Sources */,
 				D11D813F2C6CD06C00EB8680 /* Refresh.swift in Sources */,
+				D1FB0B512C71B8F800049C5D /* RelativeDateManager.swift in Sources */,
 				D11D81462C6CD85900EB8680 /* SignUpQuery.swift in Sources */,
+				D1FB0B4D2C7086B500049C5D /* CommentTableViewCell.swift in Sources */,
 				D11D81662C6DBCBE00EB8680 /* TargetType.swift in Sources */,
 				D1FB0B3F2C6F212600049C5D /* FetchImageQuery.swift in Sources */,
 				D11D81482C6CD8CB00EB8680 /* EmailValidationQuery.swift in Sources */,
+				D1FB0B4B2C70864B00049C5D /* BaseTableViewCell.swift in Sources */,
 				D11D81222C6C875600EB8680 /* ViewModel.swift in Sources */,
 				D11D80FF2C6C81ED00EB8680 /* Extension+UIViewController.swift in Sources */,
 				D11D81412C6CD0B600EB8680 /* File.swift in Sources */,
@@ -461,6 +484,7 @@
 				D11D81702C6DF33900EB8680 /* ClubCollectionViewCell.swift in Sources */,
 				D11D81042C6C821A00EB8680 /* BaseViewController.swift in Sources */,
 				D11D814E2C6CD9F400EB8680 /* PostQuery.swift in Sources */,
+				D1FB0B4F2C71B23C00049C5D /* ProfileImageView.swift in Sources */,
 				D11D81502C6CDB0000EB8680 /* PostReadQuery.swift in Sources */,
 				D11D816D2C6DE08200EB8680 /* ClubViewController.swift in Sources */,
 				D11D81252C6C87C100EB8680 /* UserDefaults.swift in Sources */,

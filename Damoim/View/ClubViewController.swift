@@ -30,6 +30,11 @@ final class ClubViewController: BaseViewController {
         bind()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     override func configureLayout() {
         collectionView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
@@ -41,7 +46,6 @@ final class ClubViewController: BaseViewController {
 private extension ClubViewController {
     func setNavi() {
         navigationItem.title = l10nKey.navigationTitleClub.rawValue.localized
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.largeTitleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.main
         ]

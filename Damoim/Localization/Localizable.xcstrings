@@ -256,6 +256,23 @@
         }
       }
     },
+    "label_empty_comment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please leave the first comment."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "첫 번째 댓글을 남겨주세요."
+          }
+        }
+      }
+    },
     "label_head_count" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -303,6 +320,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "보드게임 모임"
+          }
+        }
+      }
+    },
+    "navigation_title_comment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comment"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "댓글"
           }
         }
       }

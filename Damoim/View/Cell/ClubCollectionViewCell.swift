@@ -40,14 +40,7 @@ final class ClubCollectionViewCell: BaseCollectionViewCell {
         return view
     }()
     
-    private let profileImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFill
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 10
-        view.backgroundColor = .lightGray
-        return view
-    }()
+    private let profileImageView = ProfileImageView(cornerRadius: 10)
     
     private let profileLabel = {
         let view = UILabel()

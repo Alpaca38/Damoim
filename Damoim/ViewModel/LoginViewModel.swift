@@ -14,7 +14,7 @@ final class LoginViewModel: ViewModel {
     
     func transform(input: Input) -> Output {
         let loginResult = input.loginTap
-            .throttle(.seconds(2), latest: false, scheduler: MainScheduler.instance)
+            .throttle(.seconds(4), latest: false, scheduler: MainScheduler.instance)
             .withLatestFrom(Observable.combineLatest(input.email, input.password))
             .flatMap { email, password in
                 NetworkManager.shared.login(email: email, password: password)

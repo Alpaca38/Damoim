@@ -60,6 +60,7 @@ extension NetworkManager {
                             UserDefaultsManager.accessToken = success.accessToken
                             UserDefaultsManager.refreshToken = success.refreshToken
                             UserDefaultsManager.user_id = success.user_id
+                            UserDefaultsManager.nickname = success.nick
                             UserDefaultsManager.isLogin = true
                             if let profileURL = success.profileImage {
                                 self.fetchImage(parameter: profileURL) { result in

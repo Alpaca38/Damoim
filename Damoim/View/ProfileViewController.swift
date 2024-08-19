@@ -95,7 +95,6 @@ final class ProfileViewController: BasePostViewController {
         var config = UIButton.Configuration.borderedTinted()
         config.background.backgroundColor = .main
         config.cornerStyle = .capsule
-//        config.attributedTitle = AttributedString(l10nKey.follow.rawValue.localized, attributes: AttributeContainer([.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 14)]))
         let view = UIButton(configuration: config)
         view.setAttributedTitle(NSAttributedString(string: l10nKey.follow.rawValue.localized, attributes: [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 14)]), for: .normal)
         view.setAttributedTitle(NSAttributedString(string: l10nKey.following.rawValue.localized, attributes: [.foregroundColor: UIColor.main, .font: UIFont.systemFont(ofSize: 14)]), for: .selected)
@@ -344,6 +343,12 @@ private extension ProfileViewController {
                     } else {
                         owner.view.makeToast(error.rawValue)
                     }
+                }
+            
+            editProfileButton.rx.tap
+                .bind(with: self) { owner, _ in
+                    let vc = EditProfileViewController()
+                    owner.navigationController?.pushViewController(vc, animated: true)
                 }
         }
     }

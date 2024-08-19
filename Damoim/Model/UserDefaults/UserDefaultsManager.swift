@@ -24,4 +24,7 @@ struct UserDefaultsManager {
     
     @UserDefault(key: .profileImageData, defaultValue: nil, isCustomObject: false)
     static var profileImageData: Data?
+    
+    @UserDefault(key: .nickname, defaultValue: "", isCustomObject: false)
+    static var nickname: String
 }

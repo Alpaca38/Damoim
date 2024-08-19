@@ -291,6 +291,13 @@ private extension ProfileViewController {
                     owner.editProfileButton.isHidden = !isMine
                     owner.followButton.isHidden = isMine
                 }
+            
+            collectionView.rx.modelSelected(PostItem.self)
+                .bind(with: self) { owner, postItem in
+                    let vm = ClubDetailViewModel(postItem: postItem)
+                    let vc = ClubDetailViewController(viewModel: vm)
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
         }
     }
 }

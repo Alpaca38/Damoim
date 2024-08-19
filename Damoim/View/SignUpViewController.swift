@@ -113,7 +113,7 @@ private extension SignUpViewController {
             
             output.totalValid
                 .bind(with: self) { owner, value in
-                    let backgroundColor: UIColor = value ? .systemBlue : .gray
+                    let backgroundColor: UIColor = value ? .main : .gray
                     owner.signUpButton.backgroundColor = backgroundColor
                     owner.signUpButton.isEnabled = value
                 }

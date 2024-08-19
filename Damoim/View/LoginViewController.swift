@@ -39,7 +39,7 @@ final class LoginViewController: BaseViewController {
     private let signButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle(l10nKey.buttonSignUp.rawValue.localized, for: .normal)
-        button.setTitleColor(.blue, for: .normal)
+        button.setTitleColor(.main, for: .normal)
         button.layer.cornerRadius = 5
         return button
     }()

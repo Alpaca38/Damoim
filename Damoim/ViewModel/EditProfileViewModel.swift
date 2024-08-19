@@ -21,7 +21,6 @@ final class EditProfileViewModel: ViewModel {
         
         let saveValid = input.nickText
             .map { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
-            
         
         return Output(
             profileImageData: profileImageData,

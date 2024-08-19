@@ -15,6 +15,7 @@ enum ServerRouter {
     case refresh
     
     case fetchMyProfile
+    case editProfile(query: ProfileEditQuery)
     case fetchOtherUserProfile(query: OtherUserProfileQuery)
     
     case follow(query: FollowQuery)
@@ -48,6 +49,8 @@ extension ServerRouter: TargetType {
             return .get
         case .fetchMyProfile, .fetchOtherUserProfile:
             return .get
+        case .editProfile:
+            return .put
         case .postRead, .postReadByUser:
             return .get
         case .fetchImage:
@@ -75,7 +78,7 @@ extension ServerRouter: TargetType {
             "users/login"
         case .refresh:
             "auth/refresh"
-        case .fetchMyProfile:
+        case .fetchMyProfile, .editProfile:
             "users/me/profile"
         case .postRead:
             "posts/"
@@ -118,7 +121,7 @@ extension ServerRouter: TargetType {
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey
             ]
-        case .like, .like2, .comment:
+        case .like, .like2, .comment, .editProfile:
             [
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey,
@@ -165,6 +168,8 @@ extension ServerRouter: TargetType {
             return try? encoder.encode(["like_status": query.like_status])
         case .comment(let query):
             return try? encoder.encode(["content": query.content])
+        case .editProfile(let query):
+            return try? encoder.encode(query)
         case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow:
             return nil
         }

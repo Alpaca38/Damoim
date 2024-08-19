@@ -8,6 +8,6 @@
 import Foundation
 
 struct ProfileEditQuery: Encodable {
-    let nick: String
-    let profile: Data
+    let nick: String?
+    let profile: Data?
 }

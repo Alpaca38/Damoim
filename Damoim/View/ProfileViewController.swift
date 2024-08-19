@@ -92,11 +92,20 @@ final class ProfileViewController: BasePostViewController {
     }()
     
     private let followButton = {
-        var config = UIButton.Configuration.tinted()
+        var config = UIButton.Configuration.borderedTinted()
         config.background.backgroundColor = .main
         config.cornerStyle = .capsule
-        config.attributedTitle = AttributedString(l10nKey.follow.rawValue.localized, attributes: AttributeContainer([.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 14)]))
+//        config.attributedTitle = AttributedString(l10nKey.follow.rawValue.localized, attributes: AttributeContainer([.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 14)]))
         let view = UIButton(configuration: config)
+        view.setAttributedTitle(NSAttributedString(string: l10nKey.follow.rawValue.localized, attributes: [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 14)]), for: .normal)
+        view.setAttributedTitle(NSAttributedString(string: l10nKey.following.rawValue.localized, attributes: [.foregroundColor: UIColor.main, .font: UIFont.systemFont(ofSize: 14)]), for: .selected)
+        
+        view.configurationUpdateHandler = { button in
+            var config = button.configuration
+            config?.background.backgroundColor = button.isSelected ? .white : .main
+            button.configuration = config
+        }
+        
         return view
     }()
     
@@ -238,8 +247,12 @@ private extension ProfileViewController {
 // MARK: Data Binding
 private extension ProfileViewController {
     func bind() {
+        let followIsSelected = PublishSubject<Bool>()
         let postSection = PublishRelay<[PostSection]>()
-        let input = ProfileViewModel.Input()
+        let input = ProfileViewModel.Input(
+            followTap: followButton.rx.tap,
+            followIsSelected: followIsSelected
+        )
         let output = viewModel.transform(input: input)
         
         disposeBag.insert {
@@ -297,6 +310,40 @@ private extension ProfileViewController {
                     let vm = ClubDetailViewModel(postItem: postItem)
                     let vc = ClubDetailViewController(viewModel: vm)
                     owner.navigationController?.pushViewController(vc, animated: true)
+                }
+            
+            output.isFollowing
+                .bind(with: self) { owner, isFollowing in
+                    owner.followButton.isSelected = isFollowing
+                    followIsSelected.onNext(isFollowing)
+                }
+            
+            output.followSuccess
+                .bind(with: self) { owner, message in
+                    owner.view.makeToast(message)
+                }
+            
+            output.unfollowSuccess
+                .bind(with: self) { owner, message in
+                    owner.view.makeToast(message)
+                }
+            
+            output.followError
+                .bind(with: self) { owner, error in
+                    if error == .refreshTokenExpired {
+                        SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                    } else {
+                        owner.view.makeToast(error.rawValue)
+                    }
+                }
+            
+            output.unfollowError
+                .bind(with: self) { owner, error in
+                    if error == .refreshTokenExpired {
+                        SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                    } else {
+                        owner.view.makeToast(error.rawValue)
+                    }
                 }
         }
     }

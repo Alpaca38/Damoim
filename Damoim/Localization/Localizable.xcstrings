@@ -561,6 +561,40 @@
           }
         }
       }
+    },
+    "toast_follow_success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Followed successfully"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "팔로우 했습니다."
+          }
+        }
+      }
+    },
+    "toast_unfollow_success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unfollowed successfully"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "팔로우를 취소했습니다."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

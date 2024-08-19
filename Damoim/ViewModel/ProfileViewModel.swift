@@ -11,6 +11,7 @@ import RxCocoa
 
 final class ProfileViewModel: ViewModel {
     private let userId: String
+    private let disposeBag = DisposeBag()
     
     init(userId: String) {
         self.userId = userId
@@ -25,6 +26,12 @@ final class ProfileViewModel: ViewModel {
         let postsError = PublishSubject<APIError>()
         
         let isMine = BehaviorSubject<Bool>(value: true)
+        let isFollowing = PublishSubject<Bool>()
+        
+        let followSuccess = PublishSubject<String>()
+        let followError = PublishSubject<APIError>()
+        let unfollowSuccess = PublishSubject<String>()
+        let unfollowError = PublishSubject<APIError>()
         
         if userId == UserDefaultsManager.user_id {
             profileImageData.onNext(UserDefaultsManager.profileImageData)
@@ -54,6 +61,12 @@ final class ProfileViewModel: ViewModel {
                             }
                         }
                     }
+                    // 팔로우 상태 확인
+                    if success.followers.filter({ $0.user_id == UserDefaultsManager.user_id }).isEmpty {
+                        isFollowing.onNext(false)
+                    } else {
+                        isFollowing.onNext(true)
+                    }
                 case .failure(let failure):
                     profileError.onNext((failure))
                 }
@@ -70,20 +83,53 @@ final class ProfileViewModel: ViewModel {
             }
         }
         
+        input.followTap
+            .withLatestFrom(input.followIsSelected)
+            .bind(with: self) { owner, isSelected in
+                if isSelected {
+                    NetworkManager.shared.unfollow(userId: owner.userId) { result in
+                        switch result {
+                        case .success(_):
+                            unfollowSuccess.onNext(l10nKey.toastUnfollowSuccess.rawValue.localized)
+                            isFollowing.onNext(false)
+                        case .failure(let failure):
+                            unfollowError.onNext(failure)
+                        }
+                    }
+                } else {
+                    NetworkManager.shared.follow(userId: owner.userId) { result in
+                        switch result {
+                        case .success(_):
+                            followSuccess.onNext(l10nKey.toastFollowSuccess.rawValue.localized)
+                            isFollowing.onNext(true)
+                        case .failure(let failure):
+                            followError.onNext(failure)
+                        }
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
+        
         return Output(
             profileImageData: profileImageData,
             profile: profile,
             profileError: profileError,
             posts: posts,
             postsError: postsError,
-            isMine: isMine
+            isMine: isMine,
+            isFollowing: isFollowing,
+            followSuccess: followSuccess,
+            unfollowSuccess: unfollowSuccess,
+            followError: followError,
+            unfollowError: unfollowError
         )
     }
 }
 
 extension ProfileViewModel {
     struct Input {
-        
+        let followTap: ControlEvent<Void>
+        let followIsSelected: PublishSubject<Bool>
     }
     
     struct Output {
@@ -93,5 +139,10 @@ extension ProfileViewModel {
         let posts: BehaviorRelay<[PostItem]>
         let postsError: Observable<APIError>
         let isMine: Observable<Bool>
+        let isFollowing: Observable<Bool>
+        let followSuccess: Observable<String>
+        let unfollowSuccess: Observable<String>
+        let followError: Observable<APIError>
+        let unfollowError: Observable<APIError>
     }
 }

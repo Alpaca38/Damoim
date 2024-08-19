@@ -216,6 +216,109 @@ extension NetworkManager {
     }
 }
 
+// MARK: 팔로우
+extension NetworkManager {
+    func follow(userId: String, completion: @escaping (Result<Data, APIError>) -> Void) {
+        do {
+            let query = FollowQuery(userId: userId)
+            let request = try ServerRouter.follow(query: query).asURLRequest()
+            AF.request(request)
+                .validate()
+                .responseData { [weak self] response in
+                    guard let self else { return }
+                    switch response.result {
+                    case .success(let success):
+                        completion(.success(success))
+                    case .failure(_):
+                        switch response.response?.statusCode {
+                        case 400:
+                            completion(.failure(.invalidRequestVariables))
+                        case 401:
+                            completion(.failure(.invalidRequest))
+                        case 403:
+                            completion(.failure(.forbidden))
+                        case 409:
+                            completion(.failure(.conflict))
+                        case 410:
+                            completion(.failure(.databaseError))
+                        case 419:
+                            refreshToken(completion: { result in // 토큰 갱신
+                                switch result {
+                                case .success(_):
+                                    self.follow(userId: userId) { result in
+                                        switch result {
+                                        case .success(let success):
+                                            completion(.success(success))
+                                        case .failure(let failure):
+                                            completion(.failure(failure))
+                                        }
+                                    }
+                                case .failure(let failure):
+                                    if failure == .refreshTokenExpired {
+                                        completion(.failure(.refreshTokenExpired))
+                                    }
+                                }
+                            })
+                        default:
+                            completion(.failure(.serverError))
+                        }
+                    }
+                }
+        } catch {
+            print(error)
+        }
+    }
+    
+    func unfollow(userId: String, completion: @escaping (Result<Data, APIError>) -> Void) {
+        do {
+            let query = UnFollowQuery(userId: userId)
+            let request = try ServerRouter.unfollow(query: query).asURLRequest()
+            AF.request(request)
+                .validate()
+                .responseData { [weak self] response in
+                    guard let self else { return }
+                    switch response.result {
+                    case .success(let success):
+                        completion(.success(success))
+                    case .failure(_):
+                        switch response.response?.statusCode {
+                        case 400:
+                            completion(.failure(.invalidRequestVariables))
+                        case 401:
+                            completion(.failure(.invalidRequest))
+                        case 403:
+                            completion(.failure(.forbidden))
+                        case 410:
+                            completion(.failure(.databaseError))
+                        case 419:
+                            refreshToken(completion: { result in // 토큰 갱신
+                                switch result {
+                                case .success(_):
+                                    self.unfollow(userId: userId) { result in
+                                        switch result {
+                                        case .success(let success):
+                                            completion(.success(success))
+                                        case .failure(let failure):
+                                            completion(.failure(failure))
+                                        }
+                                    }
+                                case .failure(let failure):
+                                    if failure == .refreshTokenExpired {
+                                        completion(.failure(.refreshTokenExpired))
+                                    }
+                                }
+                            })
+                        default:
+                            completion(.failure(.serverError))
+                        }
+                    }
+                }
+        } catch {
+            print(error)
+        }
+    }
+}
+
 // MARK: 포스트
 extension NetworkManager {
     func fetchPosts(next: String?, product_id: String?, completion: @escaping (Result<Posts, APIError>) -> Void) {

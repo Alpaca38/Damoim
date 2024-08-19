@@ -17,6 +17,9 @@ enum ServerRouter {
     case fetchMyProfile
     case fetchOtherUserProfile(query: OtherUserProfileQuery)
     
+    case follow(query: FollowQuery)
+    case unfollow(query: UnFollowQuery)
+    
     case postRead(query: PostReadQuery)
     case postReadByUser(query: PostReadByUserQuery)
     case specificPost(query: SpecificPostQuery)
@@ -55,6 +58,10 @@ extension ServerRouter: TargetType {
             return .post
         case .comment:
             return .post
+        case .follow:
+            return .post
+        case .unfollow:
+            return .delete
         }
     }
     
@@ -86,6 +93,10 @@ extension ServerRouter: TargetType {
             "posts/\(query.postId)/comments"
         case .fetchOtherUserProfile(let query):
             "users/\(query.userId)/profile"
+        case .follow(let query):
+            "follow/\(query.userId)"
+        case .unfollow(let query):
+            "follow/\(query.userId)"
         }
     }
     
@@ -102,7 +113,7 @@ extension ServerRouter: TargetType {
                 Header.sesacKey.rawValue: APIKey.sesacKey,
                 Header.refresh.rawValue: UserDefaultsManager.refreshToken
             ]
-        case .postRead, .fetchMyProfile, .fetchImage, .specificPost, .postReadByUser, .fetchOtherUserProfile:
+        case .postRead, .fetchMyProfile, .fetchImage, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow:
             [
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey
@@ -154,7 +165,7 @@ extension ServerRouter: TargetType {
             return try? encoder.encode(["like_status": query.like_status])
         case .comment(let query):
             return try? encoder.encode(["content": query.content])
-        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser, .fetchOtherUserProfile:
+        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow:
             return nil
         }
     }

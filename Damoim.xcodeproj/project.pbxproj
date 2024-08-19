@@ -80,6 +80,7 @@
 		D1FB0B572C72099900049C5D /* BasePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B562C72099900049C5D /* BasePostViewController.swift */; };
 		D1FB0B592C72154300049C5D /* PostReadByUserQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B582C72154300049C5D /* PostReadByUserQuery.swift */; };
 		D1FB0B632C72F97800049C5D /* OtherUserProfileQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B622C72F97800049C5D /* OtherUserProfileQuery.swift */; };
+		D1FB0B652C7305C800049C5D /* FollowQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B642C7305C800049C5D /* FollowQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +151,7 @@
 		D1FB0B562C72099900049C5D /* BasePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePostViewController.swift; sourceTree = "<group>"; };
 		D1FB0B582C72154300049C5D /* PostReadByUserQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostReadByUserQuery.swift; sourceTree = "<group>"; };
 		D1FB0B622C72F97800049C5D /* OtherUserProfileQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserProfileQuery.swift; sourceTree = "<group>"; };
+		D1FB0B642C7305C800049C5D /* FollowQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowQuery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,6 +315,7 @@
 				D1FB0B3E2C6F212600049C5D /* FetchImageQuery.swift */,
 				D1FB0B442C6F742D00049C5D /* SpecificPostQuery.swift */,
 				D1FB0B622C72F97800049C5D /* OtherUserProfileQuery.swift */,
+				D1FB0B642C7305C800049C5D /* FollowQuery.swift */,
 			);
 			path = RequstModel;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				D1FB0B4F2C71B23C00049C5D /* ProfileImageView.swift in Sources */,
 				D11D81502C6CDB0000EB8680 /* PostReadQuery.swift in Sources */,
 				D11D816D2C6DE08200EB8680 /* ClubViewController.swift in Sources */,
+				D1FB0B652C7305C800049C5D /* FollowQuery.swift in Sources */,
 				D1FB0B532C71F60A00049C5D /* ProfileViewController.swift in Sources */,
 				D11D81252C6C87C100EB8680 /* UserDefaults.swift in Sources */,
 				D1FB0B572C72099900049C5D /* BasePostViewController.swift in Sources */,

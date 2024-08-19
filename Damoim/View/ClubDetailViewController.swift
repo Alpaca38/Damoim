@@ -44,7 +44,15 @@ final class ClubDetailViewController: BaseViewController {
         return view
     }()
     
-    private let profileImageView = ProfileImageView(cornerRadius: 20)
+    
+    private let profileTapGesture = UITapGestureRecognizer()
+    
+    private lazy var profileImageView = {
+        let view = ProfileImageView(cornerRadius: 20)
+        view.addGestureRecognizer(profileTapGesture)
+        view.isUserInteractionEnabled = true
+        return view
+    }()
     
     private let profileLabel = {
         let view = UILabel()
@@ -101,7 +109,7 @@ final class ClubDetailViewController: BaseViewController {
         view.textColor = .darkGray
         return view
     }()
-    
+
     private let commentTapGesture = UITapGestureRecognizer()
     
     private lazy var commentView = {
@@ -347,6 +355,14 @@ private extension ClubDetailViewController {
                 .bind(with: self) { owner, post in
                     let vm = CommentViewModel(postId: post.post_id)
                     let vc = CommentViewController(viewModel: vm)
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
+            
+            profileTapGesture.rx.event
+                .withLatestFrom(output.post)
+                .bind(with: self) { owner, post in
+                    let vm = ProfileViewModel(userId: post.creator.user_id)
+                    let vc = ProfileViewController(viewModel: vm)
                     owner.navigationController?.pushViewController(vc, animated: true)
                 }
         }

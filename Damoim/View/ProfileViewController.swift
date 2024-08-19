@@ -285,6 +285,12 @@ private extension ProfileViewController {
                         owner.view.makeToast(error.rawValue)
                     }
                 }
+            
+            output.isMine
+                .bind(with: self) { owner, isMine in
+                    owner.editProfileButton.isHidden = !isMine
+                    owner.followButton.isHidden = isMine
+                }
         }
     }
 }

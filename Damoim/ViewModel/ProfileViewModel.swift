@@ -24,6 +24,8 @@ final class ProfileViewModel: ViewModel {
         let posts = BehaviorRelay<[PostItem]>(value: [])
         let postsError = PublishSubject<APIError>()
         
+        let isMine = BehaviorSubject<Bool>(value: true)
+        
         if userId == UserDefaultsManager.user_id {
             profileImageData.onNext(UserDefaultsManager.profileImageData)
             
@@ -35,6 +37,8 @@ final class ProfileViewModel: ViewModel {
                     profileError.onNext(failure)
                 }
             }
+            
+            isMine.onNext(true)
         } else {
             NetworkManager.shared.fetchOtherUserProfile(userId: userId) { result in
                 switch result {
@@ -54,6 +58,7 @@ final class ProfileViewModel: ViewModel {
                     profileError.onNext((failure))
                 }
             }
+            isMine.onNext(false)
         }
         
         NetworkManager.shared.fetchPostsByUser(userId: userId, next: nil) { result in
@@ -70,7 +75,8 @@ final class ProfileViewModel: ViewModel {
             profile: profile,
             profileError: profileError,
             posts: posts,
-            postsError: postsError
+            postsError: postsError,
+            isMine: isMine
         )
     }
 }
@@ -86,5 +92,6 @@ extension ProfileViewModel {
         let profileError: Observable<APIError>
         let posts: BehaviorRelay<[PostItem]>
         let postsError: Observable<APIError>
+        let isMine: Observable<Bool>
     }
 }

@@ -79,6 +79,7 @@
 		D1FB0B552C71F69F00049C5D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B542C71F69F00049C5D /* ProfileViewModel.swift */; };
 		D1FB0B572C72099900049C5D /* BasePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B562C72099900049C5D /* BasePostViewController.swift */; };
 		D1FB0B592C72154300049C5D /* PostReadByUserQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B582C72154300049C5D /* PostReadByUserQuery.swift */; };
+		D1FB0B632C72F97800049C5D /* OtherUserProfileQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B622C72F97800049C5D /* OtherUserProfileQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +149,7 @@
 		D1FB0B542C71F69F00049C5D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		D1FB0B562C72099900049C5D /* BasePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePostViewController.swift; sourceTree = "<group>"; };
 		D1FB0B582C72154300049C5D /* PostReadByUserQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostReadByUserQuery.swift; sourceTree = "<group>"; };
+		D1FB0B622C72F97800049C5D /* OtherUserProfileQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserProfileQuery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,6 +312,7 @@
 				D11D81572C6CDFC300EB8680 /* HashTagSearchQuery.swift */,
 				D1FB0B3E2C6F212600049C5D /* FetchImageQuery.swift */,
 				D1FB0B442C6F742D00049C5D /* SpecificPostQuery.swift */,
+				D1FB0B622C72F97800049C5D /* OtherUserProfileQuery.swift */,
 			);
 			path = RequstModel;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				D1FB0B452C6F742D00049C5D /* SpecificPostQuery.swift in Sources */,
 				D1FB0B412C6F3F1900049C5D /* ClubDetailViewController.swift in Sources */,
 				D11D80E82C6C7EF000EB8680 /* LoginViewController.swift in Sources */,
+				D1FB0B632C72F97800049C5D /* OtherUserProfileQuery.swift in Sources */,
 				D11D81282C6C87DD00EB8680 /* UserDefaultsManager.swift in Sources */,
 				D11D81582C6CDFC300EB8680 /* HashTagSearchQuery.swift in Sources */,
 				D11D814A2C6CD8EC00EB8680 /* LoginQuery.swift in Sources */,

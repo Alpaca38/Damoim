@@ -168,6 +168,52 @@ extension NetworkManager {
             print(error)
         }
     }
+    
+    func fetchOtherUserProfile(userId: String, completion: @escaping (Result<Profile, APIError>) -> Void) {
+        do {
+            let query = OtherUserProfileQuery(userId: userId)
+            let request = try ServerRouter.fetchOtherUserProfile(query: query).asURLRequest()
+            AF.request(request)
+                .responseDecodable(of: Profile.self) { [weak self] response in
+                    guard let self else { return }
+                    switch response.result {
+                    case .success(let success):
+                        completion(.success(success))
+                    case .failure(_):
+                        switch response.response?.statusCode {
+                        case 400:
+                            completion(.failure(.invalidRequestVariables))
+                        case 401:
+                            completion(.failure(.invalidRequest))
+                        case 403:
+                            completion(.failure(.forbidden))
+                        case 419:
+                            refreshToken(completion: { result in // 토큰 갱신
+                                switch result {
+                                case .success(_):
+                                    self.fetchOtherUserProfile(userId: userId) { result in
+                                        switch result {
+                                        case .success(let success):
+                                            completion(.success(success))
+                                        case .failure(let failure):
+                                            completion(.failure(failure))
+                                        }
+                                    }
+                                case .failure(let failure):
+                                    if failure == .refreshTokenExpired {
+                                        completion(.failure(.refreshTokenExpired))
+                                    }
+                                }
+                            })
+                        default:
+                            completion(.failure(.serverError))
+                        }
+                    }
+                }
+        } catch {
+            print(error)
+        }
+    }
 }
 
 // MARK: 포스트

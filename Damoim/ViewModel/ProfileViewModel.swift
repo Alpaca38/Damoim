@@ -35,6 +35,25 @@ final class ProfileViewModel: ViewModel {
                     profileError.onNext(failure)
                 }
             }
+        } else {
+            NetworkManager.shared.fetchOtherUserProfile(userId: userId) { result in
+                switch result {
+                case .success(let success):
+                    profile.onNext(success)
+                    if let profileURL = success.profileImage {
+                        NetworkManager.shared.fetchImage(parameter: profileURL) { result in
+                            switch result {
+                            case .success(let success):
+                                profileImageData.onNext(success)
+                            case .failure(let failure):
+                                print(failure)
+                            }
+                        }
+                    }
+                case .failure(let failure):
+                    profileError.onNext((failure))
+                }
+            }
         }
         
         NetworkManager.shared.fetchPostsByUser(userId: userId, next: nil) { result in

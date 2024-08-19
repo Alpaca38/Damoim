@@ -15,6 +15,7 @@ enum ServerRouter {
     case refresh
     
     case fetchMyProfile
+    case fetchOtherUserProfile(query: OtherUserProfileQuery)
     
     case postRead(query: PostReadQuery)
     case postReadByUser(query: PostReadByUserQuery)
@@ -42,7 +43,7 @@ extension ServerRouter: TargetType {
             return .post
         case .refresh:
             return .get
-        case .fetchMyProfile:
+        case .fetchMyProfile, .fetchOtherUserProfile:
             return .get
         case .postRead, .postReadByUser:
             return .get
@@ -83,6 +84,8 @@ extension ServerRouter: TargetType {
             "posts/\(query.postId)/like-2"
         case .comment(let query):
             "posts/\(query.postId)/comments"
+        case .fetchOtherUserProfile(let query):
+            "users/\(query.userId)/profile"
         }
     }
     
@@ -99,7 +102,7 @@ extension ServerRouter: TargetType {
                 Header.sesacKey.rawValue: APIKey.sesacKey,
                 Header.refresh.rawValue: UserDefaultsManager.refreshToken
             ]
-        case .postRead, .fetchMyProfile, .fetchImage, .specificPost, .postReadByUser:
+        case .postRead, .fetchMyProfile, .fetchImage, .specificPost, .postReadByUser, .fetchOtherUserProfile:
             [
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey
@@ -151,7 +154,7 @@ extension ServerRouter: TargetType {
             return try? encoder.encode(["like_status": query.like_status])
         case .comment(let query):
             return try? encoder.encode(["content": query.content])
-        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser:
+        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser, .fetchOtherUserProfile:
             return nil
         }
     }

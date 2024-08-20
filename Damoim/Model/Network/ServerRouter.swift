@@ -27,6 +27,7 @@ enum ServerRouter {
     case like(query: LikeQuery)
     case like2(query: LikeQuery)
     case fetchLikePost(query: FetchLikePostQuery)
+    case fetchLike2Post(query: FetchLikePostQuery)
     
     case comment(query: CommentQuery)
     
@@ -54,7 +55,7 @@ extension ServerRouter: TargetType {
             return .get
         case .editProfile:
             return .put
-        case .postRead, .postReadByUser, .fetchLikePost:
+        case .postRead, .postReadByUser, .fetchLikePost, .fetchLike2Post:
             return .get
         case .fetchImage:
             return .get
@@ -109,6 +110,8 @@ extension ServerRouter: TargetType {
             "posts/hashtags"
         case .fetchLikePost:
             "posts/likes/me"
+        case .fetchLike2Post:
+            "posts/likes-2/me"
         }
     }
     
@@ -125,7 +128,7 @@ extension ServerRouter: TargetType {
                 Header.sesacKey.rawValue: APIKey.sesacKey,
                 Header.refresh.rawValue: UserDefaultsManager.refreshToken
             ]
-        case .postRead, .fetchMyProfile, .fetchImage, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .searchHashTag, .fetchLikePost:
+        case .postRead, .fetchMyProfile, .fetchImage, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .searchHashTag, .fetchLikePost, .fetchLike2Post:
             [
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey
@@ -195,7 +198,7 @@ extension ServerRouter: TargetType {
             return try? encoder.encode(["like_status": query.like_status])
         case .comment(let query):
             return try? encoder.encode(["content": query.content])
-        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .editProfile, .searchHashTag, .fetchLikePost:
+        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .editProfile, .searchHashTag, .fetchLikePost, .fetchLike2Post:
             return nil
         }
     }

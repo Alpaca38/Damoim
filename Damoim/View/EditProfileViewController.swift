@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 import SnapKit
 import RxSwift
 import RxCocoa
@@ -17,7 +18,15 @@ final class EditProfileViewController: BaseViewController {
         return view
     }()
     
-    private let profileImageView = ProfileImageView(cornerRadius: 40)
+    private let profileTapGesture = UITapGestureRecognizer()
+    
+    private lazy var profileImageView = {
+        let view = ProfileImageView(cornerRadius: 40)
+        view.addGestureRecognizer(profileTapGesture)
+        view.isUserInteractionEnabled = true
+        return view
+    }()
+        
     
     private let nickLabel = {
         let view = UILabel()
@@ -33,7 +42,16 @@ final class EditProfileViewController: BaseViewController {
         return view
     }()
     
-    private let viewModel = EditProfileViewModel()
+    private let viewModel: EditProfileViewModel
+    
+    init(viewModel: EditProfileViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +95,7 @@ private extension EditProfileViewController {
     
     func bind() {
         let input = EditProfileViewModel.Input(
-            nickText: nickTextField.rx.text.orEmpty,
+            nickText: nickTextField.rx.text,
             saveTap: saveButton.rx.tap
         )
         let output = viewModel.transform(input: input)
@@ -99,6 +117,45 @@ private extension EditProfileViewController {
                     owner.saveButton.tintColor = color
                     owner.saveButton.isEnabled = valid
                 }
+            
+            profileTapGesture.rx.event
+                .bind(with: self) { owner, _ in
+                    var configuration = PHPickerConfiguration()
+                    configuration.selectionLimit = 1
+                    configuration.filter = .images
+                    
+                    let picker = PHPickerViewController(configuration: configuration)
+                    picker.delegate = self
+                    owner.present(picker, animated: true)
+                }
+            
+            output.editSuccess
+                .bind(with: self) { owner, value in
+                    owner.navigationController?.popViewController(animated: true)
+                }
+            
+            output.editError
+                .bind(with: self) { owner, error in
+                    if error == .refreshTokenExpired {
+                        SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                    } else {
+                        owner.view.makeToast(error.rawValue)
+                    }
+                }
         }
+    }
+}
+
+extension EditProfileViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        dismiss(animated: true)
+        results.first?.itemProvider.loadObject(ofClass: UIImage.self, completionHandler: { [weak self] object, error in
+            if let image = object as? UIImage {
+                DispatchQueue.main.async {
+                    self?.profileImageView.image = image
+                    self?.viewModel.imagePicked.onNext(image.pngData())
+                }
+            }
+        })
     }
 }

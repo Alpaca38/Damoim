@@ -216,11 +216,15 @@ extension NetworkManager {
         }
     }
     
-    func editProfile(nick: String?, profile: Data?, completion: @escaping (Result<Profile, APIError>) -> Void) {
+    func editProfile(nick: String, profile: Data?, completion: @escaping (Result<Profile, APIError>) -> Void) {
         do {
-            let query = ProfileEditQuery(nick: nick, profile: profile)
-            let request = try ServerRouter.editProfile(query: query).asURLRequest()
-            AF.request(request)
+            let request = try ServerRouter.editProfile.asURLRequest()
+            AF.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(nick.data(using: .utf8)!, withName: "nick")
+                if let profile {
+                    multipartFormData.append(profile, withName: "profile", fileName: "profile.png", mimeType: "image/png")
+                }
+            }, with: request)
                 .responseDecodable(of: Profile.self) { [weak self] response in
                     guard let self else { return }
                     switch response.result {

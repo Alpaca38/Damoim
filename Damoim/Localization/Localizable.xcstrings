@@ -562,6 +562,23 @@
         }
       }
     },
+    "toast_edit_success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile has been updated"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "프로필이 수정되었습니다."
+          }
+        }
+      }
+    },
     "toast_follow_success" : {
       "extractionState" : "manual",
       "localizations" : {

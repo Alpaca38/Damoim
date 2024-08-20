@@ -41,6 +41,7 @@ enum l10nKey: String {
     case tabLike = "tab_like"
     case tabMyClub = "tab_my_club"
     case tabProfile = "tab_profile"
+    case toastEditSuccess = "toast_edit_success"
     case toastFollowSuccess = "toast_follow_success"
     case toastUnfollowSuccess = "toast_unfollow_success"
 }

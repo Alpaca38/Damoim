@@ -247,10 +247,14 @@ private extension ProfileViewController {
 private extension ProfileViewController {
     func bind() {
         let followIsSelected = PublishSubject<Bool>()
+        let profileSubject = PublishSubject<Profile>()
+        let nicknameChange = PublishSubject<String>()
         let postSection = PublishRelay<[PostSection]>()
+        
         let input = ProfileViewModel.Input(
             followTap: followButton.rx.tap,
-            followIsSelected: followIsSelected
+            followIsSelected: followIsSelected,
+            profileSubject: profileSubject
         )
         let output = viewModel.transform(input: input)
         
@@ -345,9 +349,16 @@ private extension ProfileViewController {
                     }
                 }
             
+            nicknameChange
+                .bind(to: nickLabel.rx.text)
+            
             editProfileButton.rx.tap
                 .bind(with: self) { owner, _ in
-                    let vc = EditProfileViewController()
+                    let vm = EditProfileViewModel { profile in
+                        profileSubject.onNext(profile)
+                        owner.nickLabel.text = profile.nick
+                    }
+                    let vc = EditProfileViewController(viewModel: vm)
                     owner.navigationController?.pushViewController(vc, animated: true)
                 }
         }

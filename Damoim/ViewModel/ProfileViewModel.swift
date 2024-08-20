@@ -110,6 +110,21 @@ final class ProfileViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
+        input.profileSubject
+            .bind(with: self) { owner, profile in
+                if let imageURL = profile.profileImage {
+                    NetworkManager.shared.fetchImage(parameter: imageURL) { result in
+                        switch result {
+                        case .success(let success):
+                            profileImageData.onNext(success)
+                        case .failure(let failure):
+                            print(failure)
+                        }
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
+        
         return Output(
             profileImageData: profileImageData,
             profile: profile,
@@ -130,6 +145,7 @@ extension ProfileViewModel {
     struct Input {
         let followTap: ControlEvent<Void>
         let followIsSelected: PublishSubject<Bool>
+        let profileSubject: PublishSubject<Profile>
     }
     
     struct Output {

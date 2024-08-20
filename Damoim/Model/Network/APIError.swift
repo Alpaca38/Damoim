@@ -10,6 +10,7 @@ import Foundation
 enum APIError: String, Error {
     case invalidRequestVariables = "잘못된 요청입니다. 필수값을 채워주세요." // 400
     case invalidRequest = "유효하지 않은 요청입니다." // 401, invalidToken
+    case nicknameWithWhiteSpace = "공백이 포함된 닉네임은 사용할 수 없습니다." // 402
     case forbidden = "접근 권한이 없습니다." // 403
     case conflict = "이미 가입한 유저입니다." // 409
     case databaseError = "데이터베이스에 접근할 수 없습니다." // 410

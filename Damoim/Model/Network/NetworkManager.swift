@@ -31,6 +31,8 @@ extension NetworkManager {
                             switch response.response?.statusCode {
                             case 400:
                                 observer(.success(.failure(.invalidRequestVariables)))
+                            case 402:
+                                observer(.success(.failure(.nicknameWithWhiteSpace)))
                             case 409:
                                 observer(.success(.failure(.conflict)))
                             default:
@@ -236,6 +238,8 @@ extension NetworkManager {
                             completion(.failure(.invalidRequestVariables))
                         case 401:
                             completion(.failure(.invalidRequest))
+                        case 402:
+                            completion(.failure(.nicknameWithWhiteSpace))
                         case 403:
                             completion(.failure(.forbidden))
                         case 409:

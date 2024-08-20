@@ -10,18 +10,25 @@ import RxSwift
 import RxCocoa
 
 final class MyClubViewModel: ViewModel {
+    private let disposeBag = DisposeBag()
+    
     func transform(input: Input) -> Output {
         let posts = BehaviorRelay<[PostItem]>(value: [])
         let fetchPostError = PublishSubject<APIError>()
         
-        NetworkManager.shared.fetchJoinedPost(next: nil, limit: nil) { result in
-            switch result {
-            case .success(let success):
-                posts.accept(success.data.map({ $0.postItem }))
-            case .failure(let failure):
-                fetchPostError.onNext(failure)
+        input.viewWillAppear
+            .bind { _ in
+                NetworkManager.shared.fetchJoinedPost(next: nil, limit: nil) { result in
+                    switch result {
+                    case .success(let success):
+                        posts.accept(success.data.map({ $0.postItem }))
+                    case .failure(let failure):
+                        fetchPostError.onNext(failure)
+                    }
+                }
             }
-        }
+            .disposed(by: disposeBag)
+        
         return Output(
             posts: posts,
             fetchPostsError: fetchPostError
@@ -31,7 +38,7 @@ final class MyClubViewModel: ViewModel {
 
 extension MyClubViewModel {
     struct Input {
-        
+        let viewWillAppear: ControlEvent<Bool>
     }
     
     struct Output {

@@ -85,7 +85,9 @@ private extension LikeClubViewController {
     func bind() {
         let postSection = PublishRelay<[PostSection]>()
         
-        let input = LikeClubViewModel.Input()
+        let input = LikeClubViewModel.Input(
+            viewWillAppear: rx.viewWillAppear
+        )
         let output = viewModel.transform(input: input)
         
         disposeBag.insert {

@@ -238,6 +238,8 @@ extension NetworkManager {
                             completion(.failure(.invalidRequest))
                         case 403:
                             completion(.failure(.forbidden))
+                        case 409:
+                            completion(.failure(.conflict))
                         case 419:
                             refreshToken(completion: { result in // 토큰 갱신
                                 switch result {
@@ -674,6 +676,55 @@ extension NetworkManager {
                         completion(.success(success))
                     case .failure(let error):
                         completion(.failure(error))
+                    }
+                }
+        } catch {
+            print(error)
+        }
+    }
+}
+
+// MARK: HashTag Search
+extension NetworkManager {
+    func searchHashTag(next: String?, limit: String?, product_id: String?, hashTag: String?, completion: @escaping (Result<Posts, APIError>) -> Void) {
+        do {
+            let query = HashTagSearchQuery(next: next, limit: limit, product_id: product_id, hashTag: hashTag)
+            let request = try ServerRouter.searchHashTag(query: query).asURLRequest()
+            AF.request(request)
+                .responseDecodable(of: Posts.self) { [weak self] response in
+                    guard let self else { return }
+                    switch response.result {
+                    case .success(let success):
+                        completion(.success(success))
+                    case .failure(_):
+                        switch response.response?.statusCode {
+                        case 400:
+                            completion(.failure(.invalidRequestVariables))
+                        case 401:
+                            completion(.failure(.invalidRequest))
+                        case 403:
+                            completion(.failure(.forbidden))
+                        case 419:
+                            refreshToken(completion: { result in // 토큰 갱신
+                                switch result {
+                                case .success(_):
+                                    self.searchHashTag(next: next, limit: limit, product_id: product_id, hashTag: hashTag) { result in
+                                        switch result {
+                                        case .success(let success):
+                                            completion(.success(success))
+                                        case .failure(let failure):
+                                            completion(.failure(failure))
+                                        }
+                                    }
+                                case .failure(let failure):
+                                    if failure == .refreshTokenExpired {
+                                        completion(.failure(.refreshTokenExpired))
+                                    }
+                                }
+                            })
+                        default:
+                            completion(.failure(.serverError))
+                        }
                     }
                 }
         } catch {

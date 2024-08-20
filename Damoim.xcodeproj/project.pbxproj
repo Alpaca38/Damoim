@@ -83,6 +83,8 @@
 		D1FB0B652C7305C800049C5D /* FollowQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B642C7305C800049C5D /* FollowQuery.swift */; };
 		D1FB0B672C732F4A00049C5D /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B662C732F4A00049C5D /* EditProfileViewController.swift */; };
 		D1FB0B692C73324500049C5D /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B682C73324500049C5D /* EditProfileViewModel.swift */; };
+		D1FB0B6B2C7481A300049C5D /* ClubSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B6A2C7481A300049C5D /* ClubSearchViewController.swift */; };
+		D1FB0B6D2C74830600049C5D /* ClubSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B6C2C74830600049C5D /* ClubSearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +158,8 @@
 		D1FB0B642C7305C800049C5D /* FollowQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowQuery.swift; sourceTree = "<group>"; };
 		D1FB0B662C732F4A00049C5D /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		D1FB0B682C73324500049C5D /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		D1FB0B6A2C7481A300049C5D /* ClubSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubSearchViewController.swift; sourceTree = "<group>"; };
+		D1FB0B6C2C74830600049C5D /* ClubSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubSearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +340,7 @@
 				D1FB0B462C7082FF00049C5D /* CommentViewController.swift */,
 				D1FB0B522C71F60A00049C5D /* ProfileViewController.swift */,
 				D1FB0B662C732F4A00049C5D /* EditProfileViewController.swift */,
+				D1FB0B6A2C7481A300049C5D /* ClubSearchViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				D1FB0B482C70834500049C5D /* CommentViewModel.swift */,
 				D1FB0B542C71F69F00049C5D /* ProfileViewModel.swift */,
 				D1FB0B682C73324500049C5D /* EditProfileViewModel.swift */,
+				D1FB0B6C2C74830600049C5D /* ClubSearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -485,6 +491,7 @@
 				D11D81582C6CDFC300EB8680 /* HashTagSearchQuery.swift in Sources */,
 				D11D814A2C6CD8EC00EB8680 /* LoginQuery.swift in Sources */,
 				D11D81362C6C9B2500EB8680 /* Extension+Date.swift in Sources */,
+				D1FB0B6B2C7481A300049C5D /* ClubSearchViewController.swift in Sources */,
 				D1FB0B492C70834500049C5D /* CommentViewModel.swift in Sources */,
 				D11D813F2C6CD06C00EB8680 /* Refresh.swift in Sources */,
 				D1FB0B512C71B8F800049C5D /* RelativeDateManager.swift in Sources */,
@@ -513,6 +520,7 @@
 				D11D81042C6C821A00EB8680 /* BaseViewController.swift in Sources */,
 				D11D814E2C6CD9F400EB8680 /* PostQuery.swift in Sources */,
 				D1FB0B4F2C71B23C00049C5D /* ProfileImageView.swift in Sources */,
+				D1FB0B6D2C74830600049C5D /* ClubSearchViewModel.swift in Sources */,
 				D11D81502C6CDB0000EB8680 /* PostReadQuery.swift in Sources */,
 				D11D816D2C6DE08200EB8680 /* ClubViewController.swift in Sources */,
 				D1FB0B652C7305C800049C5D /* FollowQuery.swift in Sources */,

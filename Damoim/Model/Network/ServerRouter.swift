@@ -30,6 +30,8 @@ enum ServerRouter {
     case comment(query: CommentQuery)
     
     case fetchImage(query: FetchImageQuery)
+    
+    case searchHashTag(query: HashTagSearchQuery)
 }
 
 extension ServerRouter: TargetType {
@@ -65,6 +67,8 @@ extension ServerRouter: TargetType {
             return .post
         case .unfollow:
             return .delete
+        case .searchHashTag:
+            return .get
         }
     }
     
@@ -100,6 +104,8 @@ extension ServerRouter: TargetType {
             "follow/\(query.userId)"
         case .unfollow(let query):
             "follow/\(query.userId)"
+        case .searchHashTag:
+            "posts/hashtags"
         }
     }
     
@@ -116,7 +122,7 @@ extension ServerRouter: TargetType {
                 Header.sesacKey.rawValue: APIKey.sesacKey,
                 Header.refresh.rawValue: UserDefaultsManager.refreshToken
             ]
-        case .postRead, .fetchMyProfile, .fetchImage, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow:
+        case .postRead, .fetchMyProfile, .fetchImage, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .searchHashTag:
             [
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey
@@ -154,6 +160,13 @@ extension ServerRouter: TargetType {
                 URLQueryItem(name: "limit", value: query.limit),
                 URLQueryItem(name: "product_id", value: query.product_id)
             ]
+        case .searchHashTag(let query):
+            [
+                URLQueryItem(name: "next", value: query.next),
+                URLQueryItem(name: "limit", value: query.limit),
+                URLQueryItem(name: "product_id", value: query.product_id),
+                URLQueryItem(name: "hashTag", value: query.hashTag)
+            ]
         default:
             nil
         }
@@ -174,7 +187,7 @@ extension ServerRouter: TargetType {
             return try? encoder.encode(["like_status": query.like_status])
         case .comment(let query):
             return try? encoder.encode(["content": query.content])
-        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .editProfile:
+        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .editProfile, .searchHashTag:
             return nil
         }
     }

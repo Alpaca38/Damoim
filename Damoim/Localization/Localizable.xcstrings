@@ -562,6 +562,23 @@
         }
       }
     },
+    "tab_search" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "검색"
+          }
+        }
+      }
+    },
     "toast_edit_success" : {
       "extractionState" : "manual",
       "localizations" : {

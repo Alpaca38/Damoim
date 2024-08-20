@@ -12,7 +12,20 @@ import RxCocoa
 final class MyClubViewModel: ViewModel {
     func transform(input: Input) -> Output {
         let posts = BehaviorRelay<[PostItem]>(value: [])
-        return Output()
+        let fetchPostError = PublishSubject<APIError>()
+        
+        NetworkManager.shared.fetchJoinedPost(next: nil, limit: nil) { result in
+            switch result {
+            case .success(let success):
+                posts.accept(success.data.map({ $0.postItem }))
+            case .failure(let failure):
+                fetchPostError.onNext(failure)
+            }
+        }
+        return Output(
+            posts: posts,
+            fetchPostsError: fetchPostError
+        )
     }
 }
 
@@ -22,6 +35,7 @@ extension MyClubViewModel {
     }
     
     struct Output {
-        
+        let posts: BehaviorRelay<[PostItem]>
+        let fetchPostsError: PublishSubject<APIError>
     }
 }

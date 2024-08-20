@@ -58,15 +58,7 @@ private extension MyClubViewController {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 1)
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
         
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
-        let header = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .top)
-        header.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0)
-        
         let section = NSCollectionLayoutSection(group: group)
-        section.boundarySupplementaryItems = [header]
         section.interGroupSpacing = 16
         
         let layout = UICollectionViewCompositionalLayout(section: section)
@@ -80,26 +72,10 @@ private extension MyClubViewController {
         let registration = ClubCellRegistration { cell, indexPath, itemIdentifier in
             cell.configure(data: itemIdentifier)
         }
-        
-        let headerRegistration = UICollectionView.SupplementaryRegistration
-        <UICollectionViewListCell>(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] supplementaryView,elementKind,indexPath in
-            guard let self else { return }
-            let sectionItem = dataSource.sectionModels[indexPath.section].model
-            
-            var content = UIListContentConfiguration.groupedHeader()
-            
-            content.text = sectionItem
-            content.textProperties.font = .boldSystemFont(ofSize: 17)
-            content.textProperties.color = .black
-            
-            supplementaryView.contentConfiguration = content
-        }
-        
+
         dataSource = DataSource(configureCell: { section, collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueConfiguredReusableCell(using: registration, for: indexPath, item: itemIdentifier)
             return cell
-        }, configureSupplementaryView: { dataSource, collectionView, kind, indexPath in
-            return collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: indexPath)
         })
     }
 }
@@ -110,12 +86,33 @@ private extension MyClubViewController {
         let postSection = PublishRelay<[PostSection]>()
         
         let input = MyClubViewModel.Input()
+        let output = viewModel.transform(input: input)
         
         disposeBag.insert {
             postSection
                 .bind(to: collectionView.rx.items(dataSource: dataSource))
             
+            output.posts
+                .bind { postItem in
+                    postSection.accept([PostSection(model: l10nKey.tabMyClub.rawValue.localized, items: postItem)])
+                }
             
+            output.fetchPostsError
+                .share(replay: 1)
+                .bind(with: self) { owner, error in
+                    if error == .refreshTokenExpired {
+                        SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                    } else {
+                        owner.view.makeToast(error.rawValue)
+                    }
+                }
+            
+            collectionView.rx.modelSelected(PostItem.self)
+                .bind(with: self) { owner, postItem in
+                    let vm = ClubDetailViewModel(postItem: postItem)
+                    let vc = ClubDetailViewController(viewModel: vm)
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
         }
     }
 }

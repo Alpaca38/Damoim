@@ -24,10 +24,14 @@ final class TabBarController: UITabBarController {
         let searchClub = UINavigationController(rootViewController: ClubSearchViewController(viewModel: searchClubVM))
         searchClub.tabBarItem = UITabBarItem(title: l10nKey.tabSearch.rawValue.localized, image: UIImage(systemName: "magnifyingglass"), tag: 1)
         
+        let myClubVM = MyClubViewModel()
+        let myClub = UINavigationController(rootViewController: MyClubViewController(viewModel: myClubVM))
+        myClub.tabBarItem = UITabBarItem(title: l10nKey.tabMyClub.rawValue.localized, image: UIImage(systemName: "person.3.fill"), tag: 2)
+        
         let profileVM = ProfileViewModel(userId: UserDefaultsManager.user_id)
         let profile = UINavigationController(rootViewController: ProfileViewController(viewModel: profileVM))
-        profile.tabBarItem = UITabBarItem(title: l10nKey.tabProfile.rawValue.localized, image: UIImage(systemName: "person.fill"), tag: 2)
+        profile.tabBarItem = UITabBarItem(title: l10nKey.tabProfile.rawValue.localized, image: UIImage(systemName: "person.fill"), tag: 3)
         
-        setViewControllers([club, searchClub, profile], animated: true)
+        setViewControllers([club, searchClub, myClub, profile], animated: true)
     }
 }

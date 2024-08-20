@@ -87,6 +87,7 @@
 		D1FB0B6D2C74830600049C5D /* ClubSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B6C2C74830600049C5D /* ClubSearchViewModel.swift */; };
 		D1FB0B6F2C74AF9D00049C5D /* MyClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B6E2C74AF9D00049C5D /* MyClubViewController.swift */; };
 		D1FB0B712C74AFFA00049C5D /* MyClubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B702C74AFFA00049C5D /* MyClubViewModel.swift */; };
+		D1FB0B732C74B3A900049C5D /* FetchLikePostQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B722C74B3A900049C5D /* FetchLikePostQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,6 +165,7 @@
 		D1FB0B6C2C74830600049C5D /* ClubSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubSearchViewModel.swift; sourceTree = "<group>"; };
 		D1FB0B6E2C74AF9D00049C5D /* MyClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyClubViewController.swift; sourceTree = "<group>"; };
 		D1FB0B702C74AFFA00049C5D /* MyClubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyClubViewModel.swift; sourceTree = "<group>"; };
+		D1FB0B722C74B3A900049C5D /* FetchLikePostQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLikePostQuery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +330,7 @@
 				D1FB0B442C6F742D00049C5D /* SpecificPostQuery.swift */,
 				D1FB0B622C72F97800049C5D /* OtherUserProfileQuery.swift */,
 				D1FB0B642C7305C800049C5D /* FollowQuery.swift */,
+				D1FB0B722C74B3A900049C5D /* FetchLikePostQuery.swift */,
 			);
 			path = RequstModel;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				D11D814A2C6CD8EC00EB8680 /* LoginQuery.swift in Sources */,
 				D11D81362C6C9B2500EB8680 /* Extension+Date.swift in Sources */,
 				D1FB0B6B2C7481A300049C5D /* ClubSearchViewController.swift in Sources */,
+				D1FB0B732C74B3A900049C5D /* FetchLikePostQuery.swift in Sources */,
 				D1FB0B492C70834500049C5D /* CommentViewModel.swift in Sources */,
 				D11D813F2C6CD06C00EB8680 /* Refresh.swift in Sources */,
 				D1FB0B512C71B8F800049C5D /* RelativeDateManager.swift in Sources */,

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 final class CommentTableViewCell: BaseTableViewCell {
     private let profileImageView = ProfileImageView(cornerRadius: 15)
@@ -14,6 +15,13 @@ final class CommentTableViewCell: BaseTableViewCell {
     private let nickLabel = {
         let view = UILabel()
         view.font = .systemFont(ofSize: 14)
+        return view
+    }()
+    
+    let menuButton = {
+        let view = UIButton()
+        view.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        view.tintColor = .black
         return view
     }()
     
@@ -32,9 +40,17 @@ final class CommentTableViewCell: BaseTableViewCell {
         return view
     }()
     
+    var disposeBag = DisposeBag()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+    
     override func configureLayout() {
         contentView.addSubview(profileImageView)
         contentView.addSubview(nickLabel)
+        contentView.addSubview(menuButton)
         contentView.addSubview(contentLabel)
         contentView.addSubview(createDateLabel)
         
@@ -46,6 +62,11 @@ final class CommentTableViewCell: BaseTableViewCell {
         nickLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(15)
             $0.leading.equalTo(profileImageView.snp.trailing).offset(10)
+        }
+        
+        menuButton.snp.makeConstraints {
+            $0.centerY.equalTo(nickLabel)
+            $0.trailing.equalToSuperview().offset(-20)
         }
         
         contentLabel.snp.makeConstraints {

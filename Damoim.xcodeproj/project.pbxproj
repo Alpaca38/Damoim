@@ -64,6 +64,9 @@
 		D11D816D2C6DE08200EB8680 /* ClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D816C2C6DE08200EB8680 /* ClubViewController.swift */; };
 		D11D81702C6DF33900EB8680 /* ClubCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D816F2C6DF33900EB8680 /* ClubCollectionViewCell.swift */; };
 		D11D81722C6DFD1B00EB8680 /* ClubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81712C6DFD1B00EB8680 /* ClubViewModel.swift */; };
+		D1E8BCC32C75B6E0003378FA /* EditCommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */; };
+		D1E8BCC52C75C5BD003378FA /* EditCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */; };
+		D1E8BCC72C75C5E3003378FA /* EditCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */; };
 		D1FB0B3D2C6F202200049C5D /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B3C2C6F202200049C5D /* PostItem.swift */; };
 		D1FB0B3F2C6F212600049C5D /* FetchImageQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B3E2C6F212600049C5D /* FetchImageQuery.swift */; };
 		D1FB0B412C6F3F1900049C5D /* ClubDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B402C6F3F1900049C5D /* ClubDetailViewController.swift */; };
@@ -145,6 +148,9 @@
 		D11D816C2C6DE08200EB8680 /* ClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewController.swift; sourceTree = "<group>"; };
 		D11D816F2C6DF33900EB8680 /* ClubCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCollectionViewCell.swift; sourceTree = "<group>"; };
 		D11D81712C6DFD1B00EB8680 /* ClubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewModel.swift; sourceTree = "<group>"; };
+		D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentQuery.swift; sourceTree = "<group>"; };
+		D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewController.swift; sourceTree = "<group>"; };
+		D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewModel.swift; sourceTree = "<group>"; };
 		D1FB0B3C2C6F202200049C5D /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
 		D1FB0B3E2C6F212600049C5D /* FetchImageQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchImageQuery.swift; sourceTree = "<group>"; };
 		D1FB0B402C6F3F1900049C5D /* ClubDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDetailViewController.swift; sourceTree = "<group>"; };
@@ -330,6 +336,7 @@
 				D11D814F2C6CDB0000EB8680 /* PostReadQuery.swift */,
 				D1FB0B582C72154300049C5D /* PostReadByUserQuery.swift */,
 				D11D81512C6CDDB200EB8680 /* CommentQuery.swift */,
+				D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */,
 				D11D81532C6CDEAE00EB8680 /* LikeQuery.swift */,
 				D11D81552C6CDF0000EB8680 /* ProfileEditQuery.swift */,
 				D11D81572C6CDFC300EB8680 /* HashTagSearchQuery.swift */,
@@ -352,6 +359,7 @@
 				D11D816C2C6DE08200EB8680 /* ClubViewController.swift */,
 				D1FB0B402C6F3F1900049C5D /* ClubDetailViewController.swift */,
 				D1FB0B462C7082FF00049C5D /* CommentViewController.swift */,
+				D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */,
 				D1FB0B522C71F60A00049C5D /* ProfileViewController.swift */,
 				D1FB0B662C732F4A00049C5D /* EditProfileViewController.swift */,
 				D1FB0B6A2C7481A300049C5D /* ClubSearchViewController.swift */,
@@ -384,6 +392,7 @@
 				D1FB0B6C2C74830600049C5D /* ClubSearchViewModel.swift */,
 				D1FB0B702C74AFFA00049C5D /* MyClubViewModel.swift */,
 				D1FB0B762C74BA8900049C5D /* LikeClubViewModel.swift */,
+				D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -524,11 +533,14 @@
 				D11D81482C6CD8CB00EB8680 /* EmailValidationQuery.swift in Sources */,
 				D1FB0B4B2C70864B00049C5D /* BaseTableViewCell.swift in Sources */,
 				D11D81222C6C875600EB8680 /* ViewModel.swift in Sources */,
+				D1E8BCC52C75C5BD003378FA /* EditCommentViewController.swift in Sources */,
 				D11D80FF2C6C81ED00EB8680 /* Extension+UIViewController.swift in Sources */,
 				D1FB0B792C74C37C00049C5D /* Extension+RxViewController.swift in Sources */,
 				D11D81412C6CD0B600EB8680 /* File.swift in Sources */,
 				D11D815E2C6CF81300EB8680 /* RoundTextField.swift in Sources */,
+				D1E8BCC72C75C5E3003378FA /* EditCommentViewModel.swift in Sources */,
 				D1FB0B432C6F561B00049C5D /* ClubDetailViewModel.swift in Sources */,
+				D1E8BCC32C75B6E0003378FA /* EditCommentQuery.swift in Sources */,
 				D11D81622C6DBBD900EB8680 /* NetworkManager.swift in Sources */,
 				D11D80E42C6C7EF000EB8680 /* AppDelegate.swift in Sources */,
 				D11D812C2C6C8A1D00EB8680 /* SceneManager.swift in Sources */,

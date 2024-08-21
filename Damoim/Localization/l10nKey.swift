@@ -9,6 +9,7 @@ import Foundation
 
 enum l10nKey: String {
     case appName = "app_name"
+    case buttonEdit = "button_edit"
     case buttonJoin = "button_join"
     case buttonOK = "button_ok"
     case buttonParticipating = "button_participating"
@@ -28,6 +29,7 @@ enum l10nKey: String {
     case labelNickname = "label_nickname"
     case navigationTitleClub = "navigation_title_club"
     case navigationTitleComment = "navigation_title_comment"
+    case navigationTitleEditComment = "navigation_title_edit_comment"
     case placeholderComment = "placeholder_comment"
     case placeholderNickname = "placeholder_nickname"
     case placeholderEmail = "placeholder_email"

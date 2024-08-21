@@ -21,18 +21,23 @@ final class CommentViewModel: ViewModel {
         let comments = BehaviorRelay<[Comment]>(value: [])
         let fetchPostError = PublishRelay<APIError>()
         let createCommentError = PublishRelay<APIError>()
+        let edit = PublishRelay<(String, Comment)>()
         
         let isEmpty = comments
             .map { $0.isEmpty }
         
-        NetworkManager.shared.fetchSpecificPosts(postId: postId) { result in
-            switch result {
-            case .success(let success):
-                comments.accept(success.comments.reversed())
-            case .failure(let failure):
-                fetchPostError.accept(failure)
+        input.viewWillAppear
+            .bind(with: self) { owner, _ in
+                NetworkManager.shared.fetchSpecificPosts(postId: owner.postId) { result in
+                    switch result {
+                    case .success(let success):
+                        comments.accept(success.comments.reversed())
+                    case .failure(let failure):
+                        fetchPostError.accept(failure)
+                    }
+                }
             }
-        }
+            .disposed(by: disposeBag)
         
         let sendValid = input.commentText.orEmpty
             .map { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
@@ -61,20 +66,30 @@ final class CommentViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
+        input.editTap
+            .bind(with: self) { owner, commentID in
+                edit.accept((owner.postId, commentID))
+            }
+            .disposed(by: disposeBag)
+        
         return Output(
             comments: comments,
             fetchPostError: fetchPostError,
             createCommentError: createCommentError,
             isEmpty: isEmpty,
-            sendValid: sendValid
+            sendValid: sendValid,
+            edit: edit
         )
     }
 }
 
 extension CommentViewModel {
     struct Input {
+        let viewWillAppear: ControlEvent<Bool>
         let sendTap: ControlEvent<Void>
         let commentText: ControlProperty<String?>
+        let editTap: PublishRelay<Comment>
+        let deleteTap: PublishRelay<String>
     }
     
     struct Output {
@@ -83,5 +98,6 @@ extension CommentViewModel {
         let createCommentError: PublishRelay<APIError>
         let isEmpty: Observable<Bool>
         let sendValid: Observable<Bool>
+        let edit: PublishRelay<(String, Comment)>
     }
 }

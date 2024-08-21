@@ -30,6 +30,7 @@ enum ServerRouter {
     case fetchLike2Post(query: FetchLikePostQuery)
     
     case comment(query: CommentQuery)
+    case editComment(query: EditCommentQuery)
     
     case fetchImage(query: FetchImageQuery)
     
@@ -71,6 +72,8 @@ extension ServerRouter: TargetType {
             return .delete
         case .searchHashTag:
             return .get
+        case .editComment:
+            return .put
         }
     }
     
@@ -112,6 +115,8 @@ extension ServerRouter: TargetType {
             "posts/likes/me"
         case .fetchLike2Post:
             "posts/likes-2/me"
+        case .editComment(let query):
+            "posts/\(query.postId)/comments/\(query.commentID)"
         }
     }
     
@@ -133,7 +138,7 @@ extension ServerRouter: TargetType {
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey
             ]
-        case .like, .like2, .comment:
+        case .like, .like2, .comment, .editComment:
             [
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey,
@@ -197,6 +202,8 @@ extension ServerRouter: TargetType {
         case .like2(let query):
             return try? encoder.encode(["like_status": query.like_status])
         case .comment(let query):
+            return try? encoder.encode(["content": query.content])
+        case .editComment(let query):
             return try? encoder.encode(["content": query.content])
         case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .editProfile, .searchHashTag, .fetchLikePost, .fetchLike2Post:
             return nil

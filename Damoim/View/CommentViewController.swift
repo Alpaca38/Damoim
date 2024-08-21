@@ -122,9 +122,15 @@ private extension CommentViewController {
     }
     
     func bind() {
+        let editTap = PublishRelay<Comment>()
+        let deleteTap = PublishRelay<String>()
+        
         let input = CommentViewModel.Input(
+            viewWillAppear: rx.viewWillAppear,
             sendTap: sendButton.rx.tap,
-            commentText: commentTextField.rx.text
+            commentText: commentTextField.rx.text,
+            editTap: editTap,
+            deleteTap: deleteTap
         )
         
         let output = viewModel.transform(input: input)
@@ -133,6 +139,19 @@ private extension CommentViewController {
             output.comments
                 .bind(to: tableView.rx.items(cellIdentifier: CommentTableViewCell.identifier, cellType: CommentTableViewCell.self)) { row, element, cell in
                     cell.configure(data: element)
+                    cell.menuButton.rx.tap
+                        .bind(with: self) { owner, _ in
+                            if element.creator.user_id == UserDefaultsManager.user_id {
+                                owner.showActionSheet {
+                                    editTap.accept(element)
+                                } deleteTap: {
+                                    deleteTap.accept(element.comment_id)
+                                }
+                            } else {
+                                owner.view.makeToast("다른 사용자의 댓글은 수정할 수 없습니다.")
+                            }
+                        }
+                        .disposed(by: cell.disposeBag)
                 }
             
             tableView.rx.itemSelected
@@ -186,10 +205,40 @@ private extension CommentViewController {
                         owner.view.makeToast(error.rawValue)
                     }
                 }
+            
+            output.edit
+                .bind(with: self) { owner, value in
+                    let vm = EditCommentViewModel(postId: value.0, comment: value.1)
+                    let vc = EditCommentViewController(viewModel: vm)
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
         }
         
         if let profileImageData = UserDefaultsManager.profileImageData {
             profileImageView.image = UIImage(data: profileImageData)
         }
+    }
+}
+
+private extension CommentViewController {
+    func showActionSheet(editTap: @escaping () -> Void, deleteTap: @escaping() -> Void) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let editButton = UIAlertAction(title: "댓글 수정", style: .default) { _ in
+            // postid랑 commentid 댓글 수정화면으로 넘기면서 화면 전환
+            editTap()
+        }
+        
+        let deleteButton = UIAlertAction(title: "댓글 삭제", style: .destructive) { _ in
+            // 댓글 삭제
+            deleteTap()
+        }
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        
+        alert.addAction(editButton)
+        alert.addAction(deleteButton)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true)
     }
 }

@@ -757,6 +757,56 @@ extension NetworkManager {
             print(error)
         }
     }
+    
+    func editComment(postId: String, commentID: String, content: String, completion: @escaping (Result<Comment, APIError>) -> Void) {
+        do {
+            let query = EditCommentQuery(postId: postId, commentID: commentID, content: content)
+            let request = try ServerRouter.editComment(query: query).asURLRequest()
+            AF.request(request)
+                .responseDecodable(of: Comment.self) { [weak self] response in
+                    guard let self else { return }
+                    switch response.result {
+                    case .success(let success):
+                        completion(.success(success))
+                    case .failure(_):
+                        switch response.response?.statusCode {
+                        case 400:
+                            completion(.failure(.invalidRequestVariables))
+                        case 401:
+                            completion(.failure(.invalidRequest))
+                        case 403:
+                            completion(.failure(.forbidden))
+                        case 410:
+                            completion(.failure(.databaseError))
+                        case 419:
+                            refreshToken(completion: { result in // 토큰 갱신
+                                switch result {
+                                case .success(_):
+                                    self.editComment(postId: postId, commentID: commentID, content: content) { result in
+                                        switch result {
+                                        case .success(let success):
+                                            completion(.success(success))
+                                        case .failure(let failure):
+                                            completion(.failure(failure))
+                                        }
+                                    }
+                                case .failure(let failure):
+                                    if failure == .refreshTokenExpired {
+                                        completion(.failure(.refreshTokenExpired))
+                                    }
+                                }
+                            })
+                        case 445:
+                            completion(.failure(.invalidAuthentication))
+                        default:
+                            completion(.failure(.serverError))
+                        }
+                    }
+                }
+        } catch {
+            print(error)
+        }
+    }
 }
 
 // MARK: 이미지 조회

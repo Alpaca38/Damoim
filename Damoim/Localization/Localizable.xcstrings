@@ -18,6 +18,23 @@
         }
       }
     },
+    "button_edit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수정"
+          }
+        }
+      }
+    },
     "button_join" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -337,6 +354,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "댓글"
+          }
+        }
+      }
+    },
+    "navigation_title_edit_comment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Comment"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "댓글 수정"
           }
         }
       }

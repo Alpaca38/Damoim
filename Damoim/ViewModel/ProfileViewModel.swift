@@ -33,6 +33,8 @@ final class ProfileViewModel: ViewModel {
         let unfollowSuccess = PublishSubject<String>()
         let unfollowError = PublishSubject<APIError>()
         
+        let withdrawError = PublishSubject<APIError>()
+        
         if userId == UserDefaultsManager.user_id {
             profileImageData.onNext(UserDefaultsManager.profileImageData)
             
@@ -125,6 +127,20 @@ final class ProfileViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
+        input.withdraw
+            .bind(with: self) { owner, _ in
+                NetworkManager.shared.withdraw { result in
+                    switch result {
+                    case .success(_):
+                        SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                        owner.refreshUserDefaults()
+                    case .failure(let failure):
+                        withdrawError.onNext(failure)
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
+        
         return Output(
             profileImageData: profileImageData,
             profile: profile,
@@ -136,7 +152,8 @@ final class ProfileViewModel: ViewModel {
             followSuccess: followSuccess,
             unfollowSuccess: unfollowSuccess,
             followError: followError,
-            unfollowError: unfollowError
+            unfollowError: unfollowError,
+            withdrawError: withdrawError
         )
     }
 }
@@ -146,6 +163,7 @@ extension ProfileViewModel {
         let followTap: ControlEvent<Void>
         let followIsSelected: PublishSubject<Bool>
         let profileSubject: PublishSubject<Profile>
+        let withdraw: PublishSubject<Void>
     }
     
     struct Output {
@@ -160,5 +178,11 @@ extension ProfileViewModel {
         let unfollowSuccess: Observable<String>
         let followError: Observable<APIError>
         let unfollowError: Observable<APIError>
+        let withdrawError: Observable<APIError>
+    }
+    
+    func refreshUserDefaults() {
+        UserDefaultsManager.isLogin = false
+        UserDefaults.standard.removeObject(forKey: "profileImageData")
     }
 }

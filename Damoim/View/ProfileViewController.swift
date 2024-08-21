@@ -12,6 +12,11 @@ import RxCocoa
 import RxDataSources
 
 final class ProfileViewController: BasePostViewController {
+    private let withdrawButton = {
+        let view = UIBarButtonItem(image: UIImage(systemName: "rectangle.portrait.and.arrow.right"))
+        view.tintColor = .lightGray
+        return view
+    }()
     private let profileImageView = ProfileImageView(cornerRadius: 40)
     
     private let nickLabel = {
@@ -138,6 +143,7 @@ final class ProfileViewController: BasePostViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = withdrawButton
         configureDataSource()
         bind()
     }
@@ -249,12 +255,14 @@ private extension ProfileViewController {
         let followIsSelected = PublishSubject<Bool>()
         let profileSubject = PublishSubject<Profile>()
         let nicknameChange = PublishSubject<String>()
+        let withdraw = PublishSubject<Void>()
         let postSection = PublishRelay<[PostSection]>()
         
         let input = ProfileViewModel.Input(
             followTap: followButton.rx.tap,
             followIsSelected: followIsSelected,
-            profileSubject: profileSubject
+            profileSubject: profileSubject,
+            withdraw: withdraw
         )
         let output = viewModel.transform(input: input)
         
@@ -360,6 +368,22 @@ private extension ProfileViewController {
                     }
                     let vc = EditProfileViewController(viewModel: vm)
                     owner.navigationController?.pushViewController(vc, animated: true)
+                }
+            
+            withdrawButton.rx.tap
+                .bind(with: self) { owner, _ in
+                    owner.showAlert(title: l10nKey.deleteAccount.rawValue.localized, message: l10nKey.deleteAccountMessage.rawValue.localized, buttonTitle: l10nKey.buttonOK.rawValue.localized, isCancellable: true) {
+                        withdraw.onNext(())
+                    }
+                }
+            
+            output.withdrawError
+                .bind(with: self) { owner, error in
+                    if error == .refreshTokenExpired {
+                        SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                    } else {
+                        owner.view.makeToast(error.rawValue)
+                    }
                 }
         }
     }

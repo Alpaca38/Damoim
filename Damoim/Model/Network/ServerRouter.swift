@@ -36,6 +36,8 @@ enum ServerRouter {
     case fetchImage(query: FetchImageQuery)
     
     case searchHashTag(query: HashTagSearchQuery)
+    
+    case withdraw
 }
 
 extension ServerRouter: TargetType {
@@ -77,6 +79,8 @@ extension ServerRouter: TargetType {
             return .put
         case .deleteComment:
             return .delete
+        case .withdraw:
+            return .get
         }
     }
     
@@ -122,6 +126,8 @@ extension ServerRouter: TargetType {
             "posts/\(query.postId)/comments/\(query.commentID)"
         case .deleteComment(let query):
             "posts/\(query.postId)/comments/\(query.commentID)"
+        case .withdraw:
+            "users/withdraw"
         }
     }
     
@@ -138,7 +144,7 @@ extension ServerRouter: TargetType {
                 Header.sesacKey.rawValue: APIKey.sesacKey,
                 Header.refresh.rawValue: UserDefaultsManager.refreshToken
             ]
-        case .postRead, .fetchMyProfile, .fetchImage, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .searchHashTag, .fetchLikePost, .fetchLike2Post, .deleteComment:
+        case .postRead, .fetchMyProfile, .fetchImage, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .searchHashTag, .fetchLikePost, .fetchLike2Post, .deleteComment, .withdraw:
             [
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey
@@ -210,7 +216,7 @@ extension ServerRouter: TargetType {
             return try? encoder.encode(["content": query.content])
         case .editComment(let query):
             return try? encoder.encode(["content": query.content])
-        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .editProfile, .searchHashTag, .fetchLikePost, .fetchLike2Post, .deleteComment:
+        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .editProfile, .searchHashTag, .fetchLikePost, .fetchLike2Post, .deleteComment, .withdraw:
             return nil
         }
     }

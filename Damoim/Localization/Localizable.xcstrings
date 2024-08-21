@@ -205,6 +205,40 @@
         }
       }
     },
+    "delete_account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Account"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "회원 탈퇴"
+          }
+        }
+      }
+    },
+    "delete_account_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Once you cancel your membership, all of your activity information will be permanently deleted. Are you sure you want to proceed with the cancellation?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "탈퇴를 하게 되면 활동한 모든 정보가 사라집니다. 정말로 탈퇴하시겠습니까?"
+          }
+        }
+      }
+    },
     "feed" : {
       "extractionState" : "manual",
       "localizations" : {

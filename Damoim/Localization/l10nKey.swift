@@ -20,6 +20,8 @@ enum l10nKey: String {
     case buttonSubmit = "button_submit"
     case buttonWithdraw = "button_withdraw"
     case dateFormat = "dateFormat"
+    case deleteAccount = "delete_account"
+    case deleteAccountMessage = "delete_account_message"
     case feed = "feed"
     case follow = "follow"
     case follower = "follower"

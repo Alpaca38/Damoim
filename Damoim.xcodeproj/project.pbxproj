@@ -67,6 +67,7 @@
 		D1E8BCC32C75B6E0003378FA /* EditCommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */; };
 		D1E8BCC52C75C5BD003378FA /* EditCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */; };
 		D1E8BCC72C75C5E3003378FA /* EditCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */; };
+		D1E8BCC92C75D41C003378FA /* DeleteCommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC82C75D41C003378FA /* DeleteCommentQuery.swift */; };
 		D1FB0B3D2C6F202200049C5D /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B3C2C6F202200049C5D /* PostItem.swift */; };
 		D1FB0B3F2C6F212600049C5D /* FetchImageQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B3E2C6F212600049C5D /* FetchImageQuery.swift */; };
 		D1FB0B412C6F3F1900049C5D /* ClubDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B402C6F3F1900049C5D /* ClubDetailViewController.swift */; };
@@ -151,6 +152,7 @@
 		D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentQuery.swift; sourceTree = "<group>"; };
 		D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewController.swift; sourceTree = "<group>"; };
 		D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewModel.swift; sourceTree = "<group>"; };
+		D1E8BCC82C75D41C003378FA /* DeleteCommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCommentQuery.swift; sourceTree = "<group>"; };
 		D1FB0B3C2C6F202200049C5D /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
 		D1FB0B3E2C6F212600049C5D /* FetchImageQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchImageQuery.swift; sourceTree = "<group>"; };
 		D1FB0B402C6F3F1900049C5D /* ClubDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDetailViewController.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				D1FB0B622C72F97800049C5D /* OtherUserProfileQuery.swift */,
 				D1FB0B642C7305C800049C5D /* FollowQuery.swift */,
 				D1FB0B722C74B3A900049C5D /* FetchLikePostQuery.swift */,
+				D1E8BCC82C75D41C003378FA /* DeleteCommentQuery.swift */,
 			);
 			path = RequstModel;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				D1FB0B712C74AFFA00049C5D /* MyClubViewModel.swift in Sources */,
 				D1FB0B452C6F742D00049C5D /* SpecificPostQuery.swift in Sources */,
 				D1FB0B412C6F3F1900049C5D /* ClubDetailViewController.swift in Sources */,
+				D1E8BCC92C75D41C003378FA /* DeleteCommentQuery.swift in Sources */,
 				D11D80E82C6C7EF000EB8680 /* LoginViewController.swift in Sources */,
 				D1FB0B632C72F97800049C5D /* OtherUserProfileQuery.swift in Sources */,
 				D11D81282C6C87DD00EB8680 /* UserDefaultsManager.swift in Sources */,

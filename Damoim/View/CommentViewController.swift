@@ -212,6 +212,15 @@ private extension CommentViewController {
                     let vc = EditCommentViewController(viewModel: vm)
                     owner.navigationController?.pushViewController(vc, animated: true)
                 }
+            
+            output.deleteCommentError
+                .bind(with: self) { owner, error in
+                    if error == .refreshTokenExpired {
+                        SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                    } else {
+                        owner.view.makeToast(error.rawValue)
+                    }
+                }
         }
         
         if let profileImageData = UserDefaultsManager.profileImageData {

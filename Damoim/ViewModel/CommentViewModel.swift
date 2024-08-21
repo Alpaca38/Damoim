@@ -22,6 +22,7 @@ final class CommentViewModel: ViewModel {
         let fetchPostError = PublishRelay<APIError>()
         let createCommentError = PublishRelay<APIError>()
         let edit = PublishRelay<(String, Comment)>()
+        let deleteCommentError = PublishRelay<APIError>()
         
         let isEmpty = comments
             .map { $0.isEmpty }
@@ -72,13 +73,34 @@ final class CommentViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
+        input.deleteTap
+            .bind(with: self) { owner, commentID in
+                NetworkManager.shared.deleteComment(postId: owner.postId, commentID: commentID) { result in
+                    switch result {
+                    case .success(_):
+                        NetworkManager.shared.fetchSpecificPosts(postId: owner.postId) { result in
+                            switch result {
+                            case .success(let success):
+                                comments.accept(success.comments.reversed())
+                            case .failure(let failure):
+                                fetchPostError.accept(failure)
+                            }
+                        }
+                    case .failure(let failure):
+                        deleteCommentError.accept(failure)
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
+        
         return Output(
             comments: comments,
             fetchPostError: fetchPostError,
             createCommentError: createCommentError,
             isEmpty: isEmpty,
             sendValid: sendValid,
-            edit: edit
+            edit: edit,
+            deleteCommentError: deleteCommentError
         )
     }
 }
@@ -99,5 +121,6 @@ extension CommentViewModel {
         let isEmpty: Observable<Bool>
         let sendValid: Observable<Bool>
         let edit: PublishRelay<(String, Comment)>
+        let deleteCommentError: PublishRelay<APIError>
     }
 }

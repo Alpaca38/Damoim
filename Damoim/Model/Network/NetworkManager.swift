@@ -807,6 +807,57 @@ extension NetworkManager {
             print(error)
         }
     }
+    
+    func deleteComment(postId: String, commentID: String, completion: @escaping (Result<Data?, APIError>) -> Void) {
+        do {
+            let query = DeleteCommentQuery(postId: postId, commentID: commentID)
+            let request = try ServerRouter.deleteComment(query: query).asURLRequest()
+            AF.request(request)
+                .validate()
+                .response { [weak self] response in
+                    guard let self else { return }
+                    switch response.result {
+                    case .success(let success):
+                        completion(.success(success))
+                    case .failure(_):
+                        switch response.response?.statusCode {
+                        case 400:
+                            completion(.failure(.invalidRequestVariables))
+                        case 401:
+                            completion(.failure(.invalidRequest))
+                        case 403:
+                            completion(.failure(.forbidden))
+                        case 410:
+                            completion(.failure(.databaseError))
+                        case 419:
+                            refreshToken(completion: { result in // 토큰 갱신
+                                switch result {
+                                case .success(_):
+                                    self.deleteComment(postId: postId, commentID: commentID) { result in
+                                        switch result {
+                                        case .success(let success):
+                                            completion(.success(success))
+                                        case .failure(let failure):
+                                            completion(.failure(failure))
+                                        }
+                                    }
+                                case .failure(let failure):
+                                    if failure == .refreshTokenExpired {
+                                        completion(.failure(.refreshTokenExpired))
+                                    }
+                                }
+                            })
+                        case 445:
+                            completion(.failure(.invalidAuthentication))
+                        default:
+                            completion(.failure(.serverError))
+                        }
+                    }
+                }
+        } catch {
+            print(error)
+        }
+    }
 }
 
 // MARK: 이미지 조회

@@ -256,13 +256,15 @@ private extension ProfileViewController {
         let profileSubject = PublishSubject<Profile>()
         let nicknameChange = PublishSubject<String>()
         let withdraw = PublishSubject<Void>()
+        let pagination = PublishSubject<Void>()
         let postSection = PublishRelay<[PostSection]>()
         
         let input = ProfileViewModel.Input(
             followTap: followButton.rx.tap,
             followIsSelected: followIsSelected,
             profileSubject: profileSubject,
-            withdraw: withdraw
+            withdraw: withdraw,
+            pagination: pagination
         )
         let output = viewModel.transform(input: input)
         
@@ -383,6 +385,16 @@ private extension ProfileViewController {
                         SceneManager.shared.setNaviScene(viewController: LoginViewController())
                     } else {
                         owner.view.makeToast(error.rawValue)
+                    }
+                }
+            
+            collectionView.rx.prefetchItems
+                .throttle(.seconds(1), latest: false, scheduler: MainScheduler.asyncInstance)
+                .bind(with: self) { owner, indexPaths in
+                    indexPaths.forEach {
+                        if output.posts.value.count - 1 == $0.item {
+                            pagination.onNext(())
+                        }
                     }
                 }
         }

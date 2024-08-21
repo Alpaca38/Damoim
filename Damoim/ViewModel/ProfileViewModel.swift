@@ -22,6 +22,9 @@ final class ProfileViewModel: ViewModel {
         let profile = PublishSubject<Profile>()
         let profileError = PublishSubject<APIError>()
         
+        var postsData: [PostItem] = []
+        let nextCursor = BehaviorSubject(value: "")
+        
         let posts = BehaviorRelay<[PostItem]>(value: [])
         let postsError = PublishSubject<APIError>()
         
@@ -79,11 +82,36 @@ final class ProfileViewModel: ViewModel {
         NetworkManager.shared.fetchPostsByUser(userId: userId, next: nil) { result in
             switch result {
             case .success(let success):
-                posts.accept(success.data.map({ $0.postItem }))
+                postsData.append(contentsOf: success.data.map({ $0.postItem }))
+                nextCursor.onNext(success.next_cursor)
+                posts.accept(postsData)
             case .failure(let failure):
                 postsError.onNext(failure)
             }
         }
+        
+        input.pagination
+            .throttle(.seconds(1), latest: false, scheduler: MainScheduler.instance)
+            .withLatestFrom(nextCursor)
+            .distinctUntilChanged()
+            .bind(with: self) { owner, next in
+                print(next)
+                NetworkManager.shared.fetchPostsByUser(userId: owner.userId, next: next) { result in
+                    switch result {
+                    case .success(let success):
+                        postsData.append(contentsOf: success.data.map({ $0.postItem }))
+                        if success.next_cursor == "0" {
+                            input.pagination.onCompleted()
+                        } else {
+                            nextCursor.onNext(success.next_cursor)
+                        }
+                        posts.accept(postsData)
+                    case .failure(let failure):
+                        postsError.onNext(failure)
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
         
         input.followTap
             .withLatestFrom(input.followIsSelected)
@@ -164,6 +192,7 @@ extension ProfileViewModel {
         let followIsSelected: PublishSubject<Bool>
         let profileSubject: PublishSubject<Profile>
         let withdraw: PublishSubject<Void>
+        let pagination: PublishSubject<Void>
     }
     
     struct Output {

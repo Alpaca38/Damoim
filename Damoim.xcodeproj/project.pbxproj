@@ -64,6 +64,7 @@
 		D11D816D2C6DE08200EB8680 /* ClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D816C2C6DE08200EB8680 /* ClubViewController.swift */; };
 		D11D81702C6DF33900EB8680 /* ClubCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D816F2C6DF33900EB8680 /* ClubCollectionViewCell.swift */; };
 		D11D81722C6DFD1B00EB8680 /* ClubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81712C6DFD1B00EB8680 /* ClubViewModel.swift */; };
+		D134A5332C771FE4003B2DEE /* LSLPRequestLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134A5322C771FE4003B2DEE /* LSLPRequestLogger.swift */; };
 		D1E8BCC32C75B6E0003378FA /* EditCommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */; };
 		D1E8BCC52C75C5BD003378FA /* EditCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */; };
 		D1E8BCC72C75C5E3003378FA /* EditCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */; };
@@ -149,6 +150,7 @@
 		D11D816C2C6DE08200EB8680 /* ClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewController.swift; sourceTree = "<group>"; };
 		D11D816F2C6DF33900EB8680 /* ClubCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCollectionViewCell.swift; sourceTree = "<group>"; };
 		D11D81712C6DFD1B00EB8680 /* ClubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewModel.swift; sourceTree = "<group>"; };
+		D134A5322C771FE4003B2DEE /* LSLPRequestLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSLPRequestLogger.swift; sourceTree = "<group>"; };
 		D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentQuery.swift; sourceTree = "<group>"; };
 		D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewController.swift; sourceTree = "<group>"; };
 		D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewModel.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				D11D81632C6DBBF500EB8680 /* ServerRouter.swift */,
 				D11D81652C6DBCBE00EB8680 /* TargetType.swift */,
 				D1FB0B3C2C6F202200049C5D /* PostItem.swift */,
+				D134A5322C771FE4003B2DEE /* LSLPRequestLogger.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				D11D81362C6C9B2500EB8680 /* Extension+Date.swift in Sources */,
 				D1FB0B6B2C7481A300049C5D /* ClubSearchViewController.swift in Sources */,
 				D1FB0B732C74B3A900049C5D /* FetchLikePostQuery.swift in Sources */,
+				D134A5332C771FE4003B2DEE /* LSLPRequestLogger.swift in Sources */,
 				D1FB0B492C70834500049C5D /* CommentViewModel.swift in Sources */,
 				D11D813F2C6CD06C00EB8680 /* Refresh.swift in Sources */,
 				D1FB0B512C71B8F800049C5D /* RelativeDateManager.swift in Sources */,

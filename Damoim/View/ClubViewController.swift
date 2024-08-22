@@ -12,6 +12,12 @@ import RxCocoa
 import RxDataSources
 
 final class ClubViewController: BasePostViewController {
+    private let createPostButton = {
+        let view = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"))
+        view.tintColor = .main
+        return view
+    }()
+    
     private lazy var collectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         view.showsVerticalScrollIndicator = false
@@ -49,6 +55,7 @@ private extension ClubViewController {
         navigationController?.navigationBar.largeTitleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.main
         ]
+        navigationItem.rightBarButtonItem = createPostButton
     }
     
     func createLayout() -> UICollectionViewLayout {
@@ -142,6 +149,13 @@ private extension ClubViewController {
                 .bind(with: self) { owner, postItem in
                     let vm = ClubDetailViewModel(postItem: postItem)
                     let vc = ClubDetailViewController(viewModel: vm)
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
+            
+            createPostButton.rx.tap
+                .bind(with: self) { owner, _ in
+                    let vm = LocationViewModel()
+                    let vc = LocationViewController(viewModel: vm)
                     owner.navigationController?.pushViewController(vc, animated: true)
                 }
         }

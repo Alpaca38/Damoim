@@ -316,6 +316,7 @@ private extension ProfileViewController {
                 .bind(with: self) { owner, isMine in
                     owner.editProfileButton.isHidden = !isMine
                     owner.followButton.isHidden = isMine
+                    owner.withdrawButton.isHidden = !isMine
                 }
             
             collectionView.rx.modelSelected(PostItem.self)

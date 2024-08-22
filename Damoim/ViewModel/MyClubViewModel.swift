@@ -45,11 +45,6 @@ final class MyClubViewModel: ViewModel {
                     switch result {
                     case .success(let success):
                         postsData.append(contentsOf: success.data.map({ $0.postItem }))
-//                        if success.next_cursor == "0" {
-//                            input.pagination.onCompleted()
-//                        } else {
-//                            nextCursor.onNext(success.next_cursor)
-//                        }
                         nextCursor.onNext(success.next_cursor)
                         posts.accept(postsData)
                     case .failure(let failure):

@@ -83,10 +83,12 @@ private extension LikeClubViewController {
 // MARK: Data Binding
 private extension LikeClubViewController {
     func bind() {
+        let pagination = PublishSubject<Void>()
         let postSection = PublishRelay<[PostSection]>()
         
         let input = LikeClubViewModel.Input(
-            viewWillAppear: rx.viewWillAppear
+            viewWillAppear: rx.viewWillAppear,
+            pagination: pagination
         )
         let output = viewModel.transform(input: input)
         
@@ -114,6 +116,16 @@ private extension LikeClubViewController {
                     let vm = ClubDetailViewModel(postItem: postItem)
                     let vc = ClubDetailViewController(viewModel: vm)
                     owner.navigationController?.pushViewController(vc, animated: true)
+                }
+            
+            collectionView.rx.prefetchItems
+                .throttle(.seconds(1), latest: false, scheduler: MainScheduler.asyncInstance)
+                .bind(with: self) { owner, indexPaths in
+                    indexPaths.forEach {
+                        if output.posts.value.count - 1 == $0.item {
+                            pagination.onNext(())
+                        }
+                    }
                 }
         }
     }

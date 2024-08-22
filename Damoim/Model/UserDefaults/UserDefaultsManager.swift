@@ -7,9 +7,7 @@
 
 import Foundation
 
-struct UserDefaultsManager {
-    private init() { }
-    
+enum UserDefaultsManager {
     @UserDefault(key: .accessToken, defaultValue: "", isCustomObject: false)
     static var accessToken: String
     

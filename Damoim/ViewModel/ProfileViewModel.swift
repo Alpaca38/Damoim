@@ -95,7 +95,6 @@ final class ProfileViewModel: ViewModel {
             .withLatestFrom(nextCursor)
             .distinctUntilChanged()
             .bind(with: self) { owner, next in
-                print(next)
                 NetworkManager.shared.fetchPostsByUser(userId: owner.userId, next: next) { result in
                     switch result {
                     case .success(let success):

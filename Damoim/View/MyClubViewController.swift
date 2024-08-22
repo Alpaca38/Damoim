@@ -11,10 +11,13 @@ import RxSwift
 import RxCocoa
 
 final class MyClubViewController: BasePostViewController {
+    private let refresher = UIRefreshControl()
+    
     private lazy var collectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = .background
+        view.refreshControl = refresher
         self.view.addSubview(view)
         return view
     }()
@@ -87,8 +90,8 @@ private extension MyClubViewController {
         let postSection = PublishRelay<[PostSection]>()
         
         let input = MyClubViewModel.Input(
-            viewWillAppear: rx.viewWillAppear,
-            pagination: pagination
+            pagination: pagination,
+            refresh: refresher.rx.controlEvent(.valueChanged)
         )
         
         let output = viewModel.transform(input: input)
@@ -127,6 +130,11 @@ private extension MyClubViewController {
                             pagination.onNext(())
                         }
                     }
+                }
+            
+            output.refreshComplete
+                .bind(with: self) { owner, _ in
+                    owner.refresher.endRefreshing()
                 }
         }
     }

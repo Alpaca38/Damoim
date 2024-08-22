@@ -95,7 +95,6 @@
 		D1FB0B732C74B3A900049C5D /* FetchLikePostQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B722C74B3A900049C5D /* FetchLikePostQuery.swift */; };
 		D1FB0B752C74BA1100049C5D /* LikeClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B742C74BA1100049C5D /* LikeClubViewController.swift */; };
 		D1FB0B772C74BA8900049C5D /* LikeClubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B762C74BA8900049C5D /* LikeClubViewModel.swift */; };
-		D1FB0B792C74C37C00049C5D /* Extension+RxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FB0B782C74C37C00049C5D /* Extension+RxViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -181,7 +180,6 @@
 		D1FB0B722C74B3A900049C5D /* FetchLikePostQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLikePostQuery.swift; sourceTree = "<group>"; };
 		D1FB0B742C74BA1100049C5D /* LikeClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeClubViewController.swift; sourceTree = "<group>"; };
 		D1FB0B762C74BA8900049C5D /* LikeClubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeClubViewModel.swift; sourceTree = "<group>"; };
-		D1FB0B782C74C37C00049C5D /* Extension+RxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+RxViewController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,7 +245,6 @@
 				D11D81352C6C9B2500EB8680 /* Extension+Date.swift */,
 				D11D80FE2C6C81ED00EB8680 /* Extension+UIViewController.swift */,
 				D11D81092C6C82B100EB8680 /* Extension+Color.swift */,
-				D1FB0B782C74C37C00049C5D /* Extension+RxViewController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -543,7 +540,6 @@
 				D11D81222C6C875600EB8680 /* ViewModel.swift in Sources */,
 				D1E8BCC52C75C5BD003378FA /* EditCommentViewController.swift in Sources */,
 				D11D80FF2C6C81ED00EB8680 /* Extension+UIViewController.swift in Sources */,
-				D1FB0B792C74C37C00049C5D /* Extension+RxViewController.swift in Sources */,
 				D11D81412C6CD0B600EB8680 /* File.swift in Sources */,
 				D11D815E2C6CF81300EB8680 /* RoundTextField.swift in Sources */,
 				D1E8BCC72C75C5E3003378FA /* EditCommentViewModel.swift in Sources */,

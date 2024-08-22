@@ -27,18 +27,14 @@ final class CommentViewModel: ViewModel {
         let isEmpty = comments
             .map { $0.isEmpty }
         
-        input.viewWillAppear
-            .bind(with: self) { owner, _ in
-                NetworkManager.shared.fetchSpecificPosts(postId: owner.postId) { result in
-                    switch result {
-                    case .success(let success):
-                        comments.accept(success.comments.reversed())
-                    case .failure(let failure):
-                        fetchPostError.accept(failure)
-                    }
-                }
+        NetworkManager.shared.fetchSpecificPosts(postId: postId) { result in
+            switch result {
+            case .success(let success):
+                comments.accept(success.comments.reversed())
+            case .failure(let failure):
+                fetchPostError.accept(failure)
             }
-            .disposed(by: disposeBag)
+        }
         
         let sendValid = input.commentText.orEmpty
             .map { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
@@ -107,7 +103,6 @@ final class CommentViewModel: ViewModel {
 
 extension CommentViewModel {
     struct Input {
-        let viewWillAppear: ControlEvent<Bool>
         let sendTap: ControlEvent<Void>
         let commentText: ControlProperty<String?>
         let editTap: PublishRelay<Comment>

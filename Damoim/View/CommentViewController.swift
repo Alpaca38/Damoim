@@ -126,7 +126,6 @@ private extension CommentViewController {
         let deleteTap = PublishRelay<String>()
         
         let input = CommentViewModel.Input(
-            viewWillAppear: rx.viewWillAppear,
             sendTap: sendButton.rx.tap,
             commentText: commentTextField.rx.text,
             editTap: editTap,

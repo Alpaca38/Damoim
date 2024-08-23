@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum APIError: String, Error {
+enum LSLPAPIError: String, Error {
     case invalidRequestVariables = "잘못된 요청입니다. 필수값을 채워주세요." // 400
     case invalidRequest = "유효하지 않은 요청입니다." // 401, invalidToken
     case nicknameWithWhiteSpace = "공백이 포함된 닉네임은 사용할 수 없습니다." // 402

@@ -20,7 +20,7 @@ final class ClubDetailViewModel: ViewModel {
     
     func transform(input: Input) -> Output {
         let post = PublishSubject<Post>()
-        let errorRelay = PublishRelay<APIError>()
+        let errorRelay = PublishRelay<LSLPAPIError>()
         
         let photoImageData = PublishSubject<Data>()
         let profileImageData = PublishSubject<Data>()
@@ -191,7 +191,7 @@ extension ClubDetailViewModel {
         let photoImageData: Observable<Data>
         let profileImageData: Observable<Data>
         let errorSubject: PublishSubject<AFError>
-        let errorRelay: PublishRelay<APIError>
+        let errorRelay: PublishRelay<LSLPAPIError>
         let isMine: Observable<Bool>
         let isJoin: Observable<Bool>
         let isLike: Observable<Bool>

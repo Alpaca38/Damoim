@@ -14,7 +14,7 @@ final class ClubViewModel: ViewModel {
         let cardRelay = BehaviorRelay<[PostItem]>(value: [])
         let guessingRelay = BehaviorRelay<[PostItem]>(value: [])
         let strategyRelay = BehaviorRelay<[PostItem]>(value: [])
-        let errorRelay = PublishRelay<APIError>()
+        let errorRelay = PublishRelay<LSLPAPIError>()
         
         NetworkManager.shared.fetchPosts(next: nil, product_id: "damoim_card") { result in
             switch result {
@@ -61,6 +61,6 @@ extension ClubViewModel {
         let cardRelay: BehaviorRelay<[PostItem]>
         let guessingRelay: BehaviorRelay<[PostItem]>
         let strategyRelay: BehaviorRelay<[PostItem]>
-        let errorRelay: PublishRelay<APIError>
+        let errorRelay: PublishRelay<LSLPAPIError>
     }
 }

@@ -11,7 +11,18 @@ import RxCocoa
 
 final class LocationViewModel: ViewModel {
     func transform(input: Input) -> Output {
-        return Output()
+        let result = input.text
+            .filter({ !$0.isEmpty })
+            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .flatMap { query in
+                NetworkManager.shared.localSearch(query: query, display: 5)
+            }
+            .asDriver(onErrorJustReturn: .failure(.serverError))
+        
+        return Output(
+            result: result
+        )
     }
 }
 
@@ -21,6 +32,6 @@ extension LocationViewModel {
     }
     
     struct Output {
-        
+        let result: Driver<Result<LocalSearch, NaverSearchAPIError>>
     }
 }

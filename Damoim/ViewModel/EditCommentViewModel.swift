@@ -22,7 +22,7 @@ final class EditCommentViewModel: ViewModel {
     func transform(input: Input) -> Output {
         let content = BehaviorSubject(value: comment.content)
         let editSuccess = PublishSubject<Comment>()
-        let editError = PublishSubject<APIError>()
+        let editError = PublishSubject<LSLPAPIError>()
         
         let editValid = input.editText
             .map { !$0.isEmpty }
@@ -61,6 +61,6 @@ extension EditCommentViewModel {
         let content: Observable<String>
         let editValid: Observable<Bool>
         let editSuccess: Observable<Comment>
-        let editError: Observable<APIError>
+        let editError: Observable<LSLPAPIError>
     }
 }

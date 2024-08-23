@@ -20,23 +20,23 @@ final class ProfileViewModel: ViewModel {
     func transform(input: Input) -> Output {
         let profileImageData = BehaviorSubject<Data?>(value: nil)
         let profile = PublishSubject<Profile>()
-        let profileError = PublishSubject<APIError>()
+        let profileError = PublishSubject<LSLPAPIError>()
         
         var postsData: [PostItem] = []
         let nextCursor = BehaviorSubject(value: "")
         
         let posts = BehaviorRelay<[PostItem]>(value: [])
-        let postsError = PublishSubject<APIError>()
+        let postsError = PublishSubject<LSLPAPIError>()
         
         let isMine = BehaviorSubject<Bool>(value: true)
         let isFollowing = PublishSubject<Bool>()
         
         let followSuccess = PublishSubject<String>()
-        let followError = PublishSubject<APIError>()
+        let followError = PublishSubject<LSLPAPIError>()
         let unfollowSuccess = PublishSubject<String>()
-        let unfollowError = PublishSubject<APIError>()
+        let unfollowError = PublishSubject<LSLPAPIError>()
         
-        let withdrawError = PublishSubject<APIError>()
+        let withdrawError = PublishSubject<LSLPAPIError>()
         
         if userId == UserDefaultsManager.user_id {
             profileImageData.onNext(UserDefaultsManager.profileImageData)
@@ -194,16 +194,16 @@ extension ProfileViewModel {
     struct Output {
         let profileImageData: Observable<Data?>
         let profile: Observable<Profile>
-        let profileError: Observable<APIError>
+        let profileError: Observable<LSLPAPIError>
         let posts: BehaviorRelay<[PostItem]>
-        let postsError: Observable<APIError>
+        let postsError: Observable<LSLPAPIError>
         let isMine: Observable<Bool>
         let isFollowing: Observable<Bool>
         let followSuccess: Observable<String>
         let unfollowSuccess: Observable<String>
-        let followError: Observable<APIError>
-        let unfollowError: Observable<APIError>
-        let withdrawError: Observable<APIError>
+        let followError: Observable<LSLPAPIError>
+        let unfollowError: Observable<LSLPAPIError>
+        let withdrawError: Observable<LSLPAPIError>
     }
     
     func refreshUserDefaults() {

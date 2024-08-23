@@ -53,7 +53,7 @@
 		D11D81542C6CDEAE00EB8680 /* LikeQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81532C6CDEAE00EB8680 /* LikeQuery.swift */; };
 		D11D81562C6CDF0000EB8680 /* ProfileEditQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81552C6CDF0000EB8680 /* ProfileEditQuery.swift */; };
 		D11D81582C6CDFC300EB8680 /* HashTagSearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81572C6CDFC300EB8680 /* HashTagSearchQuery.swift */; };
-		D11D815A2C6CE11700EB8680 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81592C6CE11700EB8680 /* APIError.swift */; };
+		D11D815A2C6CE11700EB8680 /* LSLPAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81592C6CE11700EB8680 /* LSLPAPIError.swift */; };
 		D11D815E2C6CF81300EB8680 /* RoundTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D815D2C6CF81300EB8680 /* RoundTextField.swift */; };
 		D11D81602C6CFB9800EB8680 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D815F2C6CFB9800EB8680 /* SignUpViewController.swift */; };
 		D11D81622C6DBBD900EB8680 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D81612C6DBBD900EB8680 /* NetworkManager.swift */; };
@@ -68,6 +68,10 @@
 		D134A5352C7761FB003B2DEE /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134A5342C7761FB003B2DEE /* LocationViewController.swift */; };
 		D134A5372C776811003B2DEE /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134A5362C776811003B2DEE /* LocationViewModel.swift */; };
 		D134A5392C776B3C003B2DEE /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134A5382C776B3C003B2DEE /* LocationTableViewCell.swift */; };
+		D134A53B2C776DF2003B2DEE /* NaverSearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134A53A2C776DF2003B2DEE /* NaverSearchRouter.swift */; };
+		D134A53D2C776F3C003B2DEE /* LocalSearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134A53C2C776F3C003B2DEE /* LocalSearchQuery.swift */; };
+		D134A53F2C7770CB003B2DEE /* NaverSearchAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134A53E2C7770CB003B2DEE /* NaverSearchAPIError.swift */; };
+		D134A5412C77716F003B2DEE /* LocalSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134A5402C77716F003B2DEE /* LocalSearch.swift */; };
 		D1E8BCC32C75B6E0003378FA /* EditCommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */; };
 		D1E8BCC52C75C5BD003378FA /* EditCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */; };
 		D1E8BCC72C75C5E3003378FA /* EditCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */; };
@@ -141,7 +145,7 @@
 		D11D81532C6CDEAE00EB8680 /* LikeQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeQuery.swift; sourceTree = "<group>"; };
 		D11D81552C6CDF0000EB8680 /* ProfileEditQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditQuery.swift; sourceTree = "<group>"; };
 		D11D81572C6CDFC300EB8680 /* HashTagSearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagSearchQuery.swift; sourceTree = "<group>"; };
-		D11D81592C6CE11700EB8680 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		D11D81592C6CE11700EB8680 /* LSLPAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSLPAPIError.swift; sourceTree = "<group>"; };
 		D11D815D2C6CF81300EB8680 /* RoundTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTextField.swift; sourceTree = "<group>"; };
 		D11D815F2C6CFB9800EB8680 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		D11D81612C6DBBD900EB8680 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -156,6 +160,10 @@
 		D134A5342C7761FB003B2DEE /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		D134A5362C776811003B2DEE /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		D134A5382C776B3C003B2DEE /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		D134A53A2C776DF2003B2DEE /* NaverSearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverSearchRouter.swift; sourceTree = "<group>"; };
+		D134A53C2C776F3C003B2DEE /* LocalSearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSearchQuery.swift; sourceTree = "<group>"; };
+		D134A53E2C7770CB003B2DEE /* NaverSearchAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverSearchAPIError.swift; sourceTree = "<group>"; };
+		D134A5402C77716F003B2DEE /* LocalSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSearch.swift; sourceTree = "<group>"; };
 		D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentQuery.swift; sourceTree = "<group>"; };
 		D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewController.swift; sourceTree = "<group>"; };
 		D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewModel.swift; sourceTree = "<group>"; };
@@ -301,9 +309,11 @@
 				D11D81442C6CD3B600EB8680 /* RequstModel */,
 				D11D81392C6CCC2E00EB8680 /* ResponseModel */,
 				D11D812E2C6C8AA100EB8680 /* Header.swift */,
-				D11D81592C6CE11700EB8680 /* APIError.swift */,
+				D11D81592C6CE11700EB8680 /* LSLPAPIError.swift */,
 				D11D81612C6DBBD900EB8680 /* NetworkManager.swift */,
+				D134A53E2C7770CB003B2DEE /* NaverSearchAPIError.swift */,
 				D11D81632C6DBBF500EB8680 /* ServerRouter.swift */,
+				D134A53A2C776DF2003B2DEE /* NaverSearchRouter.swift */,
 				D11D81652C6DBCBE00EB8680 /* TargetType.swift */,
 				D1FB0B3C2C6F202200049C5D /* PostItem.swift */,
 				D134A5322C771FE4003B2DEE /* LSLPRequestLogger.swift */,
@@ -329,6 +339,7 @@
 				D11D813E2C6CD06C00EB8680 /* Refresh.swift */,
 				D11D81402C6CD0B600EB8680 /* File.swift */,
 				D11D81422C6CD1FB00EB8680 /* Profile.swift */,
+				D134A5402C77716F003B2DEE /* LocalSearch.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -354,6 +365,7 @@
 				D1FB0B642C7305C800049C5D /* FollowQuery.swift */,
 				D1FB0B722C74B3A900049C5D /* FetchLikePostQuery.swift */,
 				D1E8BCC82C75D41C003378FA /* DeleteCommentQuery.swift */,
+				D134A53C2C776F3C003B2DEE /* LocalSearchQuery.swift */,
 			);
 			path = RequstModel;
 			sourceTree = "<group>";
@@ -516,9 +528,10 @@
 				D11D80FD2C6C81E400EB8680 /* Extension+String.swift in Sources */,
 				D1FB0B672C732F4A00049C5D /* EditProfileViewController.swift in Sources */,
 				D1FB0B772C74BA8900049C5D /* LikeClubViewModel.swift in Sources */,
-				D11D815A2C6CE11700EB8680 /* APIError.swift in Sources */,
+				D11D815A2C6CE11700EB8680 /* LSLPAPIError.swift in Sources */,
 				D134A5352C7761FB003B2DEE /* LocationViewController.swift in Sources */,
 				D11D816B2C6DDBA200EB8680 /* LoginViewModel.swift in Sources */,
+				D134A53B2C776DF2003B2DEE /* NaverSearchRouter.swift in Sources */,
 				D11D81062C6C823200EB8680 /* BaseCollectionViewCell.swift in Sources */,
 				D11D81432C6CD1FB00EB8680 /* Profile.swift in Sources */,
 				D11D81642C6DBBF500EB8680 /* ServerRouter.swift in Sources */,
@@ -549,6 +562,7 @@
 				D11D81482C6CD8CB00EB8680 /* EmailValidationQuery.swift in Sources */,
 				D1FB0B4B2C70864B00049C5D /* BaseTableViewCell.swift in Sources */,
 				D11D81222C6C875600EB8680 /* ViewModel.swift in Sources */,
+				D134A53D2C776F3C003B2DEE /* LocalSearchQuery.swift in Sources */,
 				D1E8BCC52C75C5BD003378FA /* EditCommentViewController.swift in Sources */,
 				D11D80FF2C6C81ED00EB8680 /* Extension+UIViewController.swift in Sources */,
 				D11D81412C6CD0B600EB8680 /* File.swift in Sources */,
@@ -575,9 +589,11 @@
 				D11D81502C6CDB0000EB8680 /* PostReadQuery.swift in Sources */,
 				D11D816D2C6DE08200EB8680 /* ClubViewController.swift in Sources */,
 				D1FB0B652C7305C800049C5D /* FollowQuery.swift in Sources */,
+				D134A5412C77716F003B2DEE /* LocalSearch.swift in Sources */,
 				D1FB0B532C71F60A00049C5D /* ProfileViewController.swift in Sources */,
 				D11D81252C6C87C100EB8680 /* UserDefaults.swift in Sources */,
 				D1FB0B572C72099900049C5D /* BasePostViewController.swift in Sources */,
+				D134A53F2C7770CB003B2DEE /* NaverSearchAPIError.swift in Sources */,
 				D1FB0B6F2C74AF9D00049C5D /* MyClubViewController.swift in Sources */,
 				D11D813B2C6CCC3700EB8680 /* Posts.swift in Sources */,
 				D11D810A2C6C82B100EB8680 /* Extension+Color.swift in Sources */,

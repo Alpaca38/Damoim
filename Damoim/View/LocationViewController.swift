@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import Toast
 
 final class LocationViewController: BaseViewController {
     private let locationTextField = {
@@ -70,8 +71,27 @@ private extension LocationViewController {
     }
     
     func bind() {
+        let locationData = PublishRelay<[LocalSearchItem]>()
         let input = LocationViewModel.Input(
             text: locationTextField.rx.text.orEmpty
         )
+        let output = viewModel.transform(input: input)
+        
+        disposeBag.insert {
+            locationData
+                .bind(to: tableView.rx.items(cellIdentifier: LocationTableViewCell.identifier, cellType: LocationTableViewCell.self)) { row, element, cell in
+                    cell.configure(data: element)
+                }
+            
+            output.result
+                .drive(with: self) { owner, result in
+                    switch result {
+                    case .success(let success):
+                        locationData.accept(success.items)
+                    case .failure(let error):
+                        owner.view.makeToast(error.rawValue)
+                    }
+                }
+        }
     }
 }

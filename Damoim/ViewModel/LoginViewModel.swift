@@ -33,6 +33,6 @@ extension LoginViewModel {
     }
     
     struct Output {
-        let loginResult: Driver<Result<Login, APIError>>
+        let loginResult: Driver<Result<Login, LSLPAPIError>>
     }
 }

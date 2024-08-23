@@ -16,7 +16,7 @@ final class NetworkManager {
 
 // MARK: 회원 인증
 extension NetworkManager {
-    func signUp(email: String, password: String, nick: String) -> Single<Result<String, APIError>> {
+    func signUp(email: String, password: String, nick: String) -> Single<Result<String, LSLPAPIError>> {
         return Single.create { observer in
             do {
                 let query = SignUpQuery(email: email, password: password, nick: nick)
@@ -47,7 +47,7 @@ extension NetworkManager {
         }
     }
     
-    func login(email: String, password: String) -> Single<Result<Login, APIError>> {
+    func login(email: String, password: String) -> Single<Result<Login, LSLPAPIError>> {
         return Single.create { [weak self] observer in
             guard let self else { return Disposables.create() }
             
@@ -96,7 +96,7 @@ extension NetworkManager {
 
 // MARK: 토큰 갱신
 extension NetworkManager {
-    func refreshToken(completion: @escaping (Result<Refresh, APIError>) -> Void){
+    func refreshToken(completion: @escaping (Result<Refresh, LSLPAPIError>) -> Void){
         do {
             let request = try ServerRouter.refresh.asURLRequest()
             AF.request(request)
@@ -115,7 +115,7 @@ extension NetworkManager {
                             completion(.failure(.refreshTokenExpired)) // 로그인 화면으로 전환
                             UserDefaultsManager.isLogin = false
                         default:
-                            print(APIError.serverError.rawValue)
+                            print(LSLPAPIError.serverError.rawValue)
                         }
                     }
                 }
@@ -127,7 +127,7 @@ extension NetworkManager {
 
 // MARK: 프로필
 extension NetworkManager {
-    func fetchMyProfile(completion: @escaping (Result<Profile, APIError>) -> Void) {
+    func fetchMyProfile(completion: @escaping (Result<Profile, LSLPAPIError>) -> Void) {
         do {
             let request = try  ServerRouter.fetchMyProfile.asURLRequest()
             AF.request(request)
@@ -172,7 +172,7 @@ extension NetworkManager {
         }
     }
     
-    func fetchOtherUserProfile(userId: String, completion: @escaping (Result<Profile, APIError>) -> Void) {
+    func fetchOtherUserProfile(userId: String, completion: @escaping (Result<Profile, LSLPAPIError>) -> Void) {
         do {
             let query = OtherUserProfileQuery(userId: userId)
             let request = try ServerRouter.fetchOtherUserProfile(query: query).asURLRequest()
@@ -218,7 +218,7 @@ extension NetworkManager {
         }
     }
     
-    func editProfile(nick: String, profile: Data?, completion: @escaping (Result<Profile, APIError>) -> Void) {
+    func editProfile(nick: String, profile: Data?, completion: @escaping (Result<Profile, LSLPAPIError>) -> Void) {
         do {
             let request = try ServerRouter.editProfile.asURLRequest()
             AF.upload(multipartFormData: { multipartFormData in
@@ -275,7 +275,7 @@ extension NetworkManager {
 
 // MARK: 팔로우
 extension NetworkManager {
-    func follow(userId: String, completion: @escaping (Result<Data, APIError>) -> Void) {
+    func follow(userId: String, completion: @escaping (Result<Data, LSLPAPIError>) -> Void) {
         do {
             let query = FollowQuery(userId: userId)
             let request = try ServerRouter.follow(query: query).asURLRequest()
@@ -326,7 +326,7 @@ extension NetworkManager {
         }
     }
     
-    func unfollow(userId: String, completion: @escaping (Result<Data, APIError>) -> Void) {
+    func unfollow(userId: String, completion: @escaping (Result<Data, LSLPAPIError>) -> Void) {
         do {
             let query = UnFollowQuery(userId: userId)
             let request = try ServerRouter.unfollow(query: query).asURLRequest()
@@ -378,7 +378,7 @@ extension NetworkManager {
 
 // MARK: 포스트
 extension NetworkManager {
-    func fetchPosts(next: String?, product_id: String?, completion: @escaping (Result<Posts, APIError>) -> Void) {
+    func fetchPosts(next: String?, product_id: String?, completion: @escaping (Result<Posts, LSLPAPIError>) -> Void) {
         do {
             let query = PostReadQuery(next: next, limit: nil, product_id: product_id)
             let request = try ServerRouter.postRead(query: query).asURLRequest()
@@ -425,7 +425,7 @@ extension NetworkManager {
         }
     }
     
-    func fetchPostsByUser(userId: String, next: String?, completion: @escaping (Result<Posts, APIError>) -> Void) {
+    func fetchPostsByUser(userId: String, next: String?, completion: @escaping (Result<Posts, LSLPAPIError>) -> Void) {
         do {
             let query = PostReadByUserQuery(userId: userId, next: next, limit: nil, product_id: nil)
             let request = try ServerRouter.postReadByUser(query: query).asURLRequest()
@@ -471,7 +471,7 @@ extension NetworkManager {
         }
     }
     
-    func fetchSpecificPosts(postId: String, completion: @escaping (Result<Post, APIError>) -> Void) {
+    func fetchSpecificPosts(postId: String, completion: @escaping (Result<Post, LSLPAPIError>) -> Void) {
         do {
             let query = SpecificPostQuery(postId: postId)
             let request = try ServerRouter.specificPost(query: query).asURLRequest()
@@ -517,7 +517,7 @@ extension NetworkManager {
         }
     }
     
-    func join(postId: String, like_status: Bool, completion: @escaping (Result<Bool, APIError>) -> Void) {
+    func join(postId: String, like_status: Bool, completion: @escaping (Result<Bool, LSLPAPIError>) -> Void) {
         do {
             let query = LikeQuery(postId: postId, like_status: like_status)
             let request = try ServerRouter.like(query: query).asURLRequest()
@@ -566,7 +566,7 @@ extension NetworkManager {
         }
     }
     
-    func fetchJoinedPost(next: String?, limit: String?, completion: @escaping (Result<Posts, APIError>) -> Void) {
+    func fetchJoinedPost(next: String?, limit: String?, completion: @escaping (Result<Posts, LSLPAPIError>) -> Void) {
         do {
             let query = FetchLikePostQuery(next: next, limit: limit)
             let request = try ServerRouter.fetchLikePost(query: query).asURLRequest()
@@ -612,7 +612,7 @@ extension NetworkManager {
         }
     }
     
-    func like(postId: String, like_status: Bool, completion: @escaping (Result<Bool, APIError>) -> Void) {
+    func like(postId: String, like_status: Bool, completion: @escaping (Result<Bool, LSLPAPIError>) -> Void) {
         do {
             let query = LikeQuery(postId: postId, like_status: like_status)
             let request = try ServerRouter.like2(query: query).asURLRequest()
@@ -661,7 +661,7 @@ extension NetworkManager {
         }
     }
     
-    func fetchLikedPost(next: String?, limit: String?, completion: @escaping (Result<Posts, APIError>) -> Void) {
+    func fetchLikedPost(next: String?, limit: String?, completion: @escaping (Result<Posts, LSLPAPIError>) -> Void) {
         do {
             let query = FetchLikePostQuery(next: next, limit: limit)
             let request = try ServerRouter.fetchLike2Post(query: query).asURLRequest()
@@ -710,7 +710,7 @@ extension NetworkManager {
 
 // MARK: 댓글
 extension NetworkManager {
-    func createComment(postId: String, content: String, completion: @escaping (Result<Comment, APIError>) -> Void) {
+    func createComment(postId: String, content: String, completion: @escaping (Result<Comment, LSLPAPIError>) -> Void) {
         do {
             let query = CommentQuery(postId: postId, content: content)
             let request = try ServerRouter.comment(query: query).asURLRequest()
@@ -758,7 +758,7 @@ extension NetworkManager {
         }
     }
     
-    func editComment(postId: String, commentID: String, content: String, completion: @escaping (Result<Comment, APIError>) -> Void) {
+    func editComment(postId: String, commentID: String, content: String, completion: @escaping (Result<Comment, LSLPAPIError>) -> Void) {
         do {
             let query = EditCommentQuery(postId: postId, commentID: commentID, content: content)
             let request = try ServerRouter.editComment(query: query).asURLRequest()
@@ -808,7 +808,7 @@ extension NetworkManager {
         }
     }
     
-    func deleteComment(postId: String, commentID: String, completion: @escaping (Result<Data?, APIError>) -> Void) {
+    func deleteComment(postId: String, commentID: String, completion: @escaping (Result<Data?, LSLPAPIError>) -> Void) {
         do {
             let query = DeleteCommentQuery(postId: postId, commentID: commentID)
             let request = try ServerRouter.deleteComment(query: query).asURLRequest()
@@ -883,7 +883,7 @@ extension NetworkManager {
 
 // MARK: HashTag Search
 extension NetworkManager {
-    func searchHashTag(next: String?, limit: String?, product_id: String?, hashTag: String?, completion: @escaping (Result<Posts, APIError>) -> Void) {
+    func searchHashTag(next: String?, limit: String?, product_id: String?, hashTag: String?, completion: @escaping (Result<Posts, LSLPAPIError>) -> Void) {
         do {
             let query = HashTagSearchQuery(next: next, limit: limit, product_id: product_id, hashTag: hashTag)
             let request = try ServerRouter.searchHashTag(query: query).asURLRequest()
@@ -932,7 +932,7 @@ extension NetworkManager {
 
 // MARK: 회원 탈퇴
 extension NetworkManager {
-    func withdraw(completion: @escaping (Result<Data?, APIError>) -> Void) {
+    func withdraw(completion: @escaping (Result<Data?, LSLPAPIError>) -> Void) {
         do {
             let request = try ServerRouter.withdraw.asURLRequest()
             AF.request(request)
@@ -975,6 +975,38 @@ extension NetworkManager {
                 }
         } catch {
             print(error)
+        }
+    }
+}
+
+// MARK: 네이버 지역 검색
+extension NetworkManager {
+    func localSearch(query: String, display: Int) -> Single<Result<LocalSearch, NaverSearchAPIError>> {
+        return Single.create { observer in
+            do {
+                let query = LocalSearchQuery(query: query, display: display)
+                let request = try NaverSearchRouter.LocalSearch(query: query).asURLRequest()
+                AF.request(request)
+                    .responseDecodable(of: LocalSearch.self) { response in
+                        switch response.result {
+                        case .success(let success):
+                            observer(.success(.success(success)))
+                        case .failure(_):
+                            switch response.response?.statusCode {
+                            case 400:
+                                observer(.success(.failure(.invalidRequest)))
+                            case 404:
+                                observer(.success(.failure(.invalidSearchAPI)))
+                            default:
+                                observer(.success(.failure(.serverError)))
+                            }
+                        }
+                    }
+            } catch {
+                print(error)
+            }
+            
+            return Disposables.create()
         }
     }
 }

@@ -14,7 +14,7 @@ final class LikeClubViewModel: ViewModel {
     
     func transform(input: Input) -> Output {
         let posts = BehaviorRelay<[PostItem]>(value: [])
-        let fetchPostError = PublishSubject<APIError>()
+        let fetchPostError = PublishSubject<LSLPAPIError>()
         let refreshComplete = PublishSubject<Void>()
         
         var postsData: [PostItem] = []
@@ -87,7 +87,7 @@ extension LikeClubViewModel {
     
     struct Output {
         let posts: BehaviorRelay<[PostItem]>
-        let fetchPostsError: PublishSubject<APIError>
+        let fetchPostsError: PublishSubject<LSLPAPIError>
         let refreshComplete: Observable<Void>
     }
 }

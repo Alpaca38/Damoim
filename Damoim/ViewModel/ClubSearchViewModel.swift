@@ -16,7 +16,7 @@ final class ClubSearchViewModel: ViewModel {
         let cardRelay = BehaviorRelay<[PostItem]>(value: [])
         let guessingRelay = BehaviorRelay<[PostItem]>(value: [])
         let strategyRelay = BehaviorRelay<[PostItem]>(value: [])
-        let errorRelay = PublishRelay<APIError>()
+        let errorRelay = PublishRelay<LSLPAPIError>()
         
         input.searchTap
             .throttle(.seconds(1), latest: false, scheduler: MainScheduler.instance)
@@ -73,6 +73,6 @@ extension ClubSearchViewModel {
         let cardRelay: BehaviorRelay<[PostItem]>
         let guessingRelay: BehaviorRelay<[PostItem]>
         let strategyRelay: BehaviorRelay<[PostItem]>
-        let errorRelay: PublishRelay<APIError>
+        let errorRelay: PublishRelay<LSLPAPIError>
     }
 }

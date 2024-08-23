@@ -57,7 +57,7 @@ extension SignUpViewModel {
     }
     
     struct Output {
-        let signUpResult: Driver<Result<String, APIError>>
+        let signUpResult: Driver<Result<String, LSLPAPIError>>
         let totalValid: Observable<Bool>
     }
 }

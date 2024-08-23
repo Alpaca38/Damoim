@@ -40,7 +40,8 @@ final class LocationTableViewCell: BaseTableViewCell {
         }
     }
     
-    func configure() {
-        
+    func configure(data: LocalSearchItem) {
+        titleLabel.attributedText = data.title.asAttributedString(font: .boldSystemFont(ofSize: 15))
+        roadAddressLabel.attributedText = data.roadAddress.asAttributedString(font: .systemFont(ofSize: 13))
     }
 }

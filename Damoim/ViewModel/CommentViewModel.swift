@@ -19,10 +19,10 @@ final class CommentViewModel: ViewModel {
     
     func transform(input: Input) -> Output {
         let comments = BehaviorRelay<[Comment]>(value: [])
-        let fetchPostError = PublishRelay<APIError>()
-        let createCommentError = PublishRelay<APIError>()
+        let fetchPostError = PublishRelay<LSLPAPIError>()
+        let createCommentError = PublishRelay<LSLPAPIError>()
         let edit = PublishRelay<(String, Comment)>()
-        let deleteCommentError = PublishRelay<APIError>()
+        let deleteCommentError = PublishRelay<LSLPAPIError>()
         
         let isEmpty = comments
             .map { $0.isEmpty }
@@ -111,11 +111,11 @@ extension CommentViewModel {
     
     struct Output {
         let comments: BehaviorRelay<[Comment]>
-        let fetchPostError: PublishRelay<APIError>
-        let createCommentError: PublishRelay<APIError>
+        let fetchPostError: PublishRelay<LSLPAPIError>
+        let createCommentError: PublishRelay<LSLPAPIError>
         let isEmpty: Observable<Bool>
         let sendValid: Observable<Bool>
         let edit: PublishRelay<(String, Comment)>
-        let deleteCommentError: PublishRelay<APIError>
+        let deleteCommentError: PublishRelay<LSLPAPIError>
     }
 }

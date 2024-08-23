@@ -23,7 +23,7 @@ final class EditProfileViewModel: ViewModel {
         let profileImageData = BehaviorSubject<Data?>(value: nil)
         let nick = BehaviorSubject(value: UserDefaultsManager.nickname)
         let editSuccess = PublishSubject<Profile>()
-        let editError = PublishSubject<APIError>()
+        let editError = PublishSubject<LSLPAPIError>()
         
         if let data = UserDefaultsManager.profileImageData {
             profileImageData.onNext(data)
@@ -79,6 +79,6 @@ extension EditProfileViewModel {
         let nick: BehaviorSubject<String>
         let saveValid: Observable<Bool>
         let editSuccess: Observable<Profile>
-        let editError: Observable<APIError>
+        let editError: Observable<LSLPAPIError>
     }
 }

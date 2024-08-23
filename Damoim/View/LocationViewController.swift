@@ -15,7 +15,7 @@ final class LocationViewController: BaseViewController {
     private let locationTextField = {
         let view = UITextField()
         view.leftViewMode = .always
-        view.placeholder = "장소를 입력해 주세요."
+        view.placeholder = l10nKey.placeholderLocation.rawValue.localized
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         let image = UIImage(systemName: "map")?.withTintColor(.main, renderingMode: .alwaysOriginal)
         imageView.image = image
@@ -67,7 +67,7 @@ final class LocationViewController: BaseViewController {
 private extension LocationViewController {
     func setNavi() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "어디서 만날까요?"
+        navigationItem.title = l10nKey.navigationTitleLocation.rawValue.localized
     }
     
     func bind() {
@@ -91,6 +91,13 @@ private extension LocationViewController {
                     case .failure(let error):
                         owner.view.makeToast(error.rawValue)
                     }
+                }
+            
+            tableView.rx.modelSelected(LocalSearchItem.self)
+                .bind(with: self) { owner, location in
+                    let vm = CategoryViewModel(location: location.roadAddress)
+                    let vc = CategoryViewController(viewModel: vm)
+                    owner.navigationController?.pushViewController(vc, animated: true)
                 }
         }
     }

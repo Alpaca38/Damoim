@@ -358,6 +358,23 @@
         }
       }
     },
+    "navigation_title_category" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shall we choose a category?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "카테고리를 선택해 볼까요?"
+          }
+        }
+      }
+    },
     "navigation_title_club" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -409,6 +426,40 @@
         }
       }
     },
+    "navigation_title_location" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Where should we meet?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "어디서 만날까요?"
+          }
+        }
+      }
+    },
+    "navigation_title_post" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please introduce the club!"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모임을 소개해 주세요!"
+          }
+        }
+      }
+    },
     "placeholder_comment" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -439,6 +490,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이메일을 입력해주세요."
+          }
+        }
+      }
+    },
+    "placeholder_location" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Location..."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "장소를 입력해 주세요."
           }
         }
       }

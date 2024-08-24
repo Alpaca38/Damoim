@@ -18,6 +18,23 @@
         }
       }
     },
+    "button_deadline" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set Deadline"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "마감일 설정하기"
+          }
+        }
+      }
+    },
     "button_edit" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -52,6 +69,23 @@
         }
       }
     },
+    "button_maxCount" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set Maximum Capacity"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최대 인원 설정하기"
+          }
+        }
+      }
+    },
     "button_ok" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -82,6 +116,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "참여중"
+          }
+        }
+      }
+    },
+    "button_post" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Post"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "게시하기"
           }
         }
       }
@@ -324,6 +375,23 @@
         }
       }
     },
+    "label_fee" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Participation Fee"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "참가비"
+          }
+        }
+      }
+    },
     "label_head_count" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -477,6 +545,23 @@
         }
       }
     },
+    "placeholder_content" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter content..."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "내용을 입력해주세요 (선택)"
+          }
+        }
+      }
+    },
     "placeholder_email" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -490,6 +575,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이메일을 입력해주세요."
+          }
+        }
+      }
+    },
+    "placeholder_fee" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Would you like to set the meeting operational fee?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모임 운영비를 설정하시겠습니까?"
           }
         }
       }
@@ -558,6 +660,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "태그를 검색해보세요."
+          }
+        }
+      }
+    },
+    "placeholder_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Title..."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제목을 입력해주세요."
           }
         }
       }

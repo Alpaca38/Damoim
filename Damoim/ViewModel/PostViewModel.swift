@@ -20,9 +20,18 @@ final class PostViewModel: ViewModel {
     }
     
     func transform(input: Input) -> Output {
+        input.createPostTap
+            .bind(with: self) { owner, _ in
+                print("tap")
+            }
+            .disposed(by: disposeBag)
         
+        let createValid = Observable.combineLatest(input.titleText, input.maxCount, input.deadline, input.price)
+            .map { !$0.0.isEmpty && $0.1 != l10nKey.buttonMaxCount.rawValue.localized && $0.2 != l10nKey.buttonDeadline.rawValue.localized && !$0.3.isEmpty }
         
-        return Output()
+        return Output(
+            createValid: createValid
+        )
     }
     
     
@@ -35,9 +44,11 @@ extension PostViewModel {
         let contentText: ControlProperty<String>
         let maxCount: PublishSubject<String>
         let deadline: PublishSubject<String>
+        let price: ControlProperty<String>
+        let createPostTap: ControlEvent<Void>
     }
     
     struct Output {
-        
+        let createValid: Observable<Bool>
     }
 }

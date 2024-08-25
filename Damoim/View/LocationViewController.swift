@@ -48,6 +48,10 @@ final class LocationViewController: BaseViewController {
         bind()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     override func configureLayout() {
         view.addSubview(locationTextField)
         view.addSubview(tableView)

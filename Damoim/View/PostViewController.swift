@@ -108,6 +108,7 @@ final class PostViewController: BaseViewController {
         button.setTitle(l10nKey.buttonPost.rawValue.localized, for: .normal)
         button.backgroundColor = .lightGray
         button.layer.cornerRadius = 10
+        button.isEnabled = false
         return button
     }()
     
@@ -219,7 +220,9 @@ private extension PostViewController {
             titleText: titleTextField.rx.text.orEmpty,
             contentText: contentTextView.rx.text.orEmpty,
             maxCount: maxCount,
-            deadline: deadline
+            deadline: deadline,
+            price: priceTextField.rx.text.orEmpty,
+            createPostTap: createPostButton.rx.tap
         )
         
         let output = viewModel.transform(input: input)
@@ -289,6 +292,14 @@ private extension PostViewController {
                         sheet.prefersGrabberVisible = true
                     }
                     owner.present(vc, animated: true)
+                }
+            
+            output.createValid
+                .bind(with: self) { owner, valid in
+                    let backgroundColor: UIColor = valid ? .main : .lightGray
+                    owner.createPostButton.backgroundColor = backgroundColor
+                    
+                    owner.createPostButton.isEnabled = valid
                 }
         }
     }

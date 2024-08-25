@@ -81,6 +81,7 @@
 		D15D8FAD2C7AC73D002C4D1F /* MaxCountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FAC2C7AC73D002C4D1F /* MaxCountViewModel.swift */; };
 		D15D8FAF2C7AD01F002C4D1F /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FAE2C7AD01F002C4D1F /* DatePickerViewController.swift */; };
 		D15D8FB12C7AD0A2002C4D1F /* DatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FB02C7AD0A2002C4D1F /* DatePickerViewModel.swift */; };
+		D15D8FB32C7B0A8A002C4D1F /* DeletePostQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FB22C7B0A8A002C4D1F /* DeletePostQuery.swift */; };
 		D1E8BCC32C75B6E0003378FA /* EditCommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */; };
 		D1E8BCC52C75C5BD003378FA /* EditCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */; };
 		D1E8BCC72C75C5E3003378FA /* EditCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */; };
@@ -182,6 +183,7 @@
 		D15D8FAC2C7AC73D002C4D1F /* MaxCountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxCountViewModel.swift; sourceTree = "<group>"; };
 		D15D8FAE2C7AD01F002C4D1F /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		D15D8FB02C7AD0A2002C4D1F /* DatePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewModel.swift; sourceTree = "<group>"; };
+		D15D8FB22C7B0A8A002C4D1F /* DeletePostQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePostQuery.swift; sourceTree = "<group>"; };
 		D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentQuery.swift; sourceTree = "<group>"; };
 		D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewController.swift; sourceTree = "<group>"; };
 		D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewModel.swift; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 				D11D814D2C6CD9F400EB8680 /* PostQuery.swift */,
 				D11D814F2C6CDB0000EB8680 /* PostReadQuery.swift */,
 				D1FB0B582C72154300049C5D /* PostReadByUserQuery.swift */,
+				D15D8FB22C7B0A8A002C4D1F /* DeletePostQuery.swift */,
 				D11D81512C6CDDB200EB8680 /* CommentQuery.swift */,
 				D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */,
 				D11D81532C6CDEAE00EB8680 /* LikeQuery.swift */,
@@ -616,6 +619,7 @@
 				D11D813D2C6CD01600EB8680 /* Login.swift in Sources */,
 				D11D81702C6DF33900EB8680 /* ClubCollectionViewCell.swift in Sources */,
 				D11D81042C6C821A00EB8680 /* BaseViewController.swift in Sources */,
+				D15D8FB32C7B0A8A002C4D1F /* DeletePostQuery.swift in Sources */,
 				D11D814E2C6CD9F400EB8680 /* PostQuery.swift in Sources */,
 				D15D8FAD2C7AC73D002C4D1F /* MaxCountViewModel.swift in Sources */,
 				D1FB0B4F2C71B23C00049C5D /* ProfileImageView.swift in Sources */,

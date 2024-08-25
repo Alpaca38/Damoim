@@ -8,6 +8,10 @@
 import Foundation
 
 enum l10nKey: String {
+    case alertCancel = "alert_cancel"
+    case alertDeleteComment = "alert_delete_comment"
+    case alertEditComment = "alert_edit_comment"
+    case alertPostDelete = "alert_post_delete"
     case appName = "app_name"
     case buttonDeadline = "button_deadline"
     case buttonEdit = "button_edit"
@@ -57,6 +61,7 @@ enum l10nKey: String {
     case tabMyClub = "tab_my_club"
     case tabProfile = "tab_profile"
     case tabSearch = "tab_search"
+    case toastCannotEdit = "toast_cannot_edit"
     case toastEditSuccess = "toast_edit_success"
     case toastFollowSuccess = "toast_follow_success"
     case toastUnfollowSuccess = "toast_unfollow_success"

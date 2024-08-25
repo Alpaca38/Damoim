@@ -57,6 +57,6 @@ private extension DatePickerViewController {
         let input = DatePickerViewModel.Input(
             dateSelect: pickerView.rx.date
         )
-        let output = viewModel.transform(input: input)
+        _ = viewModel.transform(input: input)
     }
 }

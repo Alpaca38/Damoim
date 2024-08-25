@@ -26,6 +26,9 @@ final class ClubDetailViewModel: ViewModel {
         let profileImageData = PublishSubject<Data>()
         let errorSubject = PublishSubject<AFError>()
         
+        let deleteSuccess = PublishSubject<Void>()
+        let deleteError = PublishSubject<LSLPAPIError>()
+        
         let isMine = PublishSubject<Bool>()
         let isJoin = PublishSubject<Bool>()
         let isLike = PublishSubject<Bool>()
@@ -167,6 +170,20 @@ final class ClubDetailViewModel: ViewModel {
             }
             .disposed(by: disposeBag)
         
+        input.deleteTap
+            .bind(with: self) { owner, postId in
+                NetworkManager.shared.deletePost(postId: postId) { result in
+                    switch result {
+                    case .success(_):
+                        deleteSuccess.onNext(())
+                    case .failure(let failure):
+                        deleteError.onNext(failure)
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        
         return Output(
             post: post,
             photoImageData: photoImageData,
@@ -175,7 +192,9 @@ final class ClubDetailViewModel: ViewModel {
             errorRelay: errorRelay,
             isMine: isMine,
             isJoin: isJoin,
-            isLike: isLike
+            isLike: isLike,
+            deleteSuccess: deleteSuccess,
+            deleteError: deleteError
         )
     }
 }
@@ -184,6 +203,7 @@ extension ClubDetailViewModel {
     struct Input {
         let joinTap: ControlEvent<Void>
         let likeTap: ControlEvent<Void>
+        let deleteTap: PublishRelay<String>
     }
     
     struct Output {
@@ -195,5 +215,7 @@ extension ClubDetailViewModel {
         let isMine: Observable<Bool>
         let isJoin: Observable<Bool>
         let isLike: Observable<Bool>
+        let deleteSuccess: PublishSubject<Void>
+        let deleteError: PublishSubject<LSLPAPIError>
     }
 }

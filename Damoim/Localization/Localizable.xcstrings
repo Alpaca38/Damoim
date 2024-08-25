@@ -1,6 +1,74 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "alert_cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소"
+          }
+        }
+      }
+    },
+    "alert_delete_comment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Comment"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "댓글 삭제"
+          }
+        }
+      }
+    },
+    "alert_edit_comment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Comment"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "댓글 수정"
+          }
+        }
+      }
+    },
+    "alert_post_delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Post"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "포스트 삭제"
+          }
+        }
+      }
+    },
     "app_name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -830,6 +898,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "검색"
+          }
+        }
+      }
+    },
+    "toast_cannot_edit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other users' comments or post cannot be edited."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다른 사용자의 댓글이나 게시글은 수정할 수 없습니다."
           }
         }
       }

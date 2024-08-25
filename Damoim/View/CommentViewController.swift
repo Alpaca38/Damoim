@@ -147,7 +147,7 @@ private extension CommentViewController {
                                     deleteTap.accept(element.comment_id)
                                 }
                             } else {
-                                owner.view.makeToast("다른 사용자의 댓글은 수정할 수 없습니다.")
+                                owner.view.makeToast(l10nKey.toastCannotEdit.rawValue.localized)
                             }
                         }
                         .disposed(by: cell.disposeBag)
@@ -231,17 +231,17 @@ private extension CommentViewController {
 private extension CommentViewController {
     func showActionSheet(editTap: @escaping () -> Void, deleteTap: @escaping() -> Void) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let editButton = UIAlertAction(title: "댓글 수정", style: .default) { _ in
+        let editButton = UIAlertAction(title: l10nKey.alertEditComment.rawValue.localized, style: .default) { _ in
             // postid랑 commentid 댓글 수정화면으로 넘기면서 화면 전환
             editTap()
         }
         
-        let deleteButton = UIAlertAction(title: "댓글 삭제", style: .destructive) { _ in
+        let deleteButton = UIAlertAction(title: l10nKey.alertDeleteComment.rawValue.localized, style: .destructive) { _ in
             // 댓글 삭제
             deleteTap()
         }
         
-        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let cancel = UIAlertAction(title: l10nKey.alertCancel.rawValue.localized, style: .cancel)
         
         alert.addAction(editButton)
         alert.addAction(deleteButton)

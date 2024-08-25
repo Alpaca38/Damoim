@@ -9,8 +9,15 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import Toast
 
 final class ClubDetailViewController: BaseViewController {
+    private let menuButton = {
+        let view = UIBarButtonItem(image: UIImage(systemName: "ellipsis"))
+        view.tintColor = .black
+        return view
+    }()
+    
     private lazy var contentView = {
         let view = UIView()
         [photoImageView, titleView, profileImageView, profileLabel, titleLabel, scheduleSummaryLabel, contentLabel, headCountLabel, moneyLabel, timeLabel, locationLabel, commentView].forEach {
@@ -174,7 +181,7 @@ final class ClubDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = false
+        setNavi()
         bind()
     }
     
@@ -285,10 +292,18 @@ final class ClubDetailViewController: BaseViewController {
 }
 
 private extension ClubDetailViewController {
+    func setNavi() {
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.rightBarButtonItem = menuButton
+    }
+    
     func bind() {
+        let deleteTap = PublishRelay<String>()
+        
         let input = ClubDetailViewModel.Input(
             joinTap: joinButton.rx.tap,
-            likeTap: heartButton.rx.tap
+            likeTap: heartButton.rx.tap,
+            deleteTap: deleteTap
         )
         
         let output = viewModel.transform(input: input)
@@ -365,10 +380,54 @@ private extension ClubDetailViewController {
                     let vc = ProfileViewController(viewModel: vm)
                     owner.navigationController?.pushViewController(vc, animated: true)
                 }
+            
+            menuButton.rx.tap
+                .withLatestFrom(output.post)
+                .bind(with: self) { owner, value in
+                    if value.creator.user_id == UserDefaultsManager.user_id {
+                        owner.showActionSheet {
+                            deleteTap.accept(value.post_id)
+                        }
+                    } else {
+                        owner.view.makeToast(l10nKey.toastCannotEdit.rawValue.localized)
+                    }
+                }
+            
+            output.deleteSuccess
+                .bind { _ in
+                    SceneManager.shared.setScene(viewController: TabBarController())
+                }
+            
+            output.deleteError
+                .bind(with: self) { owner, error in
+                    if error == .refreshTokenExpired {
+                        SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                    } else {
+                        owner.view.makeToast(error.rawValue)
+                    }
+                }
         }
         
         if let commentImageData = UserDefaultsManager.profileImageData {
             commentImageView.image = UIImage(data: commentImageData)
         }
+    }
+}
+
+private extension ClubDetailViewController {
+    func showActionSheet(deleteTap: @escaping() -> Void) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let deleteButton = UIAlertAction(title: l10nKey.alertPostDelete.rawValue.localized, style: .destructive) { _ in
+            // 포스트 삭제
+            deleteTap()
+        }
+        
+        let cancel = UIAlertAction(title: l10nKey.alertCancel.rawValue.localized, style: .cancel)
+        
+        alert.addAction(deleteButton)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true)
     }
 }

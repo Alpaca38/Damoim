@@ -13,7 +13,7 @@ extension UIViewController {
         let button = UIAlertAction(title: buttonTitle, style: buttonStyle) { _ in
             completion()
         }
-        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let cancel = UIAlertAction(title: l10nKey.alertCancel.rawValue.localized, style: .cancel)
         
         if isCancellable {
             alert.addAction(button)

@@ -30,6 +30,7 @@ enum ServerRouter {
     case like2(query: LikeQuery)
     case fetchLikePost(query: FetchLikePostQuery)
     case fetchLike2Post(query: FetchLikePostQuery)
+    case deletePost(query: DeletePostQuery)
     
     case comment(query: CommentQuery)
     case editComment(query: EditCommentQuery)
@@ -87,6 +88,8 @@ extension ServerRouter: TargetType {
             return .post
         case .fileUpload:
             return .post
+        case .deletePost:
+            return .delete
         }
     }
     
@@ -136,6 +139,8 @@ extension ServerRouter: TargetType {
             "users/withdraw"
         case .fileUpload:
             "posts/files"
+        case .deletePost(let query):
+            "posts/\(query.postId)"
         }
     }
     
@@ -152,7 +157,7 @@ extension ServerRouter: TargetType {
                 Header.sesacKey.rawValue: APIKey.sesacKey,
                 Header.refresh.rawValue: UserDefaultsManager.refreshToken
             ]
-        case .postRead, .fetchMyProfile, .fetchImage, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .searchHashTag, .fetchLikePost, .fetchLike2Post, .deleteComment, .withdraw:
+        case .postRead, .fetchMyProfile, .fetchImage, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .searchHashTag, .fetchLikePost, .fetchLike2Post, .deleteComment, .withdraw, .deletePost:
             [
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey
@@ -226,7 +231,7 @@ extension ServerRouter: TargetType {
             return try? encoder.encode(["content": query.content])
         case .createPost(let query):
             return try? encoder.encode(query)
-        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .editProfile, .searchHashTag, .fetchLikePost, .fetchLike2Post, .deleteComment, .withdraw, .fileUpload:
+        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .editProfile, .searchHashTag, .fetchLikePost, .fetchLike2Post, .deleteComment, .withdraw, .fileUpload, .deletePost:
             return nil
         }
     }

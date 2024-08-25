@@ -79,6 +79,8 @@
 		D134A54B2C78D098003B2DEE /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134A54A2C78D098003B2DEE /* PostViewModel.swift */; };
 		D15D8FAB2C7AC722002C4D1F /* MaxCountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FAA2C7AC722002C4D1F /* MaxCountViewController.swift */; };
 		D15D8FAD2C7AC73D002C4D1F /* MaxCountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FAC2C7AC73D002C4D1F /* MaxCountViewModel.swift */; };
+		D15D8FAF2C7AD01F002C4D1F /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FAE2C7AD01F002C4D1F /* DatePickerViewController.swift */; };
+		D15D8FB12C7AD0A2002C4D1F /* DatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FB02C7AD0A2002C4D1F /* DatePickerViewModel.swift */; };
 		D1E8BCC32C75B6E0003378FA /* EditCommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */; };
 		D1E8BCC52C75C5BD003378FA /* EditCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */; };
 		D1E8BCC72C75C5E3003378FA /* EditCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */; };
@@ -178,6 +180,8 @@
 		D134A54A2C78D098003B2DEE /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		D15D8FAA2C7AC722002C4D1F /* MaxCountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxCountViewController.swift; sourceTree = "<group>"; };
 		D15D8FAC2C7AC73D002C4D1F /* MaxCountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxCountViewModel.swift; sourceTree = "<group>"; };
+		D15D8FAE2C7AD01F002C4D1F /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		D15D8FB02C7AD0A2002C4D1F /* DatePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewModel.swift; sourceTree = "<group>"; };
 		D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentQuery.swift; sourceTree = "<group>"; };
 		D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewController.swift; sourceTree = "<group>"; };
 		D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewModel.swift; sourceTree = "<group>"; };
@@ -404,6 +408,7 @@
 				D134A5422C789CBC003B2DEE /* CategoryViewController.swift */,
 				D134A5482C78D07A003B2DEE /* PostViewController.swift */,
 				D15D8FAA2C7AC722002C4D1F /* MaxCountViewController.swift */,
+				D15D8FAE2C7AD01F002C4D1F /* DatePickerViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -436,6 +441,7 @@
 				D134A5442C789CF0003B2DEE /* CategoryViewModel.swift */,
 				D134A54A2C78D098003B2DEE /* PostViewModel.swift */,
 				D15D8FAC2C7AC73D002C4D1F /* MaxCountViewModel.swift */,
+				D15D8FB02C7AD0A2002C4D1F /* DatePickerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -554,6 +560,7 @@
 				D11D816B2C6DDBA200EB8680 /* LoginViewModel.swift in Sources */,
 				D134A53B2C776DF2003B2DEE /* NaverSearchRouter.swift in Sources */,
 				D134A5492C78D07A003B2DEE /* PostViewController.swift in Sources */,
+				D15D8FB12C7AD0A2002C4D1F /* DatePickerViewModel.swift in Sources */,
 				D11D81062C6C823200EB8680 /* BaseCollectionViewCell.swift in Sources */,
 				D11D81432C6CD1FB00EB8680 /* Profile.swift in Sources */,
 				D11D81642C6DBBF500EB8680 /* ServerRouter.swift in Sources */,
@@ -599,6 +606,7 @@
 				D11D81622C6DBBD900EB8680 /* NetworkManager.swift in Sources */,
 				D11D80E42C6C7EF000EB8680 /* AppDelegate.swift in Sources */,
 				D11D812C2C6C8A1D00EB8680 /* SceneManager.swift in Sources */,
+				D15D8FAF2C7AD01F002C4D1F /* DatePickerViewController.swift in Sources */,
 				D11D80FA2C6C7F5C00EB8680 /* APIKey.swift in Sources */,
 				D1FB0B592C72154300049C5D /* PostReadByUserQuery.swift in Sources */,
 				D1FB0B3D2C6F202200049C5D /* PostItem.swift in Sources */,

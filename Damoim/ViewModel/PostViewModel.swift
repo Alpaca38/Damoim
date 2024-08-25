@@ -34,6 +34,7 @@ extension PostViewModel {
         let titleText: ControlProperty<String>
         let contentText: ControlProperty<String>
         let maxCount: PublishSubject<String>
+        let deadline: PublishSubject<String>
     }
     
     struct Output {

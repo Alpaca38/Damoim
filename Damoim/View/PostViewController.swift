@@ -210,13 +210,16 @@ private extension PostViewController {
 private extension PostViewController {
     func bind() {
         let maxCount = PublishSubject<String>()
+        let deadline = PublishSubject<String>()
+        
         let input = PostViewModel.Input(
             imageData: photoView.rx.observe(UIImage.self, "image")
                 .map({ $0?.pngData() })
                 .share(replay: 1),
             titleText: titleTextField.rx.text.orEmpty,
             contentText: contentTextView.rx.text.orEmpty,
-            maxCount: maxCount
+            maxCount: maxCount,
+            deadline: deadline
         )
         
         let output = viewModel.transform(input: input)
@@ -262,6 +265,23 @@ private extension PostViewController {
                         maxCount.onNext(value)
                     }
                     let vc = MaxCountViewController(viewModel: vm)
+                    vc.modalPresentationStyle = .pageSheet
+                    
+                    if let sheet = vc.sheetPresentationController {
+                        sheet.detents = [.medium()]
+                        sheet.prefersGrabberVisible = true
+                    }
+                    owner.present(vc, animated: true)
+                }
+            
+            deadlineButton.rx.tap
+                .bind(with: self) { owner, _ in
+                    let vm = DatePickerViewModel { value in
+                        owner.deadlineButton.backgroundColor = .main
+                        owner.deadlineButton.setTitle(value, for: .normal)
+                        deadline.onNext(value)
+                    }
+                    let vc = DatePickerViewController(viewModel: vm)
                     vc.modalPresentationStyle = .pageSheet
                     
                     if let sheet = vc.sheetPresentationController {

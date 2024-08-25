@@ -1,5 +1,5 @@
 //
-//  MaxCountViewController.swift
+//  DatePickerViewController.swift
 //  Damoim
 //
 //  Created by 조규연 on 8/25/24.
@@ -10,19 +10,19 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class MaxCountViewController: BaseViewController {
+final class DatePickerViewController: BaseViewController {
     private let titleLabel = {
         let view = UILabel()
-        view.text = "최대 인원을 선택해주세요."
+        view.text = "날짜 및 시간을 선택해주세요."
         view.font = .boldSystemFont(ofSize: 20)
         return view
     }()
     
-    private let pickerView = UIPickerView()
+    private let pickerView = UIDatePicker()
     
-    private let viewModel: MaxCountViewModel
+    private let viewModel: DatePickerViewModel
     
-    init(viewModel: MaxCountViewModel) {
+    init(viewModel: DatePickerViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -47,23 +47,16 @@ final class MaxCountViewController: BaseViewController {
         
         pickerView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(20)
-            $0.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.leading.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
     }
 }
 
-private extension MaxCountViewController {
+private extension DatePickerViewController {
     func bind() {
-        let input = MaxCountViewModel.Input(
-            pickerSelect: pickerView.rx.modelSelected(String.self)
+        let input = DatePickerViewModel.Input(
+            dateSelect: pickerView.rx.date
         )
         let output = viewModel.transform(input: input)
-        
-        disposeBag.insert {
-            output.items
-                .bind(to: pickerView.rx.itemTitles) { row, element in
-                    return element
-                }
-        }
     }
 }

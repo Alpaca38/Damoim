@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 final class PostViewModel: ViewModel {
     private let location: String
     private let category: String
+    private let disposeBag = DisposeBag()
     
     init(location: String, category: String) {
         self.location = location
@@ -17,6 +20,8 @@ final class PostViewModel: ViewModel {
     }
     
     func transform(input: Input) -> Output {
+        
+        
         return Output()
     }
     
@@ -25,7 +30,9 @@ final class PostViewModel: ViewModel {
 
 extension PostViewModel {
     struct Input {
-        
+        let imageData: Observable<Data?>
+        let titleText: ControlProperty<String>
+        let contentText: ControlProperty<String>
     }
     
     struct Output {

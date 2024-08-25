@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 import SnapKit
 import RxSwift
 import RxCocoa
@@ -208,6 +209,16 @@ private extension PostViewController {
 // MARK: Data bind
 private extension PostViewController {
     func bind() {
+        let input = PostViewModel.Input(
+            imageData: photoView.rx.observe(UIImage.self, "image")
+                .map({ $0?.pngData() })
+                .share(replay: 1),
+            titleText: titleTextField.rx.text.orEmpty,
+            contentText: contentTextView.rx.text.orEmpty
+        )
+        
+        let output = viewModel.transform(input: input)
+        
         disposeBag.insert {
             contentTextView.rx.didBeginEditing
                 .bind(with: self) { owner, _ in
@@ -229,6 +240,31 @@ private extension PostViewController {
                 .bind(with: self) { owner, _ in
                     owner.view.endEditing(true)
                 }
+            
+            photoTapGesture.rx.event
+                .bind(with: self) { owner, _ in
+                    var configuration = PHPickerConfiguration()
+                    configuration.selectionLimit = 1
+                    configuration.filter = .images
+                    
+                    let picker = PHPickerViewController(configuration: configuration)
+                    picker.delegate = self
+                    owner.present(picker, animated: true)
+                }
+            
         }
+    }
+}
+
+extension PostViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        dismiss(animated: true)
+        results.first?.itemProvider.loadObject(ofClass: UIImage.self, completionHandler: { [weak self] object, error in
+            if let image = object as? UIImage {
+                DispatchQueue.main.async {
+                    self?.photoView.image = image
+                }
+            }
+        })
     }
 }

@@ -77,6 +77,8 @@
 		D134A5472C78B2EB003B2DEE /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134A5462C78B2EB003B2DEE /* CategoryCollectionViewCell.swift */; };
 		D134A5492C78D07A003B2DEE /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134A5482C78D07A003B2DEE /* PostViewController.swift */; };
 		D134A54B2C78D098003B2DEE /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134A54A2C78D098003B2DEE /* PostViewModel.swift */; };
+		D15D8FAB2C7AC722002C4D1F /* MaxCountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FAA2C7AC722002C4D1F /* MaxCountViewController.swift */; };
+		D15D8FAD2C7AC73D002C4D1F /* MaxCountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FAC2C7AC73D002C4D1F /* MaxCountViewModel.swift */; };
 		D1E8BCC32C75B6E0003378FA /* EditCommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */; };
 		D1E8BCC52C75C5BD003378FA /* EditCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */; };
 		D1E8BCC72C75C5E3003378FA /* EditCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */; };
@@ -174,6 +176,8 @@
 		D134A5462C78B2EB003B2DEE /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		D134A5482C78D07A003B2DEE /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		D134A54A2C78D098003B2DEE /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		D15D8FAA2C7AC722002C4D1F /* MaxCountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxCountViewController.swift; sourceTree = "<group>"; };
+		D15D8FAC2C7AC73D002C4D1F /* MaxCountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxCountViewModel.swift; sourceTree = "<group>"; };
 		D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentQuery.swift; sourceTree = "<group>"; };
 		D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewController.swift; sourceTree = "<group>"; };
 		D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewModel.swift; sourceTree = "<group>"; };
@@ -399,6 +403,7 @@
 				D134A5342C7761FB003B2DEE /* LocationViewController.swift */,
 				D134A5422C789CBC003B2DEE /* CategoryViewController.swift */,
 				D134A5482C78D07A003B2DEE /* PostViewController.swift */,
+				D15D8FAA2C7AC722002C4D1F /* MaxCountViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -430,6 +435,7 @@
 				D134A5362C776811003B2DEE /* LocationViewModel.swift */,
 				D134A5442C789CF0003B2DEE /* CategoryViewModel.swift */,
 				D134A54A2C78D098003B2DEE /* PostViewModel.swift */,
+				D15D8FAC2C7AC73D002C4D1F /* MaxCountViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -574,6 +580,7 @@
 				D11D813F2C6CD06C00EB8680 /* Refresh.swift in Sources */,
 				D1FB0B512C71B8F800049C5D /* RelativeDateManager.swift in Sources */,
 				D11D81462C6CD85900EB8680 /* SignUpQuery.swift in Sources */,
+				D15D8FAB2C7AC722002C4D1F /* MaxCountViewController.swift in Sources */,
 				D1FB0B4D2C7086B500049C5D /* CommentTableViewCell.swift in Sources */,
 				D11D81662C6DBCBE00EB8680 /* TargetType.swift in Sources */,
 				D1FB0B3F2C6F212600049C5D /* FetchImageQuery.swift in Sources */,
@@ -602,6 +609,7 @@
 				D11D81702C6DF33900EB8680 /* ClubCollectionViewCell.swift in Sources */,
 				D11D81042C6C821A00EB8680 /* BaseViewController.swift in Sources */,
 				D11D814E2C6CD9F400EB8680 /* PostQuery.swift in Sources */,
+				D15D8FAD2C7AC73D002C4D1F /* MaxCountViewModel.swift in Sources */,
 				D1FB0B4F2C71B23C00049C5D /* ProfileImageView.swift in Sources */,
 				D1FB0B6D2C74830600049C5D /* ClubSearchViewModel.swift in Sources */,
 				D134A5372C776811003B2DEE /* LocationViewModel.swift in Sources */,

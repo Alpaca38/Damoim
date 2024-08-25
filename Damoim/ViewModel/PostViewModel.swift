@@ -33,6 +33,7 @@ extension PostViewModel {
         let imageData: Observable<Data?>
         let titleText: ControlProperty<String>
         let contentText: ControlProperty<String>
+        let maxCount: PublishSubject<String>
     }
     
     struct Output {

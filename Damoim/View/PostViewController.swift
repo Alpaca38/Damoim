@@ -209,12 +209,14 @@ private extension PostViewController {
 // MARK: Data bind
 private extension PostViewController {
     func bind() {
+        let maxCount = PublishSubject<String>()
         let input = PostViewModel.Input(
             imageData: photoView.rx.observe(UIImage.self, "image")
                 .map({ $0?.pngData() })
                 .share(replay: 1),
             titleText: titleTextField.rx.text.orEmpty,
-            contentText: contentTextView.rx.text.orEmpty
+            contentText: contentTextView.rx.text.orEmpty,
+            maxCount: maxCount
         )
         
         let output = viewModel.transform(input: input)
@@ -252,6 +254,22 @@ private extension PostViewController {
                     owner.present(picker, animated: true)
                 }
             
+            maxCountButton.rx.tap
+                .bind(with: self) { owner, _ in
+                    let vm = MaxCountViewModel { value in
+                        owner.maxCountButton.backgroundColor = .main
+                        owner.maxCountButton.setTitle("최대 \(value)명", for: .normal)
+                        maxCount.onNext(value)
+                    }
+                    let vc = MaxCountViewController(viewModel: vm)
+                    vc.modalPresentationStyle = .pageSheet
+                    
+                    if let sheet = vc.sheetPresentationController {
+                        sheet.detents = [.medium()]
+                        sheet.prefersGrabberVisible = true
+                    }
+                    owner.present(vc, animated: true)
+                }
         }
     }
 }

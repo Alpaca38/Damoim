@@ -19,11 +19,11 @@ final class CategoryViewModel: ViewModel {
     
     func transform(input: Input) -> Output {
         let categoryData = BehaviorSubject<[Category]>(value: Category.allCases)
-        let collectionViewTap = PublishSubject<(String, String)>()
+        let collectionViewTap = PublishSubject<(String, Category)>()
         
         input.collectionViewTap
             .bind(with: self) { owner, category in
-                collectionViewTap.onNext((owner.location, category.rawValue))
+                collectionViewTap.onNext((owner.location, category))
             }
             .disposed(by: disposeBag)
         
@@ -41,12 +41,23 @@ extension CategoryViewModel {
     
     struct Output {
         let categoryData: Observable<[Category]>
-        let collectionViewTap: Observable<(String, String)>
+        let collectionViewTap: Observable<(String, Category)>
     }
     
     enum Category: String, CaseIterable {
         case card = "카드 게임"
         case guessing = "추리 게임"
         case strategy = "전략 게임"
+        
+        var product_id: String {
+            switch self {
+            case .card:
+                "damoim_card"
+            case .guessing:
+                "damoim_guessing"
+            case .strategy:
+                "damoim_strategy"
+            }
+        }
     }
 }

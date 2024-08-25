@@ -378,6 +378,101 @@ extension NetworkManager {
 
 // MARK: 포스트
 extension NetworkManager {
+    func imageUpload(files: Data, completion: @escaping (Result<[String], LSLPAPIError>) -> Void) {
+        do {
+            let request = try ServerRouter.fileUpload.asURLRequest()
+            AF.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(files, withName: "files", fileName: "photo.png", mimeType: "image/png")
+            }, with: request)
+            .responseDecodable(of: File.self) { [weak self] response in
+                guard let self else { return }
+                switch response.result {
+                case .success(let success):
+                    completion(.success(success.files))
+                case .failure(_):
+                    switch response.response?.statusCode {
+                    case 400:
+                        completion(.failure(.invalidRequestVariables))
+                    case 401:
+                        completion(.failure(.invalidRequest))
+                    case 403:
+                        completion(.failure(.forbidden))
+                    case 419:
+                        refreshToken(completion: { result in // 토큰 갱신
+                            switch result {
+                            case .success(_):
+                                self.imageUpload(files: files) { result in
+                                    switch result {
+                                    case .success(let success):
+                                        completion(.success(success))
+                                    case .failure(let failure):
+                                        completion(.failure(failure))
+                                    }
+                                }
+                            case .failure(let failure):
+                                if failure == .refreshTokenExpired {
+                                    completion(.failure(.refreshTokenExpired))
+                                }
+                            }
+                        })
+                    default:
+                        completion(.failure(.serverError))
+                    }
+                }
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    func createPost(title: String, price: Int?, content: String, content1: String, content2: String, content3: String, content4: String, content5: String, product_id: String, files: [String], completion: @escaping (Result<Post, LSLPAPIError>) -> Void) {
+        do {
+            let query = PostQuery(title: title, price: price, content: content, content1: content1, content2: content2, content3: content3, content4: content4, content5: content5, product_id: product_id, files: files)
+            let request = try ServerRouter.createPost(query: query).asURLRequest()
+            AF.request(request)
+                .responseDecodable(of: Post.self) { [weak self] response in
+                    guard let self else { return }
+                    switch response.result {
+                    case .success(let success):
+                        completion(.success(success))
+                    case .failure(_):
+                        switch response.response?.statusCode {
+                        case 400:
+                            completion(.failure(.invalidRequestVariables))
+                        case 401:
+                            completion(.failure(.invalidRequest))
+                        case 403:
+                            completion(.failure(.forbidden))
+                        case 410:
+                            completion(.failure(.databaseError))
+                        case 419:
+                            refreshToken(completion: { result in // 토큰 갱신
+                                switch result {
+                                case .success(_):
+                                    self.createPost(title: title, price: price, content: content, content1: content1, content2: content2, content3: content3, content4: content4, content5: content5, product_id: product_id, files: files) { result in
+                                        switch result {
+                                        case .success(let success):
+                                            completion(.success(success))
+                                        case .failure(let failure):
+                                            completion(.failure(failure))
+                                        }
+                                    }
+                                case .failure(let failure):
+                                    if failure == .refreshTokenExpired {
+                                        completion(.failure(.refreshTokenExpired))
+                                    }
+                                }
+                            })
+                        default:
+                            completion(.failure(.serverError))
+                        }
+                    }
+                }
+        } catch {
+            print(error)
+        }
+    }
+    
     func fetchPosts(next: String?, product_id: String?, completion: @escaping (Result<Posts, LSLPAPIError>) -> Void) {
         do {
             let query = PostReadQuery(next: next, limit: nil, product_id: product_id)

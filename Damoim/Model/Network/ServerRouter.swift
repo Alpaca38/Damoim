@@ -21,6 +21,8 @@ enum ServerRouter {
     case follow(query: FollowQuery)
     case unfollow(query: UnFollowQuery)
     
+    case createPost(query: PostQuery)
+    case fileUpload
     case postRead(query: PostReadQuery)
     case postReadByUser(query: PostReadByUserQuery)
     case specificPost(query: SpecificPostQuery)
@@ -81,6 +83,10 @@ extension ServerRouter: TargetType {
             return .delete
         case .withdraw:
             return .get
+        case .createPost:
+            return .post
+        case .fileUpload:
+            return .post
         }
     }
     
@@ -96,7 +102,7 @@ extension ServerRouter: TargetType {
             "auth/refresh"
         case .fetchMyProfile, .editProfile:
             "users/me/profile"
-        case .postRead:
+        case .postRead, .createPost:
             "posts/"
         case .postReadByUser(let query):
             "posts/users/\(query.userId)"
@@ -128,6 +134,8 @@ extension ServerRouter: TargetType {
             "posts/\(query.postId)/comments/\(query.commentID)"
         case .withdraw:
             "users/withdraw"
+        case .fileUpload:
+            "posts/files"
         }
     }
     
@@ -149,13 +157,13 @@ extension ServerRouter: TargetType {
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey
             ]
-        case .like, .like2, .comment, .editComment:
+        case .like, .like2, .comment, .editComment, .createPost:
             [
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey,
                 Header.contentType.rawValue: Header.json.rawValue
             ]
-        case .editProfile:
+        case .editProfile, .fileUpload:
             [
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey,
@@ -216,7 +224,9 @@ extension ServerRouter: TargetType {
             return try? encoder.encode(["content": query.content])
         case .editComment(let query):
             return try? encoder.encode(["content": query.content])
-        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .editProfile, .searchHashTag, .fetchLikePost, .fetchLike2Post, .deleteComment, .withdraw:
+        case .createPost(let query):
+            return try? encoder.encode(query)
+        case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .editProfile, .searchHashTag, .fetchLikePost, .fetchLike2Post, .deleteComment, .withdraw, .fileUpload:
             return nil
         }
     }

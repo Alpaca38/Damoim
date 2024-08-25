@@ -9,6 +9,7 @@ import Foundation
 
 struct PostQuery: Encodable {
     let title: String
+    let price: Int?
     let content: String
     let content1: String // 장소
     let content2: String // 일정

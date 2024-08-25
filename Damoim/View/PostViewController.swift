@@ -10,6 +10,7 @@ import PhotosUI
 import SnapKit
 import RxSwift
 import RxCocoa
+import Toast
 
 final class PostViewController: BaseViewController {
     private let photoImage = {
@@ -300,6 +301,38 @@ private extension PostViewController {
                     owner.createPostButton.backgroundColor = backgroundColor
                     
                     owner.createPostButton.isEnabled = valid
+                }
+            
+            output.imageUploadError
+                .bind(with: self) { owner, error in
+                    if error == .refreshTokenExpired {
+                        SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                    } else {
+                        owner.view.makeToast(error.rawValue)
+                    }
+                }
+            
+            output.createPostError
+                .bind(with: self) { owner, error in
+                    if error == .refreshTokenExpired {
+                        SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                    } else {
+                        owner.view.makeToast(error.rawValue)
+                    }
+                }
+            
+            output.joinError
+                .bind(with: self) { owner, error in
+                    if error == .refreshTokenExpired {
+                        SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                    } else {
+                        owner.view.makeToast(error.rawValue)
+                    }
+                }
+            
+            output.createPostSuccess
+                .bind(with: self) { owner, _ in
+                    SceneManager.shared.setScene(viewController: TabBarController())
                 }
         }
     }

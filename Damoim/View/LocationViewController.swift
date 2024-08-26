@@ -16,10 +16,16 @@ final class LocationViewController: BaseViewController {
         let view = UITextField()
         view.leftViewMode = .always
         view.placeholder = l10nKey.placeholderLocation.rawValue.localized
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        customView.addSubview(imageView)
+        imageView.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(10)
+            $0.trailing.verticalEdges.equalToSuperview()
+        }
         let image = UIImage(systemName: "map")?.withTintColor(.main, renderingMode: .alwaysOriginal)
         imageView.image = image
-        view.leftView = imageView
+        view.leftView = customView
         view.borderStyle = .roundedRect
         return view
     }()

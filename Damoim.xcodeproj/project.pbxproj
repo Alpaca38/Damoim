@@ -82,6 +82,7 @@
 		D15D8FAF2C7AD01F002C4D1F /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FAE2C7AD01F002C4D1F /* DatePickerViewController.swift */; };
 		D15D8FB12C7AD0A2002C4D1F /* DatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FB02C7AD0A2002C4D1F /* DatePickerViewModel.swift */; };
 		D15D8FB32C7B0A8A002C4D1F /* DeletePostQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FB22C7B0A8A002C4D1F /* DeletePostQuery.swift */; };
+		D15D8FC22C7D5B2C002C4D1F /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FC12C7D5B2C002C4D1F /* SearchCollectionViewCell.swift */; };
 		D1E8BCC32C75B6E0003378FA /* EditCommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */; };
 		D1E8BCC52C75C5BD003378FA /* EditCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */; };
 		D1E8BCC72C75C5E3003378FA /* EditCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */; };
@@ -184,6 +185,7 @@
 		D15D8FAE2C7AD01F002C4D1F /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		D15D8FB02C7AD0A2002C4D1F /* DatePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewModel.swift; sourceTree = "<group>"; };
 		D15D8FB22C7B0A8A002C4D1F /* DeletePostQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePostQuery.swift; sourceTree = "<group>"; };
+		D15D8FC12C7D5B2C002C4D1F /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentQuery.swift; sourceTree = "<group>"; };
 		D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewController.swift; sourceTree = "<group>"; };
 		D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewModel.swift; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				D1FB0B4C2C7086B500049C5D /* CommentTableViewCell.swift */,
 				D134A5382C776B3C003B2DEE /* LocationTableViewCell.swift */,
 				D134A5462C78B2EB003B2DEE /* CategoryCollectionViewCell.swift */,
+				D15D8FC12C7D5B2C002C4D1F /* SearchCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				D11D816D2C6DE08200EB8680 /* ClubViewController.swift in Sources */,
 				D1FB0B652C7305C800049C5D /* FollowQuery.swift in Sources */,
 				D134A5412C77716F003B2DEE /* LocalSearch.swift in Sources */,
+				D15D8FC22C7D5B2C002C4D1F /* SearchCollectionViewCell.swift in Sources */,
 				D1FB0B532C71F60A00049C5D /* ProfileViewController.swift in Sources */,
 				D134A5472C78B2EB003B2DEE /* CategoryCollectionViewCell.swift in Sources */,
 				D11D81252C6C87C100EB8680 /* UserDefaults.swift in Sources */,

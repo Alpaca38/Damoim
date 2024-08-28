@@ -105,7 +105,7 @@ private extension LocationViewController {
             
             tableView.rx.modelSelected(LocalSearchItem.self)
                 .bind(with: self) { owner, location in
-                    let vm = CategoryViewModel(location: location.roadAddress)
+                    let vm = CategoryViewModel(location: location)
                     let vc = CategoryViewController(viewModel: vm)
                     owner.navigationController?.pushViewController(vc, animated: true)
                 }

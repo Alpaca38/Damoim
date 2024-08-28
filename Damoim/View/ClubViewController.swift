@@ -12,6 +12,12 @@ import RxCocoa
 import RxDataSources
 
 final class ClubViewController: BasePostViewController {
+    private let mapButton = {
+        let view = UIBarButtonItem(image: UIImage(systemName: "map"))
+        view.tintColor = .main
+        return view
+    }()
+    
     private let createPostButton = {
         let view = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"))
         view.tintColor = .main
@@ -55,7 +61,7 @@ private extension ClubViewController {
         navigationController?.navigationBar.largeTitleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.main
         ]
-        navigationItem.rightBarButtonItem = createPostButton
+        navigationItem.rightBarButtonItems = [createPostButton, mapButton]
     }
     
     func createLayout() -> UICollectionViewLayout {
@@ -156,6 +162,18 @@ private extension ClubViewController {
                 .bind(with: self) { owner, _ in
                     let vm = LocationViewModel()
                     let vc = LocationViewController(viewModel: vm)
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
+            
+            mapButton.rx.tap
+                .withLatestFrom(Observable.combineLatest(output.cardRelay, output.guessingRelay, output.guessingRelay))
+                .bind(with: self) { owner, value in
+                    var posts = [PostItem]()
+                    posts.append(contentsOf: value.0)
+                    posts.append(contentsOf: value.1)
+                    posts.append(contentsOf: value.2)
+                    let vm = MapViewModel(posts: posts)
+                    let vc = MapViewController(viewModel: vm)
                     owner.navigationController?.pushViewController(vc, animated: true)
                 }
         }

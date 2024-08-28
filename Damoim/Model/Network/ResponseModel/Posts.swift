@@ -21,7 +21,7 @@ struct Post: Decodable {
     let content1: String // 장소
     let content2: String // 일정
     let content3: String // 최대인원
-    let content4: String // 비용
+    let content4: String // 위치 좌표로 변경
     let content5: String // 카테고리
     let createdAt: String
     let creator: Creator

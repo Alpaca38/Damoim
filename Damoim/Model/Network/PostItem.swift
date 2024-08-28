@@ -7,6 +7,7 @@
 
 import Foundation
 import RxDataSources
+import KakaoMapsSDK
 
 struct PostItem: Codable, Hashable, IdentifiableType {
     var identity = UUID().uuidString
@@ -41,5 +42,15 @@ struct PostItem: Codable, Hashable, IdentifiableType {
     
     var headCountLabel: String {
         return "\(l10nKey.labelHeadCount.rawValue.localized) \(likes.count)/\(content3)"
+    }
+    
+    var coordinate: GeoCoordinate {
+        let components = content4.split(separator: " ")
+        let x = Double(components[0]) ?? 0
+        let y = Double(components[1]) ?? 0
+        
+        let coord = GeoCoordinate(longitude: x / 10000000, latitude: y / 10000000)
+        
+        return coord
     }
 }

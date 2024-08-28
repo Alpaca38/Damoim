@@ -14,4 +14,6 @@ struct LocalSearch: Decodable {
 struct LocalSearchItem: Decodable {
     let title: String
     let roadAddress: String
+    let mapx: String
+    let mapy: String
 }

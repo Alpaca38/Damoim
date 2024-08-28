@@ -10,11 +10,11 @@ import RxSwift
 import RxCocoa
 
 final class PostViewModel: ViewModel {
-    private let location: String
+    private let location: LocalSearchItem
     private let category: CategoryViewModel.Category
     private let disposeBag = DisposeBag()
     
-    init(location: String, category: CategoryViewModel.Category) {
+    init(location: LocalSearchItem, category: CategoryViewModel.Category) {
         self.location = location
         self.category = category
     }
@@ -41,7 +41,7 @@ final class PostViewModel: ViewModel {
                 NetworkManager.shared.imageUpload(files: imageData) { result in
                     switch result {
                     case .success(let success):
-                        NetworkManager.shared.createPost(title: value.3, price: price, content: value.4, content1: value.0, content2: value.6, content3: value.5, content4: value.7, content5: value.1.rawValue, product_id: value.1.product_id, files: success) { result in
+                        NetworkManager.shared.createPost(title: value.3, price: price, content: value.4, content1: value.0.roadAddress, content2: value.6, content3: value.5, content4: "\(value.0.mapx) \(value.0.mapy)", content5: value.1.rawValue, product_id: value.1.product_id, files: success) { result in
                             switch result {
                             case .success(let success):
                                 NetworkManager.shared.join(postId: success.post_id, like_status: true) { result in

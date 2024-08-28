@@ -117,7 +117,6 @@ private extension LoginViewController {
                         DispatchQueue.main.async {
                             SceneManager.shared.setScene(viewController: TabBarController())
                         }
-                        
                     case .failure(let error):
                         owner.view.makeToast(error.rawValue)
                     }

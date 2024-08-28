@@ -83,7 +83,7 @@ final class ClubDetailViewController: BaseViewController {
     
     private let contentLabel = {
         let view = UILabel()
-        view.textAlignment = .center
+        view.textAlignment = .left
         view.numberOfLines = 0
         view.font = .systemFont(ofSize: 15)
         return view
@@ -316,7 +316,7 @@ private extension ClubDetailViewController {
                     owner.scheduleSummaryLabel.text = post.descriptionLabel
                     owner.contentLabel.text = post.content
                     owner.headCountLabel.text = post.headCountLabel
-                    owner.moneyLabel.text = post.content4.toCurrency
+                    owner.moneyLabel.text = String(post.price ?? 0).toCurrency
                     owner.timeLabel.text = post.content2
                     owner.locationLabel.text = post.content1
                 }

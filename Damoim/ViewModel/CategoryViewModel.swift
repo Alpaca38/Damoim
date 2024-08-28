@@ -10,16 +10,16 @@ import RxSwift
 import RxCocoa
 
 final class CategoryViewModel: ViewModel {
-    private let location: String
+    private let location: LocalSearchItem
     private let disposeBag = DisposeBag()
     
-    init(location: String) {
+    init(location: LocalSearchItem) {
         self.location = location
     }
     
     func transform(input: Input) -> Output {
         let categoryData = BehaviorSubject<[Category]>(value: Category.allCases)
-        let collectionViewTap = PublishSubject<(String, Category)>()
+        let collectionViewTap = PublishSubject<(LocalSearchItem, Category)>()
         
         input.collectionViewTap
             .bind(with: self) { owner, category in
@@ -41,7 +41,7 @@ extension CategoryViewModel {
     
     struct Output {
         let categoryData: Observable<[Category]>
-        let collectionViewTap: Observable<(String, Category)>
+        let collectionViewTap: Observable<(LocalSearchItem, Category)>
     }
     
     enum Category: String, CaseIterable {

@@ -83,6 +83,11 @@
 		D15D8FB12C7AD0A2002C4D1F /* DatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FB02C7AD0A2002C4D1F /* DatePickerViewModel.swift */; };
 		D15D8FB32C7B0A8A002C4D1F /* DeletePostQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FB22C7B0A8A002C4D1F /* DeletePostQuery.swift */; };
 		D15D8FC22C7D5B2C002C4D1F /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FC12C7D5B2C002C4D1F /* SearchCollectionViewCell.swift */; };
+		D15D8FD52C7DBE31002C4D1F /* KakaoMapsSDK-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = D15D8FD42C7DBE31002C4D1F /* KakaoMapsSDK-SPM */; };
+		D15D8FD72C7DBF8F002C4D1F /* BaseMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FD62C7DBF8F002C4D1F /* BaseMapViewController.swift */; };
+		D15D8FD92C7DE7B5002C4D1F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FD82C7DE7B5002C4D1F /* MapViewController.swift */; };
+		D15D8FDB2C7DF59D002C4D1F /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FDA2C7DF59D002C4D1F /* MapViewModel.swift */; };
+		D15D8FE82C7ED0F0002C4D1F /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FE72C7ED0F0002C4D1F /* Extension+UIImage.swift */; };
 		D1E8BCC32C75B6E0003378FA /* EditCommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */; };
 		D1E8BCC52C75C5BD003378FA /* EditCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */; };
 		D1E8BCC72C75C5E3003378FA /* EditCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */; };
@@ -186,6 +191,10 @@
 		D15D8FB02C7AD0A2002C4D1F /* DatePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewModel.swift; sourceTree = "<group>"; };
 		D15D8FB22C7B0A8A002C4D1F /* DeletePostQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePostQuery.swift; sourceTree = "<group>"; };
 		D15D8FC12C7D5B2C002C4D1F /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		D15D8FD62C7DBF8F002C4D1F /* BaseMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMapViewController.swift; sourceTree = "<group>"; };
+		D15D8FD82C7DE7B5002C4D1F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		D15D8FDA2C7DF59D002C4D1F /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		D15D8FE72C7ED0F0002C4D1F /* Extension+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
 		D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentQuery.swift; sourceTree = "<group>"; };
 		D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewController.swift; sourceTree = "<group>"; };
 		D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewModel.swift; sourceTree = "<group>"; };
@@ -228,6 +237,7 @@
 				D11D81102C6C85CF00EB8680 /* Kingfisher in Frameworks */,
 				D11D81182C6C85E800EB8680 /* RxSwift in Frameworks */,
 				D11D81162C6C85E800EB8680 /* RxCocoa in Frameworks */,
+				D15D8FD52C7DBE31002C4D1F /* KakaoMapsSDK-SPM in Frameworks */,
 				D11D811D2C6C85FC00EB8680 /* RxDataSources in Frameworks */,
 				D11D811B2C6C85FC00EB8680 /* Differentiator in Frameworks */,
 				D11D810D2C6C85C300EB8680 /* Alamofire in Frameworks */,
@@ -262,7 +272,6 @@
 				D11D81302C6C8F5100EB8680 /* Localization */,
 				D11D81232C6C87BA00EB8680 /* Model */,
 				D11D81022C6C820F00EB8680 /* Protocol */,
-				D11D81012C6C820B00EB8680 /* Base */,
 				D11D80FB2C6C81D800EB8680 /* Extension */,
 				D11D80E32C6C7EF000EB8680 /* AppDelegate.swift */,
 				D11D80E52C6C7EF000EB8680 /* SceneDelegate.swift */,
@@ -281,6 +290,7 @@
 				D11D81352C6C9B2500EB8680 /* Extension+Date.swift */,
 				D11D80FE2C6C81ED00EB8680 /* Extension+UIViewController.swift */,
 				D11D81092C6C82B100EB8680 /* Extension+Color.swift */,
+				D15D8FE72C7ED0F0002C4D1F /* Extension+UIImage.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -396,6 +406,7 @@
 		D11D815B2C6CF7DA00EB8680 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D11D81012C6C820B00EB8680 /* Base */,
 				D11D816E2C6DF32800EB8680 /* Cell */,
 				D11D815C2C6CF7FD00EB8680 /* Custom */,
 				D11D80E72C6C7EF000EB8680 /* LoginViewController.swift */,
@@ -414,6 +425,7 @@
 				D134A5482C78D07A003B2DEE /* PostViewController.swift */,
 				D15D8FAA2C7AC722002C4D1F /* MaxCountViewController.swift */,
 				D15D8FAE2C7AD01F002C4D1F /* DatePickerViewController.swift */,
+				D15D8FD82C7DE7B5002C4D1F /* MapViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -424,6 +436,7 @@
 				D11D81292C6C898C00EB8680 /* TabBarController.swift */,
 				D11D815D2C6CF81300EB8680 /* RoundTextField.swift */,
 				D1FB0B4E2C71B23C00049C5D /* ProfileImageView.swift */,
+				D15D8FD62C7DBF8F002C4D1F /* BaseMapViewController.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -447,6 +460,7 @@
 				D134A54A2C78D098003B2DEE /* PostViewModel.swift */,
 				D15D8FAC2C7AC73D002C4D1F /* MaxCountViewModel.swift */,
 				D15D8FB02C7AD0A2002C4D1F /* DatePickerViewModel.swift */,
+				D15D8FDA2C7DF59D002C4D1F /* MapViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -488,6 +502,7 @@
 				D11D811A2C6C85FC00EB8680 /* Differentiator */,
 				D11D811C2C6C85FC00EB8680 /* RxDataSources */,
 				D11D811F2C6C860800EB8680 /* Toast */,
+				D15D8FD42C7DBE31002C4D1F /* KakaoMapsSDK-SPM */,
 			);
 			productName = Damoim;
 			productReference = D11D80E02C6C7EF000EB8680 /* Damoim.app */;
@@ -525,6 +540,7 @@
 				D11D81142C6C85E800EB8680 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				D11D81192C6C85FC00EB8680 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				D11D811E2C6C860800EB8680 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				D15D8FD32C7DBE31002C4D1F /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
 			);
 			productRefGroup = D11D80E12C6C7EF000EB8680 /* Products */;
 			projectDirPath = "";
@@ -636,16 +652,20 @@
 				D1FB0B532C71F60A00049C5D /* ProfileViewController.swift in Sources */,
 				D134A5472C78B2EB003B2DEE /* CategoryCollectionViewCell.swift in Sources */,
 				D11D81252C6C87C100EB8680 /* UserDefaults.swift in Sources */,
+				D15D8FE82C7ED0F0002C4D1F /* Extension+UIImage.swift in Sources */,
 				D1FB0B572C72099900049C5D /* BasePostViewController.swift in Sources */,
 				D134A53F2C7770CB003B2DEE /* NaverSearchAPIError.swift in Sources */,
+				D15D8FD92C7DE7B5002C4D1F /* MapViewController.swift in Sources */,
 				D1FB0B6F2C74AF9D00049C5D /* MyClubViewController.swift in Sources */,
 				D11D813B2C6CCC3700EB8680 /* Posts.swift in Sources */,
 				D11D810A2C6C82B100EB8680 /* Extension+Color.swift in Sources */,
+				D15D8FDB2C7DF59D002C4D1F /* MapViewModel.swift in Sources */,
 				D11D81382C6CA2F500EB8680 /* l10nKey.swift in Sources */,
 				D11D81522C6CDDB200EB8680 /* CommentQuery.swift in Sources */,
 				D11D812A2C6C898C00EB8680 /* TabBarController.swift in Sources */,
 				D11D81082C6C824400EB8680 /* ReuseIdentifier.swift in Sources */,
 				D1FB0B692C73324500049C5D /* EditProfileViewModel.swift in Sources */,
+				D15D8FD72C7DBF8F002C4D1F /* BaseMapViewController.swift in Sources */,
 				D11D81562C6CDF0000EB8680 /* ProfileEditQuery.swift in Sources */,
 				D11D80E62C6C7EF000EB8680 /* SceneDelegate.swift in Sources */,
 			);
@@ -918,6 +938,14 @@
 				minimumVersion = 5.1.1;
 			};
 		};
+		D15D8FD32C7DBE31002C4D1F /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -960,6 +988,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D11D811E2C6C860800EB8680 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		D15D8FD42C7DBE31002C4D1F /* KakaoMapsSDK-SPM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D15D8FD32C7DBE31002C4D1F /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */;
+			productName = "KakaoMapsSDK-SPM";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

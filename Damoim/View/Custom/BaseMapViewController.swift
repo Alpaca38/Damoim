@@ -47,7 +47,10 @@ class BaseMapViewController: BaseViewController, MapControllerDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        if let view = mapController?.getView("mapview") as? KakaoMap {
+            let cameraUpdate = CameraUpdate.make(target: MapPoint(longitude: 126.964286, latitude: 37.529744), zoomLevel: 11, rotation: 0.0, tilt: 0.0, mapView: view)
+            view.moveCamera(cameraUpdate)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -110,8 +113,7 @@ class BaseMapViewController: BaseViewController, MapControllerDelegate {
         //여기에서 그릴 View(KakaoMap, Roadview)들을 추가한다.
         let defaultPosition: MapPoint = MapPoint(longitude: 127.108678, latitude: 37.402001)
         //지도(KakaoMap)를 그리기 위한 viewInfo를 생성
-        let mapviewInfo: MapviewInfo = MapviewInfo(viewName: "mapview", viewInfoName: "map", defaultPosition: defaultPosition, defaultLevel: 7)
-        
+        let mapviewInfo: MapviewInfo = MapviewInfo(viewName: "mapview", viewInfoName: "map", defaultPosition: defaultPosition, defaultLevel: 6)
         //KakaoMap 추가.
         mapController?.addView(mapviewInfo)
     }

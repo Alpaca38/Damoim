@@ -21,14 +21,13 @@ final class MapViewController: BaseMapViewController {
     }
     
     override func addViews() {
-        let defaultPosition: MapPoint = MapPoint(longitude: 127.0016985, latitude: 37.5642135)
-        let mapviewInfo: MapviewInfo = MapviewInfo(viewName: "mapview", viewInfoName: "map", defaultPosition: defaultPosition, defaultLevel: 7)
+        let defaultPosition: MapPoint = MapPoint(longitude: 126.964286, latitude: 37.529744)
+        let mapviewInfo: MapviewInfo = MapviewInfo(viewName: "mapview", viewInfoName: "map", defaultPosition: defaultPosition, defaultLevel: 6)
         
         mapController?.addView(mapviewInfo)
     }
     
     override func viewInit(viewName: String) {
-        print("OK")
         createLodLabelLayer()
         createLodPois()
     }
@@ -111,7 +110,7 @@ extension MapViewController {
         let mapPoint = MapPoint(longitude: post.coordinate.longitude, latitude: post.coordinate.latitude)
         
         if let layer = manager.getLodLabelLayer(layerID: "custom") {
-            let poiAddResult = layer.addLodPois(options: [options], at: [mapPoint])
+            let _ = layer.addLodPois(options: [options], at: [mapPoint])
             layer.showAllLodPois()
         } else {
             print("LodLabelLayer 초기화 실패")

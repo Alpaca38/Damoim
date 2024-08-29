@@ -1125,6 +1125,59 @@ extension NetworkManager {
     }
 }
 
+// MARK: 결제 검증
+extension NetworkManager {
+    func paymentsValidate(imp_uid: String, post_id: String, completion: @escaping (Result<Payments, LSLPAPIError>) -> Void) {
+        do {
+            let query = PaymentsQuery(imp_uid: imp_uid, post_id: post_id)
+            let request = try ServerRouter.paymentsValidation(query: query).asURLRequest()
+            AF.request(request)
+                .responseDecodable(of: Payments.self) { [weak self] response in
+                    guard let self else { return }
+                    switch response.result {
+                    case .success(let success):
+                        completion(.success(success))
+                    case .failure(_):
+                        switch response.response?.statusCode {
+                        case 400:
+                            completion(.failure(.invalidRequestVariables))
+                        case 401:
+                            completion(.failure(.invalidRequest))
+                        case 403:
+                            completion(.failure(.forbidden))
+                        case 409:
+                            completion(.failure(.conflict))
+                        case 410:
+                            completion(.failure(.databaseError))
+                        case 419:
+                            refreshToken(completion: { result in // 토큰 갱신
+                                switch result {
+                                case .success(_):
+                                    self.paymentsValidate(imp_uid: imp_uid, post_id: post_id) { result in
+                                        switch result {
+                                        case .success(let success):
+                                            completion(.success(success))
+                                        case .failure(let failure):
+                                            completion(.failure(failure))
+                                        }
+                                    }
+                                case .failure(let failure):
+                                    if failure == .refreshTokenExpired {
+                                        completion(.failure(.refreshTokenExpired))
+                                    }
+                                }
+                            })
+                        default:
+                            completion(.failure(.serverError))
+                        }
+                    }
+                }
+        } catch {
+            print(error)
+        }
+    }
+}
+
 // MARK: 네이버 지역 검색
 extension NetworkManager {
     func localSearch(query: String, display: Int) -> Single<Result<LocalSearch, NaverSearchAPIError>> {

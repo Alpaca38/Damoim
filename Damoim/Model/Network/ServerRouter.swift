@@ -41,6 +41,8 @@ enum ServerRouter {
     case searchHashTag(query: HashTagSearchQuery)
     
     case withdraw
+    
+    case paymentsValidation(query: PaymentsQuery)
 }
 
 extension ServerRouter: TargetType {
@@ -90,6 +92,8 @@ extension ServerRouter: TargetType {
             return .post
         case .deletePost:
             return .delete
+        case .paymentsValidation:
+            return .post
         }
     }
     
@@ -141,6 +145,8 @@ extension ServerRouter: TargetType {
             "posts/files"
         case .deletePost(let query):
             "posts/\(query.postId)"
+        case .paymentsValidation:
+            "payments/validation"
         }
     }
     
@@ -162,7 +168,7 @@ extension ServerRouter: TargetType {
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey
             ]
-        case .like, .like2, .comment, .editComment, .createPost:
+        case .like, .like2, .comment, .editComment, .createPost, .paymentsValidation:
             [
                 Header.authorization.rawValue: UserDefaultsManager.accessToken,
                 Header.sesacKey.rawValue: APIKey.sesacKey,
@@ -230,6 +236,8 @@ extension ServerRouter: TargetType {
         case .editComment(let query):
             return try? encoder.encode(["content": query.content])
         case .createPost(let query):
+            return try? encoder.encode(query)
+        case .paymentsValidation(let query):
             return try? encoder.encode(query)
         case .refresh, .postRead, .fetchImage, .fetchMyProfile, .specificPost, .postReadByUser, .fetchOtherUserProfile, .follow, .unfollow, .editProfile, .searchHashTag, .fetchLikePost, .fetchLike2Post, .deleteComment, .withdraw, .fileUpload, .deletePost:
             return nil

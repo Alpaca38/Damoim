@@ -10,6 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import Toast
+import iamport_ios
 
 final class ClubDetailViewController: BaseViewController {
     private let menuButton = {
@@ -299,11 +300,13 @@ private extension ClubDetailViewController {
     
     func bind() {
         let deleteTap = PublishRelay<String>()
+        let paymentResponse = PublishSubject<IamportResponse?>()
         
         let input = ClubDetailViewModel.Input(
             joinTap: joinButton.rx.tap,
             likeTap: heartButton.rx.tap,
-            deleteTap: deleteTap
+            deleteTap: deleteTap,
+            paymentResponse: paymentResponse
         )
         
         let output = viewModel.transform(input: input)
@@ -404,6 +407,33 @@ private extension ClubDetailViewController {
                         SceneManager.shared.setNaviScene(viewController: LoginViewController())
                     } else {
                         owner.view.makeToast(error.rawValue)
+                    }
+                }
+            
+            output.paymentSubject
+                .bind(with: self) { owner, payment in
+                    Iamport.shared.payment(navController: owner.navigationController!, userCode: "imp57573124", payment: payment) { iamportResponse in
+                        paymentResponse.onNext(iamportResponse)
+                        print(String(describing: iamportResponse))
+                    }
+                }
+            
+            output.paymentSuccess
+                .bind(with: self) { owner, _ in
+                    owner.showAlert(title: "결제에 성공하였습니다!", message: nil, buttonTitle: "OK") {
+                        SceneManager.shared.setScene(viewController: TabBarController())
+                    }
+                }
+            
+            output.paymentError
+                .bind(with: self) { owner, error in
+                    if error == .refreshTokenExpired {
+                        SceneManager.shared.setNaviScene(viewController: LoginViewController())
+                    } else {
+                        owner.view.makeToast(error.rawValue)
+                        owner.showAlert(title: "결제에 실패하였습니다", message: "결제에 실패하여 초기 화면으로 이동합니다.", buttonTitle: "OK") {
+                            SceneManager.shared.setScene(viewController: TabBarController())
+                        }
                     }
                 }
         }

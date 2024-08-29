@@ -89,6 +89,8 @@
 		D15D8FDB2C7DF59D002C4D1F /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FDA2C7DF59D002C4D1F /* MapViewModel.swift */; };
 		D15D8FE82C7ED0F0002C4D1F /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FE72C7ED0F0002C4D1F /* Extension+UIImage.swift */; };
 		D15D8FF42C8063AD002C4D1F /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = D15D8FF32C8063AD002C4D1F /* iamport-ios */; };
+		D15D8FF62C806DAA002C4D1F /* PaymentsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FF52C806DAA002C4D1F /* PaymentsQuery.swift */; };
+		D15D8FF82C806E84002C4D1F /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FF72C806E84002C4D1F /* Payments.swift */; };
 		D1E8BCC32C75B6E0003378FA /* EditCommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */; };
 		D1E8BCC52C75C5BD003378FA /* EditCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */; };
 		D1E8BCC72C75C5E3003378FA /* EditCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */; };
@@ -196,6 +198,8 @@
 		D15D8FD82C7DE7B5002C4D1F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D15D8FDA2C7DF59D002C4D1F /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		D15D8FE72C7ED0F0002C4D1F /* Extension+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
+		D15D8FF52C806DAA002C4D1F /* PaymentsQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsQuery.swift; sourceTree = "<group>"; };
+		D15D8FF72C806E84002C4D1F /* Payments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
 		D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentQuery.swift; sourceTree = "<group>"; };
 		D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewController.swift; sourceTree = "<group>"; };
 		D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewModel.swift; sourceTree = "<group>"; };
@@ -374,6 +378,7 @@
 				D11D81402C6CD0B600EB8680 /* File.swift */,
 				D11D81422C6CD1FB00EB8680 /* Profile.swift */,
 				D134A5402C77716F003B2DEE /* LocalSearch.swift */,
+				D15D8FF72C806E84002C4D1F /* Payments.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -401,6 +406,7 @@
 				D1FB0B722C74B3A900049C5D /* FetchLikePostQuery.swift */,
 				D1E8BCC82C75D41C003378FA /* DeleteCommentQuery.swift */,
 				D134A53C2C776F3C003B2DEE /* LocalSearchQuery.swift */,
+				D15D8FF52C806DAA002C4D1F /* PaymentsQuery.swift */,
 			);
 			path = RequstModel;
 			sourceTree = "<group>";
@@ -635,6 +641,7 @@
 				D15D8FAF2C7AD01F002C4D1F /* DatePickerViewController.swift in Sources */,
 				D11D80FA2C6C7F5C00EB8680 /* APIKey.swift in Sources */,
 				D1FB0B592C72154300049C5D /* PostReadByUserQuery.swift in Sources */,
+				D15D8FF82C806E84002C4D1F /* Payments.swift in Sources */,
 				D1FB0B3D2C6F202200049C5D /* PostItem.swift in Sources */,
 				D11D81542C6CDEAE00EB8680 /* LikeQuery.swift in Sources */,
 				D11D81722C6DFD1B00EB8680 /* ClubViewModel.swift in Sources */,
@@ -656,6 +663,7 @@
 				D1FB0B532C71F60A00049C5D /* ProfileViewController.swift in Sources */,
 				D134A5472C78B2EB003B2DEE /* CategoryCollectionViewCell.swift in Sources */,
 				D11D81252C6C87C100EB8680 /* UserDefaults.swift in Sources */,
+				D15D8FF62C806DAA002C4D1F /* PaymentsQuery.swift in Sources */,
 				D15D8FE82C7ED0F0002C4D1F /* Extension+UIImage.swift in Sources */,
 				D1FB0B572C72099900049C5D /* BasePostViewController.swift in Sources */,
 				D134A53F2C7770CB003B2DEE /* NaverSearchAPIError.swift in Sources */,
@@ -815,7 +823,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3R8ZWR4KRJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Damoim/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -847,7 +855,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3R8ZWR4KRJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Damoim/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

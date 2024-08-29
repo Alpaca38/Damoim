@@ -88,6 +88,7 @@
 		D15D8FD92C7DE7B5002C4D1F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FD82C7DE7B5002C4D1F /* MapViewController.swift */; };
 		D15D8FDB2C7DF59D002C4D1F /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FDA2C7DF59D002C4D1F /* MapViewModel.swift */; };
 		D15D8FE82C7ED0F0002C4D1F /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FE72C7ED0F0002C4D1F /* Extension+UIImage.swift */; };
+		D15D8FF42C8063AD002C4D1F /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = D15D8FF32C8063AD002C4D1F /* iamport-ios */; };
 		D1E8BCC32C75B6E0003378FA /* EditCommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */; };
 		D1E8BCC52C75C5BD003378FA /* EditCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */; };
 		D1E8BCC72C75C5E3003378FA /* EditCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */; };
@@ -237,6 +238,7 @@
 				D11D81102C6C85CF00EB8680 /* Kingfisher in Frameworks */,
 				D11D81182C6C85E800EB8680 /* RxSwift in Frameworks */,
 				D11D81162C6C85E800EB8680 /* RxCocoa in Frameworks */,
+				D15D8FF42C8063AD002C4D1F /* iamport-ios in Frameworks */,
 				D15D8FD52C7DBE31002C4D1F /* KakaoMapsSDK-SPM in Frameworks */,
 				D11D811D2C6C85FC00EB8680 /* RxDataSources in Frameworks */,
 				D11D811B2C6C85FC00EB8680 /* Differentiator in Frameworks */,
@@ -503,6 +505,7 @@
 				D11D811C2C6C85FC00EB8680 /* RxDataSources */,
 				D11D811F2C6C860800EB8680 /* Toast */,
 				D15D8FD42C7DBE31002C4D1F /* KakaoMapsSDK-SPM */,
+				D15D8FF32C8063AD002C4D1F /* iamport-ios */,
 			);
 			productName = Damoim;
 			productReference = D11D80E02C6C7EF000EB8680 /* Damoim.app */;
@@ -541,6 +544,7 @@
 				D11D81192C6C85FC00EB8680 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				D11D811E2C6C860800EB8680 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				D15D8FD32C7DBE31002C4D1F /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
+				D15D8FF22C8063AD002C4D1F /* XCRemoteSwiftPackageReference "iamport-ios" */,
 			);
 			productRefGroup = D11D80E12C6C7EF000EB8680 /* Products */;
 			projectDirPath = "";
@@ -948,6 +952,14 @@
 				minimumVersion = 2.10.5;
 			};
 		};
+		D15D8FF22C8063AD002C4D1F /* XCRemoteSwiftPackageReference "iamport-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/iamport/iamport-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -995,6 +1007,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D15D8FD32C7DBE31002C4D1F /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */;
 			productName = "KakaoMapsSDK-SPM";
+		};
+		D15D8FF32C8063AD002C4D1F /* iamport-ios */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D15D8FF22C8063AD002C4D1F /* XCRemoteSwiftPackageReference "iamport-ios" */;
+			productName = "iamport-ios";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -475,7 +475,7 @@ extension NetworkManager {
     
     func fetchPosts(next: String?, product_id: String?, completion: @escaping (Result<Posts, LSLPAPIError>) -> Void) {
         do {
-            let query = PostReadQuery(next: next, limit: nil, product_id: product_id)
+            let query = PostReadQuery(next: next, limit: "10", product_id: product_id)
             let request = try ServerRouter.postRead(query: query).asURLRequest()
             AF.request(request)
                 .validate()

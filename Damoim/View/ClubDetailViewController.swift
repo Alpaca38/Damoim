@@ -56,7 +56,6 @@ final class ClubDetailViewController: BaseViewController {
         return view
     }()
     
-    
     private let profileTapGesture = UITapGestureRecognizer()
     
     private lazy var profileImageView = {

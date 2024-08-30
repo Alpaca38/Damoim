@@ -20,8 +20,10 @@ final class ClubCollectionViewCell: BaseCollectionViewCell {
     }()
     
     private let categoryLabel = {
-        var config = UIButton.Configuration.gray()
+        var config = UIButton.Configuration.tinted()
+        config.background.backgroundColor = .main
         config.cornerStyle = .capsule
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
         let view = UIButton(configuration: config)
         view.isEnabled = false
         return view
@@ -77,7 +79,7 @@ final class ClubCollectionViewCell: BaseCollectionViewCell {
         
         photoImageView.snp.makeConstraints {
             $0.top.leading.equalToSuperview().offset(10)
-            $0.size.equalTo(95)
+            $0.size.equalTo(82)
         }
 
         profileImageView.snp.makeConstraints {
@@ -88,6 +90,10 @@ final class ClubCollectionViewCell: BaseCollectionViewCell {
             $0.verticalEdges.equalToSuperview().inset(10)
             $0.leading.equalTo(photoImageView.snp.trailing).offset(10)
             $0.trailing.equalToSuperview().offset(-10)
+        }
+        
+        categoryLabel.snp.makeConstraints {
+            $0.height.equalTo(16)
         }
     }
     
@@ -104,7 +110,7 @@ final class ClubCollectionViewCell: BaseCollectionViewCell {
             }
         }
         
-        categoryLabel.setAttributedTitle(NSAttributedString(string: data.content5, attributes: [.font: UIFont.systemFont(ofSize: 12, weight: .regular)]), for: .normal)
+        categoryLabel.setAttributedTitle(NSAttributedString(string: data.content5, attributes: [.font: UIFont.systemFont(ofSize: 10, weight: .light), .foregroundColor: UIColor.white]), for: .normal)
         titleLabel.text = data.title
         descriptionLabel.text = data.descriptionLabel
         

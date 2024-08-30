@@ -54,7 +54,7 @@ final class ClubCollectionViewCell: BaseCollectionViewCell {
     private lazy var profileStack = {
         let view = UIStackView(arrangedSubviews: [profileImageView, profileLabel])
         view.axis = .horizontal
-        view.spacing = 2
+        view.spacing = 4
         view.distribution = .equalSpacing
         return view
     }()

@@ -24,10 +24,13 @@ final class ClubViewController: BasePostViewController {
         return view
     }()
     
+    private let refresher = UIRefreshControl()
+    
     private lazy var collectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         view.showsVerticalScrollIndicator = false
         view.backgroundColor = .background
+        view.refreshControl = refresher
         self.view.addSubview(view)
         return view
     }()
@@ -125,7 +128,9 @@ private extension ClubViewController {
     
     func bind() {
         let postSection = PublishRelay<[PostSection]>()
-        let input = ClubViewModel.Input()
+        let input = ClubViewModel.Input(
+            refresh: refresher.rx.controlEvent(.valueChanged)
+        )
         let output = viewModel.transform(input: input)
         
         disposeBag.insert {
@@ -175,6 +180,11 @@ private extension ClubViewController {
                     let vm = MapViewModel(posts: posts)
                     let vc = MapViewController(viewModel: vm)
                     owner.navigationController?.pushViewController(vc, animated: true)
+                }
+            
+            output.refreshComplete
+                .bind(with: self) { owner, _ in
+                    owner.refresher.endRefreshing()
                 }
         }
     }

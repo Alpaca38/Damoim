@@ -17,6 +17,8 @@ final class SearchCollectionViewCell: BaseCollectionViewCell {
     }()
     
     override func configureLayout() {
+        contentView.layer.cornerRadius = 16
+        contentView.clipsToBounds = true
         contentView.addSubview(imageView)
         
         imageView.snp.makeConstraints {

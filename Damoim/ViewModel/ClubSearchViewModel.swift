@@ -23,7 +23,7 @@ final class ClubSearchViewModel: ViewModel {
             .withLatestFrom(input.searchText)
             .distinctUntilChanged()
             .bind(with: self, onNext: { owner, searchText in
-                NetworkManager.shared.searchHashTag(next: nil, limit: nil, product_id: "damoim_card", hashTag: searchText) { result in
+                NetworkManager.shared.searchHashTag(next: nil, limit: "100", product_id: "damoim_card", hashTag: searchText) { result in
                     switch result {
                     case .success(let success):
                         cardRelay.accept(success.data.map({ $0.postItem }))
@@ -32,7 +32,7 @@ final class ClubSearchViewModel: ViewModel {
                     }
                 }
                 
-                NetworkManager.shared.searchHashTag(next: nil, limit: nil, product_id: "damoim_guessing", hashTag: searchText) { result in
+                NetworkManager.shared.searchHashTag(next: nil, limit: "100", product_id: "damoim_guessing", hashTag: searchText) { result in
                     switch result {
                     case .success(let success):
                         guessingRelay.accept(success.data.map({ $0.postItem }))
@@ -41,7 +41,7 @@ final class ClubSearchViewModel: ViewModel {
                     }
                 }
                 
-                NetworkManager.shared.searchHashTag(next: nil, limit: nil, product_id: "damoim_strategy", hashTag: searchText) { result in
+                NetworkManager.shared.searchHashTag(next: nil, limit: "100", product_id: "damoim_strategy", hashTag: searchText) { result in
                     switch result {
                     case .success(let success):
                         strategyRelay.accept(success.data.map({ $0.postItem }))

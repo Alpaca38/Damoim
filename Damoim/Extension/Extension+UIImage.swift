@@ -30,4 +30,19 @@ extension UIImage {
 
         return resizedImage
     }
+    
+    func circularImage() -> UIImage? {
+        let minEdge = min(size.width, size.height)
+        let squareSize = CGSize(width: minEdge, height: minEdge)
+        
+        let renderer = UIGraphicsImageRenderer(size: squareSize)
+        let circularImage = renderer.image { context in
+            let rect = CGRect(origin: .zero, size: squareSize)
+            context.cgContext.addEllipse(in: rect)
+            context.cgContext.clip()
+            self.draw(in: rect)
+        }
+        
+        return circularImage
+    }
 }

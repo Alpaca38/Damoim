@@ -82,7 +82,7 @@ extension MapViewController {
         let view = mapController?.getView("mapview") as! KakaoMap
         let manager = view.getLabelManager()
         
-        guard let resizedImage = image.resize(to: CGSize(width: 20, height: 20)) else {
+        guard let resizedImage = image.resize(to: CGSize(width: 40, height: 40))?.circularImage() else {
             return
         }
         
@@ -90,14 +90,8 @@ extension MapViewController {
         let anchorPoint = CGPoint(x: 0.5, y: 0.5)
         let iconStyle = PoiIconStyle(symbol: resizedImage, anchorPoint: anchorPoint)
         
-        let textLineStyles = [
-            PoiTextLineStyle(textStyle: TextStyle(fontSize: 15, fontColor: UIColor.white, strokeThickness: 2, strokeColor: UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)))
-        ]
-        
-        let textStyle = PoiTextStyle(textLineStyles: textLineStyles)
-        textStyle.textLayouts = [.bottom]
         let poiStyle = PoiStyle(styleID: "customStyle-\(post.post_id)", styles: [
-            PerLevelPoiStyle(iconStyle: iconStyle, textStyle: textStyle, padding: -2.0, level: 0)
+            PerLevelPoiStyle(iconStyle: iconStyle, padding: -2.0, level: 0)
         ])
         
         manager.addPoiStyle(poiStyle)
@@ -105,7 +99,6 @@ extension MapViewController {
         let options = PoiOptions(styleID: "customStyle-\(post.post_id)")
         options.transformType = .decal
         options.clickable = true
-        options.addText(PoiText(text: post.title, styleIndex: 0))
         
         let mapPoint = MapPoint(longitude: post.coordinate.longitude, latitude: post.coordinate.latitude)
         

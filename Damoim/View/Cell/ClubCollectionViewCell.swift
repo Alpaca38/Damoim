@@ -23,7 +23,7 @@ final class ClubCollectionViewCell: BaseCollectionViewCell {
         var config = UIButton.Configuration.tinted()
         config.background.backgroundColor = .main
         config.cornerStyle = .capsule
-        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
+        config.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 6, bottom: 2, trailing: 6)
         let view = UIButton(configuration: config)
         view.isEnabled = false
         return view

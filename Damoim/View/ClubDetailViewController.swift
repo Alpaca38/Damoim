@@ -49,6 +49,10 @@ final class ClubDetailViewController: BaseViewController {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 10
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowRadius = 4
         return view
     }()
     

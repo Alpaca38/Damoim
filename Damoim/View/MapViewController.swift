@@ -103,7 +103,7 @@ extension MapViewController {
         let mapPoint = MapPoint(longitude: post.coordinate.longitude, latitude: post.coordinate.latitude)
         
         if let layer = manager.getLodLabelLayer(layerID: "custom") {
-            let _ = layer.addLodPois(options: [options], at: [mapPoint])
+            let _ = layer.addLodPoi(option: options, at: mapPoint)
             layer.showAllLodPois()
         } else {
             print("LodLabelLayer 초기화 실패")

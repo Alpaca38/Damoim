@@ -103,10 +103,27 @@ extension MapViewController {
         let mapPoint = MapPoint(longitude: post.coordinate.longitude, latitude: post.coordinate.latitude)
         
         if let layer = manager.getLodLabelLayer(layerID: "custom") {
-            let _ = layer.addLodPoi(option: options, at: mapPoint)
+            let poi = layer.addLodPoi(option: options, at: mapPoint)
+            let _ = poi?.addPoiTappedEventHandler(target: self, handler: { [weak self] _ in
+                return { _ in
+                    guard let self = self else { return }
+                    let vm = ClubDetailViewModel(postItem: post)
+                    let vc = ClubDetailViewController(viewModel: vm)
+                    self.present(UINavigationController(rootViewController: vc), animated: true)
+                }
+            })
             layer.showAllLodPois()
         } else {
             print("LodLabelLayer 초기화 실패")
         }
+    }
+    
+    func poiEventHandler(_ param: PoiInteractionEventParam) {
+        print(param.poiItem.itemID)
+        let index = Int(param.poiItem.itemID.filter { $0.isNumber })!
+        let input = MapViewModel.Input()
+        let vm = ClubDetailViewModel(postItem: viewModel.transform(input: input).posts[index])
+        let vc = ClubDetailViewController(viewModel: vm)
+        present(UINavigationController(rootViewController: vc), animated: true)
     }
 }

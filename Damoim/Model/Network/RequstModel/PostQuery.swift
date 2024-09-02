@@ -14,7 +14,7 @@ struct PostQuery: Encodable {
     let content1: String // 장소
     let content2: String // 일정
     let content3: String // 최대인원
-    let content4: String // 비용
+    let content4: String // 위치 좌표
     let content5: String // 카테고리
     let product_id: String // 컨텐츠 구분
     let files: [String]

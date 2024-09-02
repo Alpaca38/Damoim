@@ -14,17 +14,13 @@ extension UIImage {
         let widthRatio  = targetSize.width  / size.width
         let heightRatio = targetSize.height / size.height
 
-        // Determine the scale factor that preserves aspect ratio
         let scaleFactor = min(widthRatio, heightRatio)
 
-        // Compute the new image size that preserves aspect ratio
         let scaledImageSize = CGSize(width: size.width * scaleFactor, height: size.height * scaleFactor)
 
-        // Create a bitmap graphics context
         UIGraphicsBeginImageContextWithOptions(scaledImageSize, false, 0.0)
         self.draw(in: CGRect(origin: .zero, size: scaledImageSize))
 
-        // Get the resized image from the graphics context
         let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 

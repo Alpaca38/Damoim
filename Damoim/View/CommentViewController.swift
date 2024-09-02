@@ -232,12 +232,10 @@ private extension CommentViewController {
     func showActionSheet(editTap: @escaping () -> Void, deleteTap: @escaping() -> Void) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let editButton = UIAlertAction(title: l10nKey.alertEditComment.rawValue.localized, style: .default) { _ in
-            // postid랑 commentid 댓글 수정화면으로 넘기면서 화면 전환
             editTap()
         }
         
         let deleteButton = UIAlertAction(title: l10nKey.alertDeleteComment.rawValue.localized, style: .destructive) { _ in
-            // 댓글 삭제
             deleteTap()
         }
         

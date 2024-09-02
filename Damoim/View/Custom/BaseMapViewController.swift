@@ -25,8 +25,6 @@ class BaseMapViewController: BaseViewController, MapControllerDelegate {
         mapController = KMController(viewContainer: mapContainer)
         mapController!.delegate = self
         
-//        mapController?.prepareEngine() //엔진 초기화. 엔진 내부 객체 생성 및 초기화가 진행된다.
-        
         view.addSubview(mapContainer)
         mapContainer.snp.makeConstraints {
             $0.edges.equalToSuperview()

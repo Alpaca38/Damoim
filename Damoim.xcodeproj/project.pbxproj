@@ -91,6 +91,8 @@
 		D15D8FF42C8063AD002C4D1F /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = D15D8FF32C8063AD002C4D1F /* iamport-ios */; };
 		D15D8FF62C806DAA002C4D1F /* PaymentsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FF52C806DAA002C4D1F /* PaymentsQuery.swift */; };
 		D15D8FF82C806E84002C4D1F /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D8FF72C806E84002C4D1F /* Payments.swift */; };
+		D15D90672C87E5A3002C4D1F /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D90662C87E5A3002C4D1F /* NetworkMonitor.swift */; };
+		D15D90772C89ACAE002C4D1F /* NetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15D90762C89ACAE002C4D1F /* NetworkViewController.swift */; };
 		D1E8BCC32C75B6E0003378FA /* EditCommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */; };
 		D1E8BCC52C75C5BD003378FA /* EditCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */; };
 		D1E8BCC72C75C5E3003378FA /* EditCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */; };
@@ -200,6 +202,8 @@
 		D15D8FE72C7ED0F0002C4D1F /* Extension+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
 		D15D8FF52C806DAA002C4D1F /* PaymentsQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsQuery.swift; sourceTree = "<group>"; };
 		D15D8FF72C806E84002C4D1F /* Payments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
+		D15D90662C87E5A3002C4D1F /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		D15D90762C89ACAE002C4D1F /* NetworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewController.swift; sourceTree = "<group>"; };
 		D1E8BCC22C75B6E0003378FA /* EditCommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentQuery.swift; sourceTree = "<group>"; };
 		D1E8BCC42C75C5BD003378FA /* EditCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewController.swift; sourceTree = "<group>"; };
 		D1E8BCC62C75C5E3003378FA /* EditCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewModel.swift; sourceTree = "<group>"; };
@@ -308,6 +312,7 @@
 				D1FB0B562C72099900049C5D /* BasePostViewController.swift */,
 				D11D81052C6C823200EB8680 /* BaseCollectionViewCell.swift */,
 				D1FB0B4A2C70864B00049C5D /* BaseTableViewCell.swift */,
+				D15D90762C89ACAE002C4D1F /* NetworkViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 				D11D81652C6DBCBE00EB8680 /* TargetType.swift */,
 				D1FB0B3C2C6F202200049C5D /* PostItem.swift */,
 				D134A5322C771FE4003B2DEE /* LSLPRequestLogger.swift */,
+				D15D90662C87E5A3002C4D1F /* NetworkMonitor.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -618,6 +624,7 @@
 				D1FB0B492C70834500049C5D /* CommentViewModel.swift in Sources */,
 				D11D813F2C6CD06C00EB8680 /* Refresh.swift in Sources */,
 				D1FB0B512C71B8F800049C5D /* RelativeDateManager.swift in Sources */,
+				D15D90672C87E5A3002C4D1F /* NetworkMonitor.swift in Sources */,
 				D11D81462C6CD85900EB8680 /* SignUpQuery.swift in Sources */,
 				D15D8FAB2C7AC722002C4D1F /* MaxCountViewController.swift in Sources */,
 				D1FB0B4D2C7086B500049C5D /* CommentTableViewCell.swift in Sources */,
@@ -669,6 +676,7 @@
 				D134A53F2C7770CB003B2DEE /* NaverSearchAPIError.swift in Sources */,
 				D15D8FD92C7DE7B5002C4D1F /* MapViewController.swift in Sources */,
 				D1FB0B6F2C74AF9D00049C5D /* MyClubViewController.swift in Sources */,
+				D15D90772C89ACAE002C4D1F /* NetworkViewController.swift in Sources */,
 				D11D813B2C6CCC3700EB8680 /* Posts.swift in Sources */,
 				D11D810A2C6C82B100EB8680 /* Extension+Color.swift in Sources */,
 				D15D8FDB2C7DF59D002C4D1F /* MapViewModel.swift in Sources */,

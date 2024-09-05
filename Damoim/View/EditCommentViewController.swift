@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Toast
 
-final class EditCommentViewController: BaseViewController {
+final class EditCommentViewController: NetworkViewController {
     private let editButton = {
         let view = UIBarButtonItem(title: l10nKey.buttonEdit.rawValue.localized)
         view.tintColor = .main

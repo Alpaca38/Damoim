@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-final class ProfileViewController: BasePostViewController {
+final class ProfileViewController: NetworkViewController {
     private let withdrawButton = {
         let view = UIBarButtonItem(image: UIImage(systemName: "rectangle.portrait.and.arrow.right"))
         view.tintColor = .lightGray

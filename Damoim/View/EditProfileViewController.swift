@@ -11,7 +11,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class EditProfileViewController: BaseViewController {
+final class EditProfileViewController: NetworkViewController {
     private let saveButton = {
         let view = UIBarButtonItem(title: l10nKey.buttonSave.rawValue.localized)
         view.tintColor = .main

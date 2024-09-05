@@ -12,7 +12,7 @@ import RxCocoa
 import Toast
 import iamport_ios
 
-final class ClubDetailViewController: BaseViewController {
+final class ClubDetailViewController: NetworkViewController {
     private let menuButton = {
         let view = UIBarButtonItem(image: UIImage(systemName: "ellipsis"))
         view.tintColor = .black

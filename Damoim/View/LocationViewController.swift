@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Toast
 
-final class LocationViewController: BaseViewController {
+final class LocationViewController: NetworkViewController {
     private let locationTextField = {
         let view = UITextField()
         view.leftViewMode = .always

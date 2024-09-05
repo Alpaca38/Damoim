@@ -9,7 +9,7 @@ import UIKit
 import KakaoMapsSDK
 import SnapKit
 
-class BaseMapViewController: BaseViewController, MapControllerDelegate {
+class BaseMapViewController: NetworkViewController, MapControllerDelegate {
     
     deinit {
         mapController?.pauseEngine()

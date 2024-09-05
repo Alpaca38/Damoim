@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class DatePickerViewController: BaseViewController {
+final class DatePickerViewController: NetworkViewController {
     private let titleLabel = {
         let view = UILabel()
         view.text = "날짜 및 시간을 선택해주세요."

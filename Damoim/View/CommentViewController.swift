@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Toast
 
-final class CommentViewController: BaseViewController {
+final class CommentViewController: NetworkViewController {
     private let emptyLabel = {
         let view = UILabel()
         view.textColor = .secondaryLabel

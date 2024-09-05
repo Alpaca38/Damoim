@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-final class ClubSearchViewController: BasePostViewController {
+final class ClubSearchViewController: NetworkViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     
     private lazy var collectionView = {

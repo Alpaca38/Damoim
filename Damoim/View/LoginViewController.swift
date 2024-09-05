@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Toast
 
-final class LoginViewController: BaseViewController {
+final class LoginViewController: NetworkViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = l10nKey.appName.rawValue.localized

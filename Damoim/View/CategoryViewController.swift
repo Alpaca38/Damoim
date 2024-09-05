@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class CategoryViewController: BaseViewController {
+final class CategoryViewController: NetworkViewController {
     private lazy var collectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         view.backgroundColor = .background

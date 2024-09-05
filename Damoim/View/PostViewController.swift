@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import Toast
 
-final class PostViewController: BaseViewController {
+final class PostViewController: NetworkViewController {
     private let photoImage = {
         let view = UIImageView()
         view.image = UIImage(systemName: "camera.circle")?.withTintColor(.lightGray, renderingMode: .alwaysOriginal)

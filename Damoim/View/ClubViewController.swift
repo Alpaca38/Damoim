@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-final class ClubViewController: BasePostViewController {
+final class ClubViewController: NetworkViewController {
     private let mapButton = {
         let view = UIBarButtonItem(image: UIImage(systemName: "map"))
         view.tintColor = .main

@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class LikeClubViewController: BasePostViewController {
+final class LikeClubViewController: NetworkViewController {
     private let refresher = UIRefreshControl()
     
     private lazy var collectionView = {

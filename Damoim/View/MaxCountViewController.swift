@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class MaxCountViewController: BaseViewController {
+final class MaxCountViewController: NetworkViewController {
     private let titleLabel = {
         let view = UILabel()
         view.text = "최대 인원을 선택해주세요."

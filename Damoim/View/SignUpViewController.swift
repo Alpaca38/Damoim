@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import Toast
 
-final class SignUpViewController: BaseViewController {
+final class SignUpViewController: NetworkViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = l10nKey.buttonSignUp.rawValue.localized

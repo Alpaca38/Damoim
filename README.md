@@ -16,7 +16,7 @@
 
 ### 개발 환경
 - **IDE** : Xcode 15.4
-- **Language** : Swift 5.7
+- **Language** : Swift 5.10
 
 ### 핵심 기능
 **1. 모임 관리**
